@@ -5,6 +5,7 @@ import { ProductCard } from "@/components/ui/ProductCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { Hero } from "@/components/sections/Hero";
 import { ProductShowcase } from "@/components/sections/ProductShowcase";
+import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
 import { COMPANY } from "@/constants/company";
 import { PRODUCTS } from "@/constants/products";
 
@@ -46,27 +47,15 @@ export default function HomePage() {
             <h2 className="text-3xl font-semibold text-foreground">Sobre a TecnoDreamer</h2>
             <p className="mt-4 text-foreground-muted">{COMPANY.about}</p>
           </Reveal>
-          <Reveal delay={100} className="grid gap-6 sm:grid-cols-2">
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-brand-primary-strong">
-                Valores
-              </h3>
-              <ul className="mt-3 flex flex-col gap-2 text-sm text-foreground-muted">
-                {COMPANY.values.map((value) => (
-                  <li key={value}>{value}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-brand-primary-strong">
-                Tecnologia
-              </h3>
-              <ul className="mt-3 flex flex-col gap-2 text-sm text-foreground-muted">
-                {COMPANY.technologies.map((tech) => (
-                  <li key={tech}>{tech}</li>
-                ))}
-              </ul>
-            </div>
+          <Reveal delay={100}>
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-brand-primary-strong">
+              Valores
+            </h3>
+            <ul className="mt-3 flex flex-col gap-2 text-sm text-foreground-muted">
+              {COMPANY.values.map((value) => (
+                <li key={value}>{value}</li>
+              ))}
+            </ul>
           </Reveal>
         </div>
       </Section>
@@ -94,9 +83,13 @@ export default function HomePage() {
         <Reveal className="mb-10 max-w-2xl">
           <h2 className="text-3xl font-semibold text-foreground">Diferenciais</h2>
         </Reveal>
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {DIFFERENTIATORS.map(({ icon: Icon, title, description }, index) => (
-            <Reveal key={title} delay={index * 80}>
+            <Reveal
+              key={title}
+              delay={index * 80}
+              className="rounded-lg border border-border p-6 transition-all duration-300 ease-standard hover:-translate-y-1 hover:border-brand-primary/40 hover:shadow-md"
+            >
               <div className="flex h-11 w-11 items-center justify-center rounded-md bg-brand-primary/10 text-brand-primary-strong">
                 <Icon size={22} aria-hidden="true" />
               </div>
@@ -105,6 +98,36 @@ export default function HomePage() {
             </Reveal>
           ))}
         </div>
+      </Section>
+
+      <Section tone="surface">
+        <Reveal className="mb-14 max-w-2xl">
+          <h2 className="text-3xl font-semibold text-foreground">Como trabalhamos</h2>
+          <p className="mt-3 text-foreground-muted">
+            Um processo simples, repetido em cada produto do portfólio — do primeiro rascunho à
+            evolução contínua.
+          </p>
+        </Reveal>
+        <ProcessTimeline />
+      </Section>
+
+      <Section tone="background">
+        <Reveal className="mb-10 max-w-2xl">
+          <h2 className="text-3xl font-semibold text-foreground">Tecnologia</h2>
+          <p className="mt-3 text-foreground-muted">
+            Ferramentas modernas e estáveis, escolhidas para durar.
+          </p>
+        </Reveal>
+        <Reveal delay={100} className="flex flex-wrap gap-3">
+          {COMPANY.technologies.map((tech) => (
+            <span
+              key={tech}
+              className="rounded-full border border-border px-4 py-2 text-sm text-foreground-muted transition-colors duration-150 hover:border-brand-primary/40 hover:text-foreground"
+            >
+              {tech}
+            </span>
+          ))}
+        </Reveal>
       </Section>
 
       <Section tone="ink">
