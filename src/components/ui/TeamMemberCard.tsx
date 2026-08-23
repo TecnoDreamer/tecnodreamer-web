@@ -1,4 +1,4 @@
-import { Github, Linkedin, User } from "lucide-react";
+import { ExternalLink, User } from "lucide-react";
 import type { TeamMember } from "@/types/team";
 
 export function TeamMemberCard({ member }: { member: TeamMember }) {
@@ -23,16 +23,16 @@ export function TeamMemberCard({ member }: { member: TeamMember }) {
         </ul>
       )}
       {(member.linkedinUrl || member.githubUrl) && (
-        <div className="flex gap-3 pt-1">
+        <div className="flex gap-4 pt-1 text-sm">
           {member.linkedinUrl && (
             <a
               href={member.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`LinkedIn de ${member.name}`}
-              className="text-foreground-muted hover:text-brand-primary-strong"
+              className="inline-flex items-center gap-1 text-foreground-muted hover:text-brand-primary-strong"
             >
-              <Linkedin size={18} />
+              LinkedIn
+              <ExternalLink size={14} aria-hidden="true" />
             </a>
           )}
           {member.githubUrl && (
@@ -40,10 +40,10 @@ export function TeamMemberCard({ member }: { member: TeamMember }) {
               href={member.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`GitHub de ${member.name}`}
-              className="text-foreground-muted hover:text-brand-primary-strong"
+              className="inline-flex items-center gap-1 text-foreground-muted hover:text-brand-primary-strong"
             >
-              <Github size={18} />
+              GitHub
+              <ExternalLink size={14} aria-hidden="true" />
             </a>
           )}
         </div>
