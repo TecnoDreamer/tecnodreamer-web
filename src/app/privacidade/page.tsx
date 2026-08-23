@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui/Section";
+import { Reveal } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
   title: "Política de Privacidade",
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <Section tone="background" className="pt-16">
-      <div className="mx-auto max-w-3xl">
+      <Reveal as="div" className="mx-auto max-w-3xl">
         <h1 className="text-4xl font-semibold text-foreground">Política de Privacidade</h1>
         <p className="mt-3 text-sm text-foreground-muted">Última atualização: 2026-08-23</p>
 
@@ -79,7 +80,7 @@ export default function PrivacyPage() {
             </p>
           </section>
         </div>
-      </div>
+      </Reveal>
     </Section>
   );
 }
