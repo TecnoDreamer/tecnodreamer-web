@@ -69,8 +69,27 @@ deve nem ser registrado sob reduced motion.
 
 ## O que este site **não** faz (ver seção 37 do prompt)
 
-- Sem autoplay de carrossel agressivo (nenhum carrossel nesta fase).
+- Sem autoplay de carrossel agressivo (nenhum carrossel nesta fase — a
+  seção de destaque de produtos usa tabs controladas pelo usuário, sem
+  autoplay).
 - Sem scroll hijacking — o scroll do navegador nunca é interceptado.
 - Sem parallax perceptível — apenas o spotlight do Hero, que é
   posicional (segue o cursor), não um efeito de profundidade de scroll.
 - Sem cursor customizado global.
+
+## Revisão de motion (Etapa 9)
+
+Revisão de todas as animações `animate-*` usadas no projeto, ao final da
+Etapa 8 (Footer):
+
+| Animação | Onde | Quantidade de usos | Conclusão |
+|---|---|---|---|
+| `animate-menu-in` | Overlay do menu mobile | 1 | Mantido — única entrada, sem repetição. |
+| `animate-fade-in` | Painel do `ProductShowcase` ao trocar de aba | 1 | Mantido — feedback de troca de conteúdo. |
+| `animate-float` | Card flutuante do Hero | 1 | Mantido — sutil (8px, 6s), não compete com o texto. |
+| `animate-ping` | Indicador "ao vivo" no card do Hero | 1 | Mantido — reforça que o portfólio é dinâmico, discreto. |
+| `animate-bounce` | Indicador de scroll do Hero | 1 | Mantido — oculto em mobile, único por página. |
+
+Nenhuma animação foi encontrada em excesso, competindo entre si ou sem
+propósito de UX — nenhuma remoção foi necessária. Todas passam pela regra
+global de `prefers-reduced-motion` (`globals.css`).
