@@ -1,6 +1,5 @@
 import { Rocket, ShieldCheck, Layers, LineChart, Sparkles } from "lucide-react";
 import { Section } from "@/components/ui/Section";
-import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { COMPANY } from "@/constants/company";
