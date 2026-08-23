@@ -34,3 +34,13 @@ Formato inspirado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/)
 - Testes unitários (Vitest) e E2E (Playwright, desktop + mobile).
 - Pipeline de CI no GitHub Actions (lint, type-check, testes, build, E2E).
 - README, LICENSE, SECURITY.md, CONTRIBUTING.md profissionais.
+- Repositório remoto criado no GitHub
+  (`github.com/AleksGustavo/tecnodreamer-web`, privado).
+- **Redesign UX/UI:** auditoria comparativa
+  (`docs/design/AUDITORIA_UX_UI.md`); Design System V2 com tokens de
+  glow/superfícies elevadas/motion e catálogo de animações
+  (`docs/design/ANIMATIONS.md`); Header redesenhado (transição
+  transparente→sólida ao rolar na Home, underline animado, menu mobile
+  como overlay com focus trap/ESC/scroll lock); Hero redesenhado
+  (grid tecnológico, glow, spotlight que segue o mouse, componente
+  `Reveal` reutilizável para scroll-reveal com stagger).

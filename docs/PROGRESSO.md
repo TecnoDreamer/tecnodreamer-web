@@ -23,13 +23,40 @@
 - [x] Testes unitários (Vitest) e E2E (Playwright)
 - [x] Pipeline de CI (GitHub Actions)
 - [x] README, LICENSE, SECURITY.md, CONTRIBUTING.md
+- [x] Repositório remoto criado e código enviado
+      (`github.com/AleksGustavo/tecnodreamer-web`, privado)
+- [x] Relatório final de entrega (`docs/RELATORIO_FINAL.md`)
+- [x] **Redesign UX/UI — Etapa 1 (Auditoria):**
+      `docs/design/AUDITORIA_UX_UI.md`
+- [x] **Redesign UX/UI — Etapa 2 (Design System V2):** tokens de glow,
+      superfícies elevadas/glass, motion (durations/easings), catálogo de
+      animações em `docs/design/ANIMATIONS.md`
+- [x] **Redesign UX/UI — Etapa 3+4 (Header e Hero):** header com
+      transição transparente→sólida ao rolar (Home), underline animado na
+      rota ativa, menu mobile como overlay com focus trap/ESC/scroll lock;
+      Hero com grid tecnológico, glow, spotlight que segue o mouse,
+      componente `Reveal` para scroll-reveal com stagger
 
 ## Em andamento
 
-- [ ] Relatório final de entrega (`docs/RELATORIO_FINAL.md`)
-- [ ] Decisão sobre criação do repositório remoto no GitHub
+- [ ] Redesign UX/UI — Etapa 5 (Produtos: cards com hover
+      elevado/glow, possível seção interativa de produtos)
 
 ## Próximas tarefas
+
+### Redesign UX/UI (ver `PROMPT_UX_UI_TECNODREAMER.md`, seção 39)
+
+- [ ] Etapa 5 — Produtos (cards com estados de hover, mockups/tabs)
+- [ ] Etapa 6 — Diferenciais, Processo, Tecnologias, Empresa, Equipe
+- [ ] Etapa 7 — Contato (layout de fechamento forte)
+- [ ] Etapa 8 — Footer
+- [ ] Etapa 9 — Revisão global de motion
+- [ ] Etapas 10-12 — Rodadas de QA mobile/tablet/desktop
+- [ ] Etapa 13 — Acessibilidade (teclado/foco/contraste/reduced motion)
+- [ ] Etapa 14 — Performance (Lighthouse, bundle, Core Web Vitals)
+- [ ] Etapa 15 — Testes finais completos
+
+### Conteúdo e produto (pendências anteriores, ainda válidas)
 
 - [ ] Definir com o Product Owner: propósito, missão, visão e cultura da
       empresa (hoje `TODO: DEFINIR COM PRODUCT OWNER` em
@@ -73,7 +100,8 @@ que o repositório remoto for criado (ver pendência acima).
 ## Testes
 
 - Unitários: 19 testes (Vitest) — 100% passando.
-- E2E: 18 testes (Playwright, Desktop Chrome + Mobile Chrome) — 100%
+- E2E: 28 testes (Playwright, Desktop Chrome + Mobile Chrome; 1 pulado
+  intencionalmente em mobile por não se aplicar ao viewport) — 100%
   passando.
 - Build de produção (`npm run build`): passando, todas as rotas estáticas
   pré-renderizadas exceto `POST /api/contato` (dinâmica, como esperado).
