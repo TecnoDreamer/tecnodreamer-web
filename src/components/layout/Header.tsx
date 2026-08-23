@@ -10,9 +10,23 @@ import { NAV_ITEMS } from "@/constants/nav";
 import { cn } from "@/lib/utils";
 import { ButtonLink } from "@/components/ui/Button";
 
+/**
+ * Rotas cuja primeira seção é escura (tone="ink") — nelas o header começa
+ * transparente e ganha fundo/blur ao rolar, como sobre o Hero da Home.
+ * Nas demais rotas (topo claro) o header já nasce sólido, para manter
+ * legibilidade.
+ */
+function startsWithDarkSection(pathname: string): boolean {
+  return (
+    pathname === "/" ||
+    pathname === "/empresa" ||
+    pathname === "/contato" ||
+    pathname.startsWith("/produtos/")
+  );
+}
+
 export function Header() {
   const pathname = usePathname();
-  const isHome = pathname === "/";
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,7 +48,7 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isTransparent = isHome && !isScrolled;
+  const isTransparent = startsWithDarkSection(pathname) && !isScrolled;
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   // ESC fecha o menu, foco vai para o primeiro link e trava (focus trap)
