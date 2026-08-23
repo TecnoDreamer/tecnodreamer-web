@@ -1,26 +1,64 @@
 @import "tailwindcss";
 
 :root {
+  /* Marca — extraída do logotipo oficial (ver docs/design/DESIGN_SYSTEM.md) */
+  --color-brand-primary: #22d3ee;
+  --color-brand-primary-strong: #0e7490;
+  --color-brand-secondary: #7c3aed;
+  --color-brand-secondary-alt: #4f46e5;
+  --color-ink: #0b1220;
+
   --background: #ffffff;
-  --foreground: #171717;
+  --surface: #f8fafc;
+  --foreground: #0f172a;
+  --foreground-muted: #475569;
+  --border: #e2e8f0;
+
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
   --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-border: var(--border);
+
+  --color-brand-primary: var(--color-brand-primary);
+  --color-brand-primary-strong: var(--color-brand-primary-strong);
+  --color-brand-secondary: var(--color-brand-secondary);
+  --color-brand-secondary-alt: var(--color-brand-secondary-alt);
+  --color-ink: var(--color-ink);
+
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-error: var(--color-error);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: var(--color-brand-primary);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
 }
