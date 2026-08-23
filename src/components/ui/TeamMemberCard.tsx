@@ -3,8 +3,8 @@ import type { TeamMember } from "@/types/team";
 
 export function TeamMemberCard({ member }: { member: TeamMember }) {
   return (
-    <article className="flex flex-col items-center gap-3 rounded-lg border border-border bg-background p-6 text-center shadow-sm">
-      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-surface text-foreground-muted">
+    <article className="group flex flex-col items-center gap-3 rounded-lg border border-border bg-background p-6 text-center shadow-sm transition-all duration-300 ease-standard hover:-translate-y-1 hover:border-brand-primary/40 hover:shadow-[0_12px_40px_-12px_var(--color-brand-glow)]">
+      <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-surface text-foreground-muted ring-2 ring-transparent transition-all duration-300 ease-standard group-hover:scale-105 group-hover:ring-brand-primary/30">
         <User size={32} aria-hidden="true" />
       </div>
       <h3 className="text-lg font-medium text-foreground">{member.name}</h3>
