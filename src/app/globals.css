@@ -68,6 +68,7 @@
 
   --animate-float: float 6s var(--ease-standard) infinite;
   --animate-menu-in: menuIn 250ms var(--ease-standard) both;
+  --animate-fade-in: fadeIn 350ms var(--ease-standard) both;
 
   @keyframes float {
     0%,
@@ -83,6 +84,17 @@
     from {
       opacity: 0;
       transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
     }
     to {
       opacity: 1;

@@ -1,3 +1,4 @@
+import { PawPrint, QrCode, LineChart, Sparkles } from "lucide-react";
 import type { Product } from "@/types/product";
 
 export const PRODUCTS: Product[] = [
@@ -5,6 +6,8 @@ export const PRODUCTS: Product[] = [
     slug: "gestao-pet",
     name: "Sistema de Gestão Pet",
     tagline: "Gestão completa para pet shops, clínicas e agropecuárias.",
+    category: "Gestão",
+    icon: PawPrint,
     status: "planejamento",
     audience: [
       "Pet shops",
@@ -60,6 +63,8 @@ export const PRODUCTS: Product[] = [
     slug: "petconnect",
     name: "PetConnect",
     tagline: "Identificação e localização de pets por QR Code.",
+    category: "Mobile",
+    icon: QrCode,
     status: "planejamento",
     audience: ["Tutores de pets", "Pessoas que encontram um animal perdido"],
     problem:
@@ -107,6 +112,8 @@ export const PRODUCTS: Product[] = [
     slug: "marketing-analytics",
     name: "Marketing Analytics",
     tagline: "Inteligência de dados para decisões de marketing.",
+    category: "Analytics",
+    icon: LineChart,
     status: "planejamento",
     audience: [
       "Times de marketing",
@@ -156,6 +163,8 @@ export const PRODUCTS: Product[] = [
     slug: "em-desenvolvimento",
     name: "Próximo produto TecnoDreamer",
     tagline: "Um novo produto do portfólio está sendo concebido.",
+    category: "Em breve",
+    icon: Sparkles,
     status: "planejamento",
     audience: ["TODO: DEFINIR COM PRODUCT OWNER"],
     problem: "TODO: DEFINIR COM PRODUCT OWNER",

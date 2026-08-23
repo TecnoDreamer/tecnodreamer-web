@@ -20,6 +20,10 @@ interface RevealProps {
   /** Atraso em ms, usado para stagger em listas/grades. */
   delay?: number;
   className?: string;
+  /** Demais props (role, aria-*, etc.) são repassadas ao elemento renderizado. */
+  [key: `aria-${string}`]: unknown;
+  role?: string;
+  id?: string;
 }
 
 /**
@@ -33,6 +37,7 @@ export function Reveal({
   direction = "up",
   delay = 0,
   className,
+  ...rest
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [skipAnimation] = useState(
@@ -67,6 +72,7 @@ export function Reveal({
   return (
     <Component
       ref={ref}
+      {...rest}
       className={cn(
         !skipAnimation && "transition-all duration-[600ms] ease-standard",
         !skipAnimation && !isVisible && cn("opacity-0", HIDDEN_TRANSFORM[direction]),

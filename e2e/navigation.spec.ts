@@ -10,14 +10,14 @@ test.describe("Navegação principal", () => {
 
   test("Home → PetConnect", async ({ page }) => {
     await page.goto("/");
-    await page.getByRole("link", { name: "Conhecer produto" }).nth(1).click();
+    await page.getByRole("link", { name: "Conhecer PetConnect" }).click();
     await expect(page).toHaveURL("/produtos/petconnect");
     await expect(page.getByRole("heading", { name: "PetConnect", level: 1 })).toBeVisible();
   });
 
   test("Home → Sistema de Gestão Pet", async ({ page }) => {
     await page.goto("/");
-    await page.getByRole("link", { name: "Conhecer produto" }).first().click();
+    await page.getByRole("link", { name: "Conhecer Sistema de Gestão Pet" }).first().click();
     await expect(page).toHaveURL("/produtos/gestao-pet");
     await expect(
       page.getByRole("heading", { name: "Sistema de Gestão Pet", level: 1 })
@@ -26,7 +26,7 @@ test.describe("Navegação principal", () => {
 
   test("Home → Marketing Analytics", async ({ page }) => {
     await page.goto("/");
-    await page.getByRole("link", { name: "Conhecer produto" }).nth(2).click();
+    await page.getByRole("link", { name: "Conhecer Marketing Analytics" }).click();
     await expect(page).toHaveURL("/produtos/marketing-analytics");
     await expect(
       page.getByRole("heading", { name: "Marketing Analytics", level: 1 })
