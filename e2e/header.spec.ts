@@ -32,6 +32,8 @@ test.describe("Header", () => {
     await expect(activeLink).toHaveAttribute("aria-current", "page");
 
     await page.keyboard.press("Tab");
-    await expect(page.getByRole("link", { name: "TecnoDreamer TecnoDreamer" })).toBeFocused();
+    await expect(
+      page.getByRole("banner").getByRole("link", { name: "TecnoDreamer TecnoDreamer" })
+    ).toBeFocused();
   });
 });
