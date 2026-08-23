@@ -12,12 +12,15 @@ export function ProductMockup({ product }: { product: Product }) {
   const Icon = product.icon;
 
   return (
-    <div className="overflow-hidden rounded-lg border border-white/10 bg-ink-elevated backdrop-blur-md">
+    <div
+      aria-hidden="true"
+      className="overflow-hidden rounded-lg border border-white/10 bg-ink-elevated backdrop-blur-md"
+    >
       <div className="flex items-center gap-1.5 border-b border-white/10 px-4 py-3">
         <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
         <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
         <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-        <span className="ml-3 text-xs text-white/40">{product.name}</span>
+        <span className="ml-3 text-xs text-white/50">{product.name}</span>
       </div>
       <div className="flex gap-4 p-5">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-brand-primary/15 text-brand-primary">
@@ -40,7 +43,7 @@ export function ProductMockup({ product }: { product: Product }) {
         ))}
       </div>
       <div className="flex items-center justify-between border-t border-white/10 px-5 py-3">
-        <span className="text-xs text-white/40">{product.category}</span>
+        <span className="text-xs text-white/50">{product.category}</span>
         <StatusBadge status={product.status} />
       </div>
     </div>

@@ -65,7 +65,7 @@ export function ProductShowcase() {
                 <span
                   className={cn(
                     "font-mono text-sm",
-                    isActive ? "text-brand-primary" : "text-white/40"
+                    isActive ? "text-brand-primary" : "text-white/50"
                   )}
                 >
                   {String(index + 1).padStart(2, "0")}

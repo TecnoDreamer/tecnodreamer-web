@@ -1,7 +1,46 @@
 "use client";
 
-import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type ElementType,
+  type ReactNode,
+} from "react";
 import { cn } from "@/lib/utils";
+
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+
+function subscribeToReducedMotion(callback: () => void) {
+  const mediaQueryList = window.matchMedia(REDUCED_MOTION_QUERY);
+  mediaQueryList.addEventListener("change", callback);
+  return () => mediaQueryList.removeEventListener("change", callback);
+}
+
+function getReducedMotionSnapshot() {
+  return window.matchMedia(REDUCED_MOTION_QUERY).matches;
+}
+
+function getReducedMotionServerSnapshot() {
+  return false;
+}
+
+/**
+ * Lê `prefers-reduced-motion` sem causar mismatch de hidratação: o
+ * `useSyncExternalStore` garante que o primeiro render no client bata com
+ * o HTML do servidor (que não tem como conhecer a preferência do SO) e só
+ * então corrige o valor de forma segura. Um `useState` com
+ * `window.matchMedia` no inicializador quebraria isso — o React detecta o
+ * atributo divergente na hidratação e explicitamente NÃO o corrige.
+ */
+function usePrefersReducedMotion() {
+  return useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot
+  );
+}
 
 type RevealDirection = "up" | "down" | "left" | "right" | "none";
 
@@ -40,12 +79,8 @@ export function Reveal({
   ...rest
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [skipAnimation] = useState(
-    () =>
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  );
-  const [isVisible, setIsVisible] = useState(skipAnimation);
+  const skipAnimation = usePrefersReducedMotion();
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     if (skipAnimation) return;
