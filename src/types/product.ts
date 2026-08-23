@@ -1,3 +1,5 @@
+import type { LucideIcon } from "lucide-react";
+
 export type ProductStatus =
   | "planejamento"
   | "em-desenvolvimento"
@@ -13,6 +15,9 @@ export interface Product {
   slug: string;
   name: string;
   tagline: string;
+  /** Categoria curta usada em badges/cards (ex.: "Gestão", "Mobile"). */
+  category: string;
+  icon: LucideIcon;
   status: ProductStatus;
   audience: string[];
   problem: string;

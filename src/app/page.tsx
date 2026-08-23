@@ -4,6 +4,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { Hero } from "@/components/sections/Hero";
+import { ProductShowcase } from "@/components/sections/ProductShowcase";
 import { COMPANY } from "@/constants/company";
 import { PRODUCTS } from "@/constants/products";
 
@@ -86,6 +87,8 @@ export default function HomePage() {
           ))}
         </div>
       </Section>
+
+      <ProductShowcase />
 
       <Section tone="background">
         <Reveal className="mb-10 max-w-2xl">

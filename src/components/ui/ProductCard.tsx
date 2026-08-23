@@ -3,13 +3,31 @@ import { ArrowRight } from "lucide-react";
 import type { Product } from "@/types/product";
 import { StatusBadge } from "@/components/ui/Badge";
 
+const CARD_HOVER =
+  "hover:-translate-y-1 hover:border-brand-primary/40 hover:shadow-[0_12px_40px_-12px_var(--color-brand-glow)] " +
+  "focus-within:-translate-y-1 focus-within:border-brand-primary/40 focus-within:shadow-[0_12px_40px_-12px_var(--color-brand-glow)]";
+
 export function ProductCard({ product }: { product: Product }) {
+  const Icon = product.icon;
+
   return (
-    <article className="flex h-full flex-col gap-4 rounded-lg border border-border bg-background p-6 shadow-sm transition-shadow hover:shadow-md">
+    <article
+      className={`group relative flex h-full flex-col gap-4 rounded-lg border border-border bg-background p-6 shadow-sm transition-all duration-300 ease-standard ${CARD_HOVER}`}
+    >
       <div className="flex items-start justify-between gap-3">
-        <h3 className="text-xl font-medium text-foreground">{product.name}</h3>
+        <div className="flex h-11 w-11 items-center justify-center rounded-md bg-brand-primary/10 text-brand-primary-strong transition-colors duration-300 group-hover:bg-brand-primary/15">
+          <Icon size={22} aria-hidden="true" />
+        </div>
         <StatusBadge status={product.status} />
       </div>
+
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-wide text-brand-primary-strong">
+          {product.category}
+        </p>
+        <h3 className="mt-1 text-xl font-medium text-foreground">{product.name}</h3>
+      </div>
+
       <p className="text-sm text-foreground-muted">{product.tagline}</p>
       <p className="text-sm text-foreground-muted">
         <span className="font-medium text-foreground">Problema: </span>
@@ -21,12 +39,18 @@ export function ProductCard({ product }: { product: Product }) {
           {product.audience.join(", ")}
         </p>
       )}
+
       <Link
         href={`/produtos/${product.slug}`}
-        className="mt-auto inline-flex items-center gap-1 text-sm font-medium text-brand-primary-strong hover:underline"
+        aria-label={`Conhecer ${product.name}`}
+        className="mt-auto inline-flex w-fit items-center gap-1 text-sm font-medium text-brand-primary-strong after:absolute after:inset-0 after:rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-primary"
       >
         Conhecer produto
-        <ArrowRight size={16} aria-hidden="true" />
+        <ArrowRight
+          size={16}
+          aria-hidden="true"
+          className="transition-transform duration-150 ease-standard group-hover:translate-x-1 group-focus-within:translate-x-1"
+        />
       </Link>
     </article>
   );
