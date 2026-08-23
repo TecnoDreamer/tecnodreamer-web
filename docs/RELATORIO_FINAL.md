@@ -84,12 +84,17 @@ reais ausentes usam `TODO: DEFINIR COM PRODUCT OWNER` ou
 - **Unitários (Vitest):** 19 testes — schema de contato (incluindo
   entradas maliciosas conceituais: XSS, SQLi, path traversal), rate
   limiter, utilitário `cn`. 100% passando.
-- **E2E (Playwright, Desktop Chrome + Mobile Chrome):** 18 testes —
-  navegação entre páginas, menu mobile, formulário de contato
-  (inválido/válido), 404. 100% passando.
+- **E2E (Playwright, Desktop Chrome + Mobile Chrome):** 104 testes (73
+  executados + 31 pulados intencionalmente por redundância de viewport) —
+  navegação, menu mobile (ESC, foco, scroll lock), header (scroll,
+  rota ativa, teclado), formulário de contato, destaque interativo de
+  produtos (clique e teclado), 404, QA responsivo em 4 breakpoints,
+  acessibilidade (reduced motion, ordem de Tab, foco visível). 100%
+  passando.
 - **Build de produção:** `npm run build` executado com sucesso — todas as
   rotas estáticas pré-renderizadas, exceto `POST /api/contato` (dinâmica,
   como esperado).
+- **Lighthouse:** ver seção 14 e `docs/design/PERFORMANCE.md`.
 
 ## 7. Banco de dados
 
@@ -114,10 +119,12 @@ necessária no futuro, o roadmap já prevê a camada
 - Branch principal renomeada de `master` para `main`.
 - Todo o desenvolvimento ocorreu em branches `feature/*`/`docs/*`,
   mescladas em `main` via merge commits (`--no-ff`) — simulando o fluxo de
-  Pull Request localmente, já que o repositório remoto ainda não foi
-  criado nesta fase (decisão pendente com o usuário).
+  Pull Request localmente.
 - Commits seguem Conventional Commits (`feat:`, `fix:`, `docs:`, `test:`,
-  `security:`, `chore:`, `ci:`).
+  `security:`, `perf:`, `style:`, `chore:`, `ci:`).
+- Repositório remoto criado e sincronizado:
+  [`github.com/AleksGustavo/tecnodreamer-web`](https://github.com/AleksGustavo/tecnodreamer-web)
+  (privado).
 
 ## 10. Decisões arquiteturais (ADRs)
 
@@ -125,8 +132,6 @@ necessária no futuro, o roadmap já prevê a camada
 
 ## 11. Pendências
 
-- Criação do repositório remoto no GitHub e primeiro push (aguardando
-  decisão do usuário).
 - Conteúdo real de propósito/missão/visão/cultura da empresa e dados
   reais da equipe.
 - Revisão jurídica de Privacidade, Termos e LICENSE.
@@ -134,6 +139,34 @@ necessária no futuro, o roadmap já prevê a camada
   apenas validados e logados).
 - Escolha do provedor de deploy e configuração de `NEXT_PUBLIC_SITE_URL`
   real.
+
+## 11.1 Redesign UX/UI
+
+Uma segunda fase (`PROMPT_UX_UI_TECNODREAMER.md`) revisitou toda a
+identidade visual e a experiência de interação do site, preservando o
+conteúdo e a marca já aprovados. Executada em 15 etapas, documentadas
+integralmente em `docs/PROGRESSO.md` e nos documentos de design:
+
+- `docs/design/AUDITORIA_UX_UI.md` — comparação com a referência visual.
+- `docs/design/DESIGN_SYSTEM.md` (§1.1, §9-11) — tokens V2 (glow,
+  superfícies elevadas/glass, motion).
+- `docs/design/ANIMATIONS.md` — catálogo de animações e revisão de
+  excessos.
+- `docs/design/UX_GUIDELINES.md` — leis de UX e heurísticas aplicadas.
+- `docs/design/RESPONSIVE_GUIDELINES.md` — comportamento por breakpoint.
+- `docs/design/PERFORMANCE.md` — auditoria Lighthouse e otimizações.
+
+**Principais entregas:** Header com transição transparente→sólida sobre
+seções escuras e menu mobile acessível (focus trap, ESC, scroll lock);
+Hero com grid tecnológico, glow e spotlight; seção interativa de
+produtos (`ProductShowcase`, tabs acessíveis); `ProcessTimeline` e seção
+de Tecnologia; Empresa/Equipe/Contato/Footer redesenhados; QA responsivo
+automatizado; correção de um bug crítico de hidratação no componente
+`Reveal` sob `prefers-reduced-motion`; auditoria Lighthouse (Home:
+86/100/100/100 mobile, 99/100/100/100 desktop).
+
+Nenhuma métrica, cliente, depoimento ou canal de contato inexistente foi
+inventado durante o redesign.
 
 ## 12. Como executar localmente
 

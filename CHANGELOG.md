@@ -36,11 +36,32 @@ Formato inspirado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/)
 - README, LICENSE, SECURITY.md, CONTRIBUTING.md profissionais.
 - Repositório remoto criado no GitHub
   (`github.com/AleksGustavo/tecnodreamer-web`, privado).
-- **Redesign UX/UI:** auditoria comparativa
+- **Redesign UX/UI (completo, Etapas 1-15):** auditoria comparativa
   (`docs/design/AUDITORIA_UX_UI.md`); Design System V2 com tokens de
   glow/superfícies elevadas/motion e catálogo de animações
   (`docs/design/ANIMATIONS.md`); Header redesenhado (transição
-  transparente→sólida ao rolar na Home, underline animado, menu mobile
-  como overlay com focus trap/ESC/scroll lock); Hero redesenhado
-  (grid tecnológico, glow, spotlight que segue o mouse, componente
-  `Reveal` reutilizável para scroll-reveal com stagger).
+  transparente→sólida ao rolar em rotas com hero escuro, underline
+  animado, menu mobile como overlay com focus trap/ESC/scroll lock);
+  Hero redesenhado (grid tecnológico, glow, spotlight que segue o mouse,
+  componente `Reveal` reutilizável para scroll-reveal com stagger);
+  `ProductCard` com ícone/categoria/hover elevado e nova seção
+  `ProductShowcase` com abas acessíveis; `ProcessTimeline` ("Como
+  trabalhamos") e seção Tecnologia; Empresa e Equipe redesenhadas com
+  composição assimétrica; Contato como fechamento forte; Footer com
+  tratamento escuro; QA responsivo automatizado em 4 breakpoints
+  (`e2e/responsive-qa.spec.ts`); auditoria de acessibilidade
+  (`e2e/accessibility.spec.ts`) e auditoria de performance via Lighthouse
+  (`docs/design/PERFORMANCE.md`). Documentação completa em
+  `docs/design/UX_GUIDELINES.md` e `docs/design/RESPONSIVE_GUIDELINES.md`.
+
+### Corrigido
+
+- Bug crítico de hidratação no `Reveal` sob `prefers-reduced-motion`
+  (React não corrigia o mismatch client/servidor) — corrigido com
+  `useSyncExternalStore`.
+- Dois casos de contraste de texto abaixo de WCAG AA (`ProductMockup`,
+  índice das abas do `ProductShowcase`).
+- Ordem de headings inválida (`heading-order`) causada pelos rótulos do
+  Footer usando `<h3>` — convertidos para `<p>`.
+- Ícones de marca `Github`/`Linkedin` (removidos do `lucide-react`
+  instalado) — substituídos por `ExternalLink` genérico.
