@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { SITE_URL } from "@/constants/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +14,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://tecnodreamer.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
