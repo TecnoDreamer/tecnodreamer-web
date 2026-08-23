@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { Mail, MessageCircle } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
-import { ContactForm } from "./ContactForm";
+import { ContactFormSkeleton } from "./ContactFormSkeleton";
 import { PRODUCTS } from "@/constants/products";
+
+// Code-split o formulário (React Hook Form + Zod) em um chunk separado do
+// resto da página, reduzindo o JavaScript avaliado no carregamento inicial
+// (ver docs/design/PERFORMANCE.md).
+const ContactForm = dynamic(() => import("./ContactForm").then((mod) => mod.ContactForm), {
+  loading: () => <ContactFormSkeleton />,
+});
 
 export const metadata: Metadata = {
   title: "Contato",

@@ -30,7 +30,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold text-white">Navegação</h3>
+          <p className="text-sm font-semibold text-white">Navegação</p>
           <ul className="mt-3 flex flex-col gap-2">
             {NAV_ITEMS.map((item) => (
               <li key={item.href}>
@@ -43,7 +43,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold text-white">Produtos</h3>
+          <p className="text-sm font-semibold text-white">Produtos</p>
           <ul className="mt-3 flex flex-col gap-2">
             {PRODUCTS.map((product) => (
               <li key={product.slug}>
