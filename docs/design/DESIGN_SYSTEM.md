@@ -5,6 +5,12 @@ conforme `docs/auditoria/AUDITORIA_INICIAL.md` §5. O logotipo em si nunca é
 alterado — este documento define como a identidade visual dele se estende
 ao restante do site.
 
+> **V2 (2026-08-23):** revitalização visual/UX/UI (ver
+> `docs/design/AUDITORIA_UX_UI.md`) — adiciona tokens de glow, superfícies
+> elevadas/glass e motion design, sem substituir os tokens v1. Nada foi
+> renomeado: apenas adicionado, para não quebrar componentes já
+> construídos.
+
 ## 1. Cores
 
 Implementadas como CSS custom properties em `src/app/globals.css`, expostas
@@ -34,6 +40,26 @@ Texto sobre `--color-ink` usa branco.
 conforme instrução do prompt). Uma seção hero pode usar `--color-ink` como
 fundo local para reproduzir o clima do logotipo, sem exigir um tema escuro
 completo do site.
+
+### 1.1 Tokens V2 (glow, superfícies elevadas, texto)
+
+Adicionados para a revitalização visual — complementam a tabela acima,
+sem substituí-la.
+
+| Token | Valor | Uso |
+|---|---|---|
+| `--color-brand-glow` | `#22D3EE` (mesmo valor de `brand-primary`) | Uso semântico específico para `box-shadow`/glow (ex.: `shadow-[0_0_80px_-20px_var(--color-brand-glow)]`), nunca como cor de texto/fundo direta. |
+| `--color-surface-hover` | `#EEF2F7` | Estado hover de superfícies claras (`surface`). |
+| `--color-surface-elevated` | `rgba(15,23,42,0.03)` | Cards "flutuantes" sobre fundo claro — profundidade sutil sem escurecer o texto. |
+| `--color-ink-elevated` | `rgba(255,255,255,0.06)` | Superfície "glass" sobre seções escuras (`ink`) — cards flutuantes do Hero, painéis translúcidos. Combinado com `backdrop-blur` e `border-white/10`. |
+| `--color-text-secondary` | `#334155` | Nível intermediário entre `--color-text` (títulos/corpo) e `--color-text-muted` (legendas) — usado em subtítulos de seção. |
+| `--color-border-hover` | `#CBD5E1` | Borda em estado hover de cards claros. |
+
+**Nota de nomenclatura:** o prompt de UX/UI sugere os nomes conceituais
+`--background-primary`/`--background-secondary`/`--text-primary` etc. Eles
+mapeiam 1:1 para os tokens v1 já existentes (`--color-background` /
+`--color-ink` / `--color-text`) — não foram duplicados com nomes novos
+para evitar dois tokens equivalentes competindo no código.
 
 ## 2. Tipografia
 
@@ -110,3 +136,45 @@ nunca decorativa sem propósito.
 - **Disabled:** opacidade reduzida (~50%) + `cursor-not-allowed`.
 - **Erro (formulário):** borda `--color-error` + texto de erro abaixo do
   campo, associado via `aria-describedby`.
+
+## 9. Motion Design (V2)
+
+Ver `docs/design/ANIMATIONS.md` para o catálogo completo de animações e
+justificativa de uso. Resumo dos tokens:
+
+| Token | Valor | Uso |
+|---|---|---|
+| `duration-fast` | `150ms` (Tailwind `duration-150`) | Microinterações (hover de botão/link/ícone). |
+| `duration-normal` | `300ms` (Tailwind `duration-300`) | Transições de estado (header ao rolar, underline ativo, cards). |
+| `duration-slow` | `600ms` (Tailwind `duration-600` via valor arbitrário) | Reveals de entrada (fade-up de seção). |
+| `--ease-standard` | `cubic-bezier(0.2, 0, 0, 1)` (utilitário `ease-standard`) | Transições de UI em geral. |
+| `--ease-emphasized` | `cubic-bezier(0.3, 0, 0.1, 1)` | Entradas de destaque (Hero, reveals). |
+
+Toda animação é implementada com `transform`/`opacity` (nunca
+`width`/`height`/`top`/`left`), por performance (RNF008) e para permitir
+desabilitação simples via `prefers-reduced-motion` — ver
+`docs/design/ANIMATIONS.md`.
+
+## 10. Superfícies e profundidade (V2)
+
+- **Glow controlado:** halos de luz sutis (`--color-brand-glow`) atrás de
+  elementos de destaque (Hero, cards em hover) — sempre com blur alto e
+  opacidade baixa, nunca como fundo sólido.
+- **Glass/translúcido:** usado apenas sobre `tone="ink"` (`--color-ink-elevated`
+  + `backdrop-blur` + borda `white/10`) — nunca sobre fundo claro, onde a
+  transparência prejudicaria a leitura.
+- **Grid tecnológico:** padrão de linhas finas (`background-image` com
+  `linear-gradient` repetido) em opacidade muito baixa, usado apenas em
+  seções `tone="ink"` para reforçar a atmosfera "Dark Tech" sem competir
+  com o conteúdo.
+
+## 11. Componentes adicionados na V2
+
+- **`Reveal`** (`src/components/ui/Reveal.tsx`) — wrapper client-side que
+  anima entrada (fade + translate) quando o elemento entra no viewport,
+  via `IntersectionObserver`. Suporta `delay` (para stagger) e respeita
+  `prefers-reduced-motion` (renderiza sem animação). Documentado em
+  `docs/design/ANIMATIONS.md`.
+- **`Hero`** (`src/components/sections/Hero.tsx`) — extraído da Home,
+  com grid tecnológico, glow e spotlight que acompanha o mouse (desktop
+  apenas, `pointer: fine`, desabilitado sob reduced motion).
