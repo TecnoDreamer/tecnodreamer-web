@@ -12,11 +12,15 @@
 4. Antes de abrir um Pull Request, rode localmente:
    ```bash
    npm run lint
+   npx next typegen   # gera PageProps/LayoutProps e next-env.d.ts em um checkout limpo
    npx tsc --noEmit
    npm run test
    npm run build
    npm run test:e2e
    ```
+   `next typegen` só é necessário se `.next/` e `next-env.d.ts` ainda não
+   existirem (ex.: checkout novo) — `npm run dev`/`npm run build` também
+   os geram.
 5. Abra o Pull Request contra `main`, descrevendo o que mudou e como
    testar. Aguarde o pipeline de CI passar antes do merge.
 6. Não faça merge de código com testes quebrados ou lint/type-check

@@ -95,6 +95,18 @@ está concluído. Próximos passos dependem de decisões do Product Owner
   de hidratação que o React explicitamente não corrige — usuários com
   `prefers-reduced-motion` nunca recebiam o estado "sem animação".
   Corrigido com `useSyncExternalStore`.
+- **CI quebrado desde o início da Etapa 3 (só percebido na Etapa 15):**
+  o job de type-check do GitHub Actions rodava `npx tsc --noEmit` sem
+  antes gerar `.next/types` (que define os helpers globais
+  `PageProps`/`LayoutProps`) nem `next-env.d.ts` (ignorado pelo
+  `.gitignore`, que declara os módulos de imagem `.png`/`.jpg`). Isso
+  passava despercebido localmente porque `.next/` e `next-env.d.ts` já
+  existiam de execuções anteriores de `next dev`/`build` — um checkout
+  limpo (como o do CI) não os tem. Corrigido adicionando
+  `npx next typegen` antes do type-check em `.github/workflows/ci.yml`;
+  documentado em `CONTRIBUTING.md`. **Lição:** verificar o CI real, não
+  apenas os comandos locais — o ambiente local acumula estado que mascara
+  esse tipo de problema.
 - `next.config.ts` e `.env.example` exigem reiniciar o servidor de dev
   para refletir mudanças (Turbopack não faz HMR desses arquivos).
 
