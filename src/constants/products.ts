@@ -3,11 +3,12 @@ import type { Product } from "@/types/product";
 
 export const PRODUCTS: Product[] = [
   {
-    slug: "gestao-pet",
-    name: "Sistema de Gestão Pet",
+    slug: "pet-e-pet",
+    name: "Pet & Pet",
     tagline: "Gestão completa para pet shops, clínicas e agropecuárias.",
     category: "Gestão",
     icon: PawPrint,
+    logoSrc: "/logos/pet-e-pet.png",
     status: "planejamento",
     audience: [
       "Pet shops",
@@ -50,7 +51,7 @@ export const PRODUCTS: Product[] = [
       {
         question: "O sistema já está disponível?",
         answer:
-          "Não. O Sistema de Gestão Pet está em fase de planejamento — as funcionalidades listadas aqui representam o escopo previsto, não recursos já entregues.",
+          "Não. O Pet & Pet está em fase de planejamento — as funcionalidades listadas aqui representam o escopo previsto, não recursos já entregues.",
       },
       {
         question: "Para quem é este produto?",
@@ -65,6 +66,7 @@ export const PRODUCTS: Product[] = [
     tagline: "Identificação e localização de pets por QR Code.",
     category: "Mobile",
     icon: QrCode,
+    logoSrc: "/logos/petconnect.png",
     status: "planejamento",
     audience: ["Tutores de pets", "Pessoas que encontram um animal perdido"],
     problem:
@@ -110,10 +112,11 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "marketing-analytics",
-    name: "Marketing Analytics",
+    name: "MarketIQ",
     tagline: "Inteligência de dados para decisões de marketing.",
     category: "Analytics",
     icon: LineChart,
+    logoSrc: "/logos/marketing-analytics.png",
     status: "planejamento",
     audience: [
       "Times de marketing",
@@ -153,7 +156,7 @@ export const PRODUCTS: Product[] = [
     ],
     faq: [
       {
-        question: "O Marketing Analytics já está em uso?",
+        question: "O MarketIQ já está em uso?",
         answer:
           "Não. Está em fase de planejamento. Python para automações e Machine Learning é uma direção futura, ainda não implementada.",
       },

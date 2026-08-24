@@ -18,6 +18,11 @@ export interface Product {
   /** Categoria curta usada em badges/cards (ex.: "Gestão", "Mobile"). */
   category: string;
   icon: LucideIcon;
+  /**
+   * Caminho (em /public) do logotipo real do produto, quando existir.
+   * Quando ausente, ProductLogoMark usa o `icon` acima como fallback.
+   */
+  logoSrc?: string;
   status: ProductStatus;
   audience: string[];
   problem: string;
