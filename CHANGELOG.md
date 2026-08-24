@@ -54,6 +54,24 @@ Formato inspirado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/)
   (`docs/design/PERFORMANCE.md`). Documentação completa em
   `docs/design/UX_GUIDELINES.md` e `docs/design/RESPONSIVE_GUIDELINES.md`.
 
+- Página FAQ institucional (`/faq`), distinta das FAQs por produto,
+  linkada pelo Footer.
+- Detecção automática da URL do site em produção via
+  `VERCEL_PROJECT_PRODUCTION_URL` (`src/constants/site.ts`), sem exigir
+  configuração manual a cada deploy; guia de deploy sem CLI
+  (`docs/DEPLOY.md`).
+- Logotipos reais dos produtos: campo opcional `Product.logoSrc`,
+  `ProductLogoMark` agora renderiza o PNG real (via `next/image`) quando
+  definido, mantendo o fallback em anel-gradiente para produtos sem
+  logotipo. Logotipos processados a partir dos originais enviados
+  (fundo removido, redimensionados) em `public/logos/`.
+
+### Alterado
+
+- "Sistema de Gestão Pet" renomeado para **Pet & Pet**
+  (slug `gestao-pet` → `pet-e-pet`).
+- Produto de analytics de marketing renomeado para **MarketIQ**.
+
 ### Corrigido
 
 - Bug crítico de hidratação no `Reveal` sob `prefers-reduced-motion`
@@ -65,3 +83,13 @@ Formato inspirado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/)
   Footer usando `<h3>` — convertidos para `<p>`.
 - Ícones de marca `Github`/`Linkedin` (removidos do `lucide-react`
   instalado) — substituídos por `ExternalLink` genérico.
+- Pipeline de CI quebrado desde o início do redesign: `tsc --noEmit`
+  rodava antes de `next typegen`/`build` gerarem `.next/types` e
+  `next-env.d.ts` em um checkout limpo — corrigido adicionando
+  `npx next typegen` antes do type-check em `.github/workflows/ci.yml`.
+- Cabeçalho com texto invisível no topo da página em rotas com hero
+  escuro (estado transparente): cor do texto migrada de classes
+  Tailwind condicionais para `style` inline (especificidade máxima,
+  imune a qualquer risco de ordem de geração de classes utilitárias) e
+  fundo transparente substituído por um scrim em gradiente para reforço
+  de contraste.

@@ -1,6 +1,6 @@
 # Progresso TecnoDreamer
 
-Última atualização: 2026-08-23
+Última atualização: 2026-08-24
 
 ## Concluído
 
@@ -138,9 +138,40 @@ agora que o repositório remoto existe
 ## Testes
 
 - Unitários: 19 testes (Vitest) — 100% passando.
-- E2E: 104 testes (Playwright, Desktop Chrome + Mobile Chrome; 31
+- E2E: 106 testes (Playwright, Desktop Chrome + Mobile Chrome; 31
   pulados intencionalmente em mobile por redundância de viewport ou por
-  não se aplicarem — 73 executados e passando).
+  não se aplicarem — 75 executados e passando).
 - Build de produção (`npm run build`): passando, todas as rotas estáticas
   pré-renderizadas exceto `POST /api/contato` (dinâmica, como esperado).
 - Lighthouse: ver `docs/design/PERFORMANCE.md`.
+
+## Pós-entrega (2026-08-24) — feedback do usuário
+
+- [x] Correção definitiva do bug de contraste no cabeçalho: relatado três
+      vezes pelo usuário (com print comparativo confirmando o problema);
+      a causa raiz exata não pôde ser reproduzida diretamente pela
+      ferramenta de browser usada nesta sessão, então a correção aplicada
+      elimina a classe inteira de risco — cor do texto do cabeçalho
+      passou de classes Tailwind condicionais para `style` inline
+      (especificidade garantida) e o fundo transparente ganhou um scrim
+      em gradiente como reforço. **Pendente confirmação visual do usuário
+      em seu próprio navegador.**
+- [x] Menções à stack técnica removidas da landing page (usuários não
+      técnicos não precisam ver "Next.js/React/TypeScript" na home).
+- [x] Deploy documentado (`docs/DEPLOY.md`, Vercel via dashboard, sem
+      domínio próprio por enquanto — subdomínio gratuito).
+- [x] Página FAQ institucional criada (`/faq`).
+- [x] Produtos renomeados: "Sistema de Gestão Pet" → **Pet & Pet**;
+      produto de marketing → **MarketIQ** (nome definido a partir do
+      logotipo já criado pelo usuário).
+- [x] Logotipos reais dos três produtos (Pet & Pet, PetConnect, MarketIQ)
+      convertidos para PNG com fundo transparente (via `sharp`, algoritmo
+      de limiar de branco sobre os pixels — PetConnect já tinha alpha
+      real e só foi copiado) e integrados em cards, mockup, showcase e
+      páginas individuais de produto.
+- [ ] Página de Carreiras: avaliada e adiada a pedido do usuário
+      ("ainda é cedo").
+- [ ] Propósito/missão/visão da empresa: usuário se comprometeu a enviar
+      o conteúdo real; campos seguem como
+      `TODO: DEFINIR COM PRODUCT OWNER` em `src/constants/company.ts` até
+      lá.
