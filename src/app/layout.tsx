@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
@@ -35,6 +35,15 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+};
+
+// O site é claro por padrão, com seções escuras pontuais (tone="ink") —
+// não é um dark mode completo. Declarar isso explicitamente evita que o
+// navegador aplique dark mode automático/forçado (comum em Chrome/Android
+// com tema do sistema escuro), que pode reescrever cores de forma
+// imprevisível sobre texto branco em fundos transparentes/customizados.
+export const viewport: Viewport = {
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
