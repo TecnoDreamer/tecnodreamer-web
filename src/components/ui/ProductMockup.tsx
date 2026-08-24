@@ -1,5 +1,6 @@
 import type { Product } from "@/types/product";
 import { StatusBadge } from "@/components/ui/Badge";
+import { ProductLogoMark } from "@/components/ui/ProductLogoMark";
 
 /**
  * Mockup conceitual e abstrato (não uma screenshot real do produto, que
@@ -9,8 +10,6 @@ import { StatusBadge } from "@/components/ui/Badge";
  * de UX/UI ("mockups conceituais, dashboards demonstrativos").
  */
 export function ProductMockup({ product }: { product: Product }) {
-  const Icon = product.icon;
-
   return (
     <div
       aria-hidden="true"
@@ -23,9 +22,7 @@ export function ProductMockup({ product }: { product: Product }) {
         <span className="ml-3 text-xs text-white/50">{product.name}</span>
       </div>
       <div className="flex gap-4 p-5">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-brand-primary/15 text-brand-primary">
-          <Icon size={20} aria-hidden="true" />
-        </div>
+        <ProductLogoMark product={product} size="sm" />
         <div className="flex-1">
           <div className="h-3 w-2/3 rounded-full bg-white/15" />
           <div className="mt-2 h-2.5 w-1/2 rounded-full bg-white/10" />

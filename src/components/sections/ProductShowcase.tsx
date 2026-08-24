@@ -5,6 +5,7 @@ import { CheckCircle2 } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { ProductMockup } from "@/components/ui/ProductMockup";
+import { ProductLogoMark } from "@/components/ui/ProductLogoMark";
 import { Reveal } from "@/components/ui/Reveal";
 import { PRODUCTS } from "@/constants/products";
 import { cn } from "@/lib/utils";
@@ -62,14 +63,7 @@ export function ProductShowcase() {
                     : "text-white/60 hover:bg-white/5 hover:text-white/90"
                 )}
               >
-                <span
-                  className={cn(
-                    "font-mono text-sm",
-                    isActive ? "text-brand-primary" : "text-white/50"
-                  )}
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
+                <ProductLogoMark product={product} size="sm" />
                 <span className="text-sm font-medium">{product.name}</span>
               </button>
             );
