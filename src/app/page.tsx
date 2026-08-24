@@ -111,25 +111,6 @@ export default function HomePage() {
         <ProcessTimeline />
       </Section>
 
-      <Section tone="background">
-        <Reveal className="mb-10 max-w-2xl">
-          <h2 className="text-3xl font-semibold text-foreground">Tecnologia</h2>
-          <p className="mt-3 text-foreground-muted">
-            Ferramentas modernas e estáveis, escolhidas para durar.
-          </p>
-        </Reveal>
-        <Reveal delay={100} className="flex flex-wrap gap-3">
-          {COMPANY.technologies.map((tech) => (
-            <span
-              key={tech}
-              className="rounded-full border border-border px-4 py-2 text-sm text-foreground-muted transition-colors duration-150 hover:border-brand-primary/40 hover:text-foreground"
-            >
-              {tech}
-            </span>
-          ))}
-        </Reveal>
-      </Section>
-
       <Section tone="ink">
         <Reveal className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div>

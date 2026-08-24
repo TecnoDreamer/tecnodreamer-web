@@ -2,22 +2,19 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Product } from "@/types/product";
 import { StatusBadge } from "@/components/ui/Badge";
+import { ProductLogoMark } from "@/components/ui/ProductLogoMark";
 
 const CARD_HOVER =
   "hover:-translate-y-1 hover:border-brand-primary/40 hover:shadow-[0_12px_40px_-12px_var(--color-brand-glow)] " +
   "focus-within:-translate-y-1 focus-within:border-brand-primary/40 focus-within:shadow-[0_12px_40px_-12px_var(--color-brand-glow)]";
 
 export function ProductCard({ product }: { product: Product }) {
-  const Icon = product.icon;
-
   return (
     <article
       className={`group relative flex h-full flex-col gap-4 rounded-lg border border-border bg-background p-6 shadow-sm transition-all duration-300 ease-standard ${CARD_HOVER}`}
     >
       <div className="flex items-start justify-between gap-3">
-        <div className="flex h-11 w-11 items-center justify-center rounded-md bg-brand-primary/10 text-brand-primary-strong transition-colors duration-300 group-hover:bg-brand-primary/15">
-          <Icon size={22} aria-hidden="true" />
-        </div>
+        <ProductLogoMark product={product} className="transition-transform duration-300 group-hover:scale-105" />
         <StatusBadge status={product.status} />
       </div>
 

@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { ChevronDown, Rocket } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { StatusBadge } from "@/components/ui/Badge";
+import { ProductLogoMark } from "@/components/ui/ProductLogoMark";
 import { Reveal } from "@/components/ui/Reveal";
 import { HeroSpotlight } from "@/components/sections/HeroSpotlight";
 import { COMPANY } from "@/constants/company";
@@ -106,10 +107,10 @@ export function Hero() {
                   <li key={product.slug}>
                     <Link
                       href={`/produtos/${product.slug}`}
-                      className="flex items-center justify-between gap-3 rounded-md px-2 py-2.5 text-sm text-white/80 transition-colors hover:bg-white/5 hover:text-white"
+                      className="flex items-center justify-between gap-3 rounded-md px-2 py-2 text-sm text-white/80 transition-colors hover:bg-white/5 hover:text-white"
                     >
-                      <span className="flex items-center gap-2">
-                        <Rocket size={15} className="text-brand-primary" aria-hidden="true" />
+                      <span className="flex items-center gap-2.5">
+                        <ProductLogoMark product={product} size="sm" />
                         {product.name}
                       </span>
                       <StatusBadge status={product.status} />

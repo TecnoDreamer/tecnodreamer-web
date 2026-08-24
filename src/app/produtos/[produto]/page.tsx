@@ -4,6 +4,7 @@ import { CheckCircle2, Sparkles } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { StatusBadge } from "@/components/ui/Badge";
+import { ProductLogoMark } from "@/components/ui/ProductLogoMark";
 import { Reveal } from "@/components/ui/Reveal";
 import { PRODUCTS, getProductBySlug } from "@/constants/products";
 
@@ -37,8 +38,6 @@ export default async function ProductDetailPage({
     notFound();
   }
 
-  const Icon = product.icon;
-
   return (
     <>
       <Section tone="ink" className="relative overflow-hidden pt-24">
@@ -49,9 +48,7 @@ export default async function ProductDetailPage({
         />
         <Reveal className="relative">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-md bg-brand-primary/15 text-brand-primary">
-              <Icon size={22} aria-hidden="true" />
-            </div>
+            <ProductLogoMark product={product} size="lg" />
             <StatusBadge status={product.status} />
           </div>
           <h1 className="mt-4 text-4xl font-semibold sm:text-5xl">{product.name}</h1>
