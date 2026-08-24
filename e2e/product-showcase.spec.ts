@@ -17,7 +17,7 @@ test.describe("Destaque interativo de produtos (Home)", () => {
   test("setas do teclado navegam entre as abas", async ({ page }) => {
     await page.goto("/");
 
-    const firstTab = page.getByRole("tab", { name: /Sistema de Gestão Pet/ });
+    const firstTab = page.getByRole("tab", { name: /Pet & Pet/ });
     await firstTab.focus();
     await page.keyboard.press("ArrowDown");
 
