@@ -2,16 +2,30 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Header", () => {
   for (const path of ["/", "/empresa", "/contato", "/produtos/petconnect"]) {
-    test(`transição de transparente para sólido ao rolar em ${path}`, async ({ page }) => {
+    test(`transição de transparente para sólido ao rolar em ${path}`, async ({
+      page,
+      isMobile,
+    }) => {
       await page.goto(path);
       const header = page.locator("header");
 
-      await expect(header).toHaveClass(/bg-transparent/);
+      await expect(header).toHaveClass(/from-ink\/70/);
+
+      // Regressão: o texto do menu precisa ser realmente legível (branco
+      // sólido, não só a classe CSS certa) sobre o Hero escuro — ver
+      // histórico de bug de contraste no header transparente.
+      if (!isMobile) {
+        const firstLink = page
+          .getByRole("navigation", { name: "Navegação principal" })
+          .getByRole("link")
+          .first();
+        await expect(firstLink).toHaveCSS("color", "rgb(255, 255, 255)");
+      }
 
       await page.mouse.wheel(0, 400);
       await page.waitForTimeout(300);
 
-      await expect(header).not.toHaveClass(/bg-transparent/);
+      await expect(header).not.toHaveClass(/from-ink\/70/);
       await expect(header).toHaveClass(/bg-background\/90/);
     });
   }
