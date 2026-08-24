@@ -100,7 +100,7 @@ export function Header() {
       className={cn(
         "sticky top-0 z-40 transition-colors duration-300 ease-standard",
         isTransparent
-          ? "border-b border-transparent bg-transparent"
+          ? "border-b border-transparent bg-gradient-to-b from-ink/70 via-ink/25 to-transparent"
           : "border-b border-border bg-background/90 backdrop-blur-md"
       )}
     >
@@ -108,10 +108,8 @@ export function Header() {
         <Link href="/" className="flex items-center gap-2">
           <Image src={logo} alt="TecnoDreamer" width={40} height={40} priority />
           <span
-            className={cn(
-              "text-lg font-semibold transition-colors duration-300",
-              isTransparent ? "text-white" : "text-foreground"
-            )}
+            className={cn("text-lg font-semibold", !isTransparent && "text-foreground")}
+            style={isTransparent ? { color: "#ffffff", textShadow: "0 1px 4px rgba(0,0,0,0.5)" } : undefined}
           >
             TecnoDreamer
           </span>
@@ -129,14 +127,16 @@ export function Header() {
                       "relative py-1 text-sm font-medium transition-colors duration-150",
                       "after:absolute after:-bottom-0.5 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-brand-primary after:transition-transform after:duration-300 after:ease-standard hover:after:scale-x-100",
                       active && "after:scale-x-100",
-                      isTransparent
-                        ? active
-                          ? "text-white"
-                          : "text-white/80 hover:text-white"
-                        : active
+                      !isTransparent &&
+                        (active
                           ? "text-brand-primary-strong"
-                          : "text-foreground hover:text-brand-primary-strong"
+                          : "text-foreground hover:text-brand-primary-strong")
                     )}
+                    style={
+                      isTransparent
+                        ? { color: "#ffffff", textShadow: "0 1px 4px rgba(0,0,0,0.5)" }
+                        : undefined
+                    }
                     aria-current={active ? "page" : undefined}
                   >
                     {item.label}
@@ -158,8 +158,9 @@ export function Header() {
           type="button"
           className={cn(
             "relative z-[51] inline-flex min-h-11 min-w-11 items-center justify-center rounded-md transition-colors md:hidden",
-            isMobileMenuOpen ? "text-white" : isTransparent ? "text-white" : "text-foreground"
+            !isMobileMenuOpen && !isTransparent && "text-foreground"
           )}
+          style={isMobileMenuOpen || isTransparent ? { color: "#ffffff" } : undefined}
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-menu"
           aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
