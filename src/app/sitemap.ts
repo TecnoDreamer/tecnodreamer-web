@@ -12,6 +12,7 @@ const STATIC_ROUTES: Array<{
   { path: "/produtos", changeFrequency: "monthly", priority: 0.9 },
   { path: "/equipe", changeFrequency: "monthly", priority: 0.5 },
   { path: "/contato", changeFrequency: "yearly", priority: 0.6 },
+  { path: "/faq", changeFrequency: "monthly", priority: 0.4 },
   { path: "/privacidade", changeFrequency: "yearly", priority: 0.2 },
   { path: "/termos", changeFrequency: "yearly", priority: 0.2 },
 ];

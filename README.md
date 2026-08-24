@@ -69,7 +69,7 @@ cp .env.example .env.local
 
 | Variável | Descrição | Padrão |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | URL pública usada em metadata, sitemap e robots.txt | `http://localhost:3000` |
+| `NEXT_PUBLIC_SITE_URL` | URL pública usada em metadata, sitemap e robots.txt — opcional na Vercel (ver `docs/DEPLOY.md`) | `http://localhost:3000` |
 
 Nunca versione um `.env` real — apenas `.env.example` é versionado.
 
@@ -142,13 +142,14 @@ Branch principal: `main`. Desenvolvimento sempre em branches `feature/*`,
 - `docs/testes/` — estratégia de testes.
 - `docs/PROGRESSO.md` — estado atual do projeto.
 - `docs/RELATORIO_FINAL.md` — relatório final de entrega.
+- `docs/DEPLOY.md` — passo a passo de deploy (Vercel).
 
 ## Deploy
 
-`TODO: DEFINIR COM PRODUCT OWNER` — provedor de deploy definitivo. O
-projeto é compatível com qualquer plataforma que suporte Next.js 16 (App
-Router) — ex.: Vercel, ou um servidor Node.js executando `npm run build`
-seguido de `npm run start`.
+Deploy recomendado na Vercel — ver `docs/DEPLOY.md` para o passo a passo
+completo (import do repositório pelo painel, sem CLI necessária).
+`NEXT_PUBLIC_SITE_URL` é opcional: sem ela, o site detecta automaticamente
+o domínio de produção que a Vercel atribui.
 
 ## Licença
 

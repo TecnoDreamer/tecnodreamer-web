@@ -12,6 +12,7 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 export const FOOTER_LEGAL_LINKS: NavItem[] = [
+  { label: "FAQ", href: "/faq" },
   { label: "Privacidade", href: "/privacidade" },
   { label: "Termos de uso", href: "/termos" },
 ];
