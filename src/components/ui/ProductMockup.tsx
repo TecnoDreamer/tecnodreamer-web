@@ -1,6 +1,7 @@
 import type { Product } from "@/types/product";
 import { StatusBadge } from "@/components/ui/Badge";
 import { ProductLogoMark } from "@/components/ui/ProductLogoMark";
+import { productAccentVars } from "@/lib/productAccent";
 
 /**
  * Mockup conceitual e abstrato (não uma screenshot real do produto, que
@@ -13,6 +14,7 @@ export function ProductMockup({ product }: { product: Product }) {
   return (
     <div
       aria-hidden="true"
+      style={productAccentVars(product, "onDark")}
       className="overflow-hidden rounded-lg border border-white/10 bg-ink-elevated backdrop-blur-md"
     >
       <div className="flex items-center gap-1.5 border-b border-white/10 px-4 py-3">
@@ -33,8 +35,12 @@ export function ProductMockup({ product }: { product: Product }) {
           <div key={column} className="rounded-md bg-white/5 p-3">
             <div className="h-2 w-3/4 rounded-full bg-white/15" />
             <div
-              className="mt-3 h-8 rounded-sm bg-gradient-to-t from-brand-primary/40 to-brand-secondary/30"
-              style={{ opacity: 0.5 + column * 0.2 }}
+              className="mt-3 h-8 rounded-sm"
+              style={{
+                opacity: 0.5 + column * 0.2,
+                background:
+                  "linear-gradient(to top, color-mix(in srgb, var(--product-accent) 40%, transparent), color-mix(in srgb, var(--product-accent-secondary) 30%, transparent))",
+              }}
             />
           </div>
         ))}

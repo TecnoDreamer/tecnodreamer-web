@@ -117,6 +117,24 @@ export const PRODUCTS: Product[] = [
     category: "BI & Analytics",
     icon: LineChart,
     logoSrc: "/logos/lucratix.png",
+    // Paleta extraída por amostragem de pixel do logotipo oficial do
+    // Lucratix (ver docs/branding/LUCRATIX_BRAND.md no repositório do
+    // produto) — não escolhida livremente.
+    accentColor: {
+      onLight: { primary: "#0052e0", secondary: "#001640" },
+      onDark: { primary: "#3b82f6", secondary: "#0a1436" },
+    },
+    // Fases do roadmap técnico do Lucratix (docs/product/roadmap.md no
+    // repositório do produto): 16 das 18 fases concluídas e testadas;
+    // faltam integrações externas e o hardening final.
+    roadmapProgress: {
+      completedPhases: 16,
+      totalPhases: 18,
+      pendingPhaseLabels: [
+        "Integrações externas (GA4, Google Ads, Meta Ads)",
+        "Hardening (segurança, performance, acessibilidade, observabilidade, backup)",
+      ],
+    },
     status: "em-desenvolvimento",
     audience: [
       "Consultorias de marketing",

@@ -5,8 +5,10 @@ import { Section } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { StatusBadge } from "@/components/ui/Badge";
 import { ProductLogoMark } from "@/components/ui/ProductLogoMark";
+import { RoadmapProgress } from "@/components/ui/RoadmapProgress";
 import { Reveal } from "@/components/ui/Reveal";
 import { PRODUCTS, getProductBySlug } from "@/constants/products";
+import { productAccentVars } from "@/lib/productAccent";
 
 export function generateStaticParams() {
   return PRODUCTS.map((product) => ({ produto: product.slug }));
@@ -40,11 +42,16 @@ export default async function ProductDetailPage({
 
   return (
     <>
-      <Section tone="ink" className="relative overflow-hidden pt-24">
+      <Section
+        tone="ink"
+        style={productAccentVars(product, "onDark")}
+        className="relative overflow-hidden pt-24"
+      >
         <div aria-hidden="true" className="tech-grid-bg absolute inset-0" />
         <div
           aria-hidden="true"
-          className="absolute -top-24 right-[-10%] h-72 w-72 rounded-full bg-brand-secondary/20 blur-3xl"
+          className="absolute -top-24 right-[-10%] h-72 w-72 rounded-full blur-3xl"
+          style={{ backgroundColor: "color-mix(in srgb, var(--product-accent-secondary) 20%, transparent)" }}
         />
         <Reveal className="relative">
           <div className="flex items-center gap-3">
@@ -96,7 +103,7 @@ export default async function ProductDetailPage({
       </Section>
 
       {product.features.length > 0 && (
-        <Section tone="surface">
+        <Section tone="surface" style={productAccentVars(product, "onLight")}>
           <Reveal>
             <h2 className="text-2xl font-semibold text-foreground">
               Funcionalidades planejadas
@@ -105,6 +112,7 @@ export default async function ProductDetailPage({
               Escopo previsto para o produto — ainda não representa recursos entregues (status
               atual: <StatusBadge status={product.status} />).
             </p>
+            <RoadmapProgress product={product} />
           </Reveal>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {product.features.map((feature, index) => (
@@ -116,7 +124,8 @@ export default async function ProductDetailPage({
               >
                 <CheckCircle2
                   size={18}
-                  className="mt-0.5 shrink-0 text-brand-primary-strong"
+                  className="mt-0.5 shrink-0"
+                  style={{ color: "var(--product-accent-strong)" }}
                   aria-hidden="true"
                 />
                 {feature}
@@ -127,7 +136,7 @@ export default async function ProductDetailPage({
       )}
 
       {product.differentiators.length > 0 && (
-        <Section tone="background">
+        <Section tone="background" style={productAccentVars(product, "onLight")}>
           <Reveal>
             <h2 className="text-2xl font-semibold text-foreground">Diferenciais</h2>
           </Reveal>
@@ -141,7 +150,8 @@ export default async function ProductDetailPage({
               >
                 <Sparkles
                   size={18}
-                  className="mt-0.5 shrink-0 text-brand-secondary"
+                  className="mt-0.5 shrink-0"
+                  style={{ color: "var(--product-accent-secondary)" }}
                   aria-hidden="true"
                 />
                 {item}

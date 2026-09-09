@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/ui/Container";
 
@@ -16,6 +16,7 @@ interface SectionProps {
   className?: string;
   containerClassName?: string;
   id?: string;
+  style?: CSSProperties;
 }
 
 export function Section({
@@ -24,9 +25,10 @@ export function Section({
   className,
   containerClassName,
   id,
+  style,
 }: SectionProps) {
   return (
-    <section id={id} className={cn("py-16 sm:py-24", TONE_CLASSES[tone], className)}>
+    <section id={id} style={style} className={cn("py-16 sm:py-24", TONE_CLASSES[tone], className)}>
       <Container className={containerClassName}>{children}</Container>
     </section>
   );
