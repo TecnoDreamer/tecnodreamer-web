@@ -49,7 +49,7 @@ análise completa de stack.
 | `/produtos` | Listagem de todos os produtos do portfólio |
 | `/produtos/gestao-pet` | Sistema de Gestão Pet |
 | `/produtos/petconnect` | PetConnect |
-| `/produtos/marketing-analytics` | Marketing Analytics |
+| `/produtos/lucratix` | Lucratix |
 | `/produtos/em-desenvolvimento` | Espaço reservado para o próximo produto |
 | `/equipe` | Estrutura de equipe (placeholder até dados reais) |
 | `/contato` | Formulário de contato validado client+server |

@@ -175,3 +175,31 @@ agora que o repositório remoto existe
       o conteúdo real; campos seguem como
       `TODO: DEFINIR COM PRODUCT OWNER` em `src/constants/company.ts` até
       lá.
+
+## Pós-entrega (2026-09-08) — produto Lucratix com dados reais
+
+- [x] O placeholder "MarketIQ" (slug `marketing-analytics`, sem produto
+      real por trás) foi **substituído** pelo produto real do usuário:
+      **Lucratix** (slug `lucratix`), cujo código-fonte vive em
+      `C:\Users\Aleksander\Projetos\Sites\marketing-intelligence-platform`
+      — um projeto próprio, com documentação de produto completa
+      (`docs/product/*`), em desenvolvimento avançado (fases 0–16 do
+      roadmap concluídas: fundação, banco, autenticação, multi-tenancy,
+      baseline, financeiro, marketing/funil, motor de métricas,
+      dashboard, experimentos e relatórios; fases 17–18 — integrações
+      externas e hardening — ainda pendentes).
+- [x] Nome, tagline, categoria, status (`em-desenvolvimento`), público-alvo,
+      problema, solução, funcionalidades, diferenciais, "como funciona" e
+      FAQ do produto foram extraídos honestamente da documentação real
+      do projeto (`docs/product/vision.md`, `problem.md`,
+      `value-proposition.md`, `scope.md`, `roadmap.md`) — nenhum dado
+      inventado.
+- [x] Logotipo real do Lucratix (troféu com escudo, fornecido pelo
+      próprio usuário, com transparência real verificada por amostragem
+      de canal alpha) processado via `sharp` (redimensionado para no
+      máximo 512px, mantendo alpha) e publicado em
+      `public/logos/lucratix.png`; o antigo placeholder
+      `marketing-app.png` (com a marca "MarketIQ" desenhada nele) e o
+      logotipo processado antigo (`public/logos/marketing-analytics.png`)
+      foram removidos por não corresponderem mais ao produto real.
+- [x] `e2e/navigation.spec.ts` atualizado para o novo nome/slug/rota.

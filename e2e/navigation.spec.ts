@@ -22,11 +22,11 @@ test.describe("Navegação principal", () => {
     await expect(page.getByRole("heading", { name: "Pet & Pet", level: 1 })).toBeVisible();
   });
 
-  test("Home → MarketIQ", async ({ page }) => {
+  test("Home → Lucratix", async ({ page }) => {
     await page.goto("/");
-    await page.getByRole("link", { name: "Conhecer MarketIQ" }).click();
-    await expect(page).toHaveURL("/produtos/marketing-analytics");
-    await expect(page.getByRole("heading", { name: "MarketIQ", level: 1 })).toBeVisible();
+    await page.getByRole("link", { name: "Conhecer Lucratix" }).click();
+    await expect(page).toHaveURL("/produtos/lucratix");
+    await expect(page.getByRole("heading", { name: "Lucratix", level: 1 })).toBeVisible();
   });
 
   test("Home → Empresa → Equipe", async ({ page }) => {

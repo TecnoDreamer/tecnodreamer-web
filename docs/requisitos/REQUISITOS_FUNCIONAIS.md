@@ -92,7 +92,7 @@ identificação de pets via QR Code.
 ---
 
 ### RF008 — Página do produto "Marketing Analytics"
-**Descrição:** `/produtos/marketing-analytics`, mesma estrutura de RF006.
+**Descrição:** `/produtos/lucratix`, mesma estrutura de RF006.
 **Ator:** Visitante
 **Prioridade:** P0
 **Dependências:** RF005
