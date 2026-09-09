@@ -3,15 +3,13 @@ import { ArrowRight } from "lucide-react";
 import type { Product } from "@/types/product";
 import { StatusBadge } from "@/components/ui/Badge";
 import { ProductLogoMark } from "@/components/ui/ProductLogoMark";
-
-const CARD_HOVER =
-  "hover:-translate-y-1 hover:border-brand-primary/40 hover:shadow-[0_12px_40px_-12px_var(--color-brand-glow)] " +
-  "focus-within:-translate-y-1 focus-within:border-brand-primary/40 focus-within:shadow-[0_12px_40px_-12px_var(--color-brand-glow)]";
+import { productAccentVars } from "@/lib/productAccent";
 
 export function ProductCard({ product }: { product: Product }) {
   return (
     <article
-      className={`group relative flex h-full flex-col gap-4 rounded-lg border border-border bg-background p-6 shadow-sm transition-all duration-300 ease-standard ${CARD_HOVER}`}
+      style={productAccentVars(product, "onLight")}
+      className="product-card-hover group relative flex h-full flex-col gap-4 rounded-lg border border-border bg-background p-6 shadow-sm"
     >
       <div className="flex items-start justify-between gap-3">
         <ProductLogoMark product={product} className="transition-transform duration-300 group-hover:scale-105" />
@@ -19,7 +17,10 @@ export function ProductCard({ product }: { product: Product }) {
       </div>
 
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wide text-brand-primary-strong">
+        <p
+          className="text-xs font-semibold uppercase tracking-wide"
+          style={{ color: "var(--product-accent-strong)" }}
+        >
           {product.category}
         </p>
         <h3 className="mt-1 text-xl font-medium text-foreground">{product.name}</h3>
@@ -40,7 +41,8 @@ export function ProductCard({ product }: { product: Product }) {
       <Link
         href={`/produtos/${product.slug}`}
         aria-label={`Conhecer ${product.name}`}
-        className="mt-auto inline-flex w-fit items-center gap-1 text-sm font-medium text-brand-primary-strong after:absolute after:inset-0 after:rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-primary"
+        style={{ color: "var(--product-accent-strong)" }}
+        className="mt-auto inline-flex w-fit items-center gap-1 text-sm font-medium after:absolute after:inset-0 after:rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-primary"
       >
         Conhecer produto
         <ArrowRight

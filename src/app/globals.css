@@ -118,6 +118,31 @@ body {
   outline-offset: 2px;
 }
 
+/* Tingimento por produto (ver src/lib/productAccent.ts). Produtos com
+   identidade visual própria e documentada (`Product.accentColor`, ex.:
+   Lucratix) sobrescrevem estas variáveis via `style` inline nos
+   componentes que exibem aquele produto. O padrão abaixo reproduz a
+   paleta da própria TecnoDreamer para produtos sem marca definida — o
+   visual não muda para eles. */
+:root {
+  --product-accent: var(--color-brand-primary);
+  --product-accent-strong: var(--color-brand-primary-strong);
+  --product-accent-secondary: var(--color-brand-secondary);
+}
+
+.product-card-hover {
+  transition:
+    transform 300ms cubic-bezier(0.2, 0, 0, 1),
+    border-color 300ms cubic-bezier(0.2, 0, 0, 1),
+    box-shadow 300ms cubic-bezier(0.2, 0, 0, 1);
+}
+.product-card-hover:hover,
+.product-card-hover:focus-within {
+  transform: translateY(-0.25rem);
+  border-color: color-mix(in srgb, var(--product-accent) 40%, transparent);
+  box-shadow: 0 12px 40px -12px color-mix(in srgb, var(--product-accent) 60%, transparent);
+}
+
 /* Grid tecnológico — usado apenas em seções escuras (tone="ink"), ver
    docs/design/DESIGN_SYSTEM.md §10 */
 .tech-grid-bg {

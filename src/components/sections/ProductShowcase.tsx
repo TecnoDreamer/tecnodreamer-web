@@ -9,6 +9,7 @@ import { ProductLogoMark } from "@/components/ui/ProductLogoMark";
 import { Reveal } from "@/components/ui/Reveal";
 import { PRODUCTS } from "@/constants/products";
 import { cn } from "@/lib/utils";
+import { productAccentVars } from "@/lib/productAccent";
 
 export function ProductShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -45,6 +46,13 @@ export function ProductShowcase() {
         >
           {PRODUCTS.map((product, index) => {
             const isActive = index === activeIndex;
+            // Cor resolvida direto (não via var(--product-accent)): este
+            // botão persiste entre trocas de aba (não remonta) com
+            // transition-colors ativo, e alguns navegadores não
+            // recalculam corretamente uma propriedade em transição cujo
+            // valor depende de uma custom property que muda no mesmo
+            // commit — resolver o hex evita a classe inteira de risco.
+            const accentHex = product.accentColor?.onDark.primary;
             return (
               <button
                 key={product.slug}
@@ -56,8 +64,12 @@ export function ProductShowcase() {
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => setActiveIndex(index)}
                 onKeyDown={handleTabKeyDown}
+                style={{
+                  ...productAccentVars(product, "onDark"),
+                  borderLeftColor: isActive ? (accentHex ?? "var(--color-brand-primary)") : "transparent",
+                }}
                 className={cn(
-                  "flex shrink-0 items-center gap-3 rounded-md px-4 py-3 text-left transition-colors duration-150",
+                  "flex shrink-0 items-center gap-3 rounded-md border-l-2 px-4 py-3 text-left transition-colors duration-150",
                   isActive
                     ? "bg-white/10 text-white"
                     : "text-white/60 hover:bg-white/5 hover:text-white/90"
@@ -75,12 +87,16 @@ export function ProductShowcase() {
           role="tabpanel"
           aria-labelledby={`product-tab-${activeIndex}`}
           key={activeProduct.slug}
+          style={productAccentVars(activeProduct, "onDark")}
           className="animate-fade-in grid gap-8 md:grid-cols-2 md:items-center"
         >
           <ProductMockup product={activeProduct} />
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wide text-brand-primary">
+            <p
+              className="text-xs font-semibold uppercase tracking-wide"
+              style={{ color: "var(--product-accent)" }}
+            >
               {activeProduct.category}
             </p>
             <h3 className="mt-1 text-2xl font-semibold">{activeProduct.name}</h3>
@@ -92,7 +108,8 @@ export function ProductShowcase() {
                   <li key={item} className="flex items-start gap-2 text-sm text-white/70">
                     <CheckCircle2
                       size={16}
-                      className="mt-0.5 shrink-0 text-brand-primary"
+                      className="mt-0.5 shrink-0"
+                      style={{ color: "var(--product-accent)" }}
                       aria-hidden="true"
                     />
                     {item}
