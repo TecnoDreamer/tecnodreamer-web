@@ -16,7 +16,7 @@ export const COMPANY = {
   ],
   culture: "TODO: DEFINIR COM PRODUCT OWNER",
   futureGoals: [
-    "Evoluir o Pet & Pet, o PetConnect e o MarketIQ da fase de planejamento até o primeiro lançamento.",
+    "Evoluir o Pet & Pet e o PetConnect da fase de planejamento até o primeiro lançamento, e o Lucratix da fase de desenvolvimento até o primeiro lançamento.",
     "Definir e anunciar o quarto produto do portfólio.",
     "Publicar informações reais da equipe conforme forem formalizadas.",
   ],

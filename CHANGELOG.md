@@ -70,7 +70,13 @@ Formato inspirado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/)
 
 - "Sistema de Gestão Pet" renomeado para **Pet & Pet**
   (slug `gestao-pet` → `pet-e-pet`).
-- Produto de analytics de marketing renomeado para **MarketIQ**.
+- Produto de analytics de marketing renomeado para **MarketIQ** e, em
+  seguida, **substituído pelos dados reais do Lucratix** (slug
+  `marketing-analytics` → `lucratix`): o placeholder sem produto real
+  por trás foi trocado pelo conteúdo genuíno de um projeto próprio do
+  usuário já em desenvolvimento avançado (BI/Marketing
+  Analytics/Growth/CRO para consultorias com múltiplos clientes),
+  incluindo logotipo oficial real com transparência verificada.
 
 ### Corrigido
 
