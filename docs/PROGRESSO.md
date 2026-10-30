@@ -24,7 +24,7 @@
 - [x] Pipeline de CI (GitHub Actions)
 - [x] README, LICENSE, SECURITY.md, CONTRIBUTING.md
 - [x] Repositório remoto criado e código enviado
-      (`github.com/AleksGustavo/tecnodreamer-web`, privado)
+      (`github.com/TecnoDreamer/tecnodreamer-web`, privado)
 - [x] Relatório final de entrega (`docs/RELATORIO_FINAL.md`)
 - [x] **Redesign UX/UI — completo (Etapas 1-15 do
       `PROMPT_UX_UI_TECNODREAMER.md`):**
@@ -133,7 +133,7 @@ Todo o desenvolvimento ocorreu em branches `feature/*`/`docs/*` locais,
 mescladas em `main` via merge commits (`--no-ff`), simulando o fluxo de
 Pull Request. Pull Requests reais no GitHub podem ser abertos a partir de
 agora que o repositório remoto existe
-(`github.com/AleksGustavo/tecnodreamer-web`).
+(`github.com/TecnoDreamer/tecnodreamer-web`).
 
 ## Testes
 
@@ -203,3 +203,33 @@ agora que o repositório remoto existe
       logotipo processado antigo (`public/logos/marketing-analytics.png`)
       foram removidos por não corresponderem mais ao produto real.
 - [x] `e2e/navigation.spec.ts` atualizado para o novo nome/slug/rota.
+
+## Pós-entrega (2026-09-09) — identidade por produto e roadmap
+
+- [x] Tingimento pontual por marca de produto (`Product.accentColor`,
+      `src/lib/productAccent.ts`): só o Lucratix tem paleta própria
+      documentada; Pet & Pet e PetConnect seguem a paleta da TecnoDreamer.
+- [x] Barra de progresso do roadmap técnico (`RoadmapProgress`): Lucratix
+      16/18 fases, com as pendentes listadas. Dado real, não estimado.
+- [x] CI verde em `main` após as duas entregas (lint, tipos, 19 testes
+      unitários, build, 75 testes E2E).
+- Nota de verificação: leituras de `getComputedStyle` no navegador de
+  automação ficaram congeladas no início de transições CSS (a aba não
+  recebia ticks de animação). Foi artefato da ferramenta; o Playwright
+  confirmou o comportamento correto.
+
+## Preparação de deploy (2026-10-30)
+
+- [x] CHANGELOG atualizado (Lucratix, tingimento, roadmap, mudança de
+      endereço do repositório).
+- [x] `docs/DEPLOY.md` revisado: repositório agora em
+      `TecnoDreamer/tecnodreamer-web` (organização), aviso sobre limite do
+      plano gratuito da Vercel para repositórios privados de
+      organização, e seção "Antes de divulgar o site".
+- [x] `docs/PENDENCIAS.md` criado: checklist preenchível de tudo que
+      depende do responsável pelo produto.
+- [ ] Deploy em si: depende do login do usuário na Vercel (não realizado).
+- [ ] `git remote origin` ainda aponta para o endereço antigo
+      (`AleksGustavo/tecnodreamer-web`); o GitHub redireciona, mas vale
+      atualizar com `git remote set-url origin
+      https://github.com/TecnoDreamer/tecnodreamer-web.git`.

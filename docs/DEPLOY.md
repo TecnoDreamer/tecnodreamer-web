@@ -8,9 +8,16 @@ Next.js, zero configuração adicional necessária).
 
 1. Acesse [vercel.com/new](https://vercel.com/new) logado na sua conta.
 2. Clique em **Import Git Repository** e selecione
-   `AleksGustavo/tecnodreamer-web`.
+   `TecnoDreamer/tecnodreamer-web`.
    - Se o repositório não aparecer, clique em **Adjust GitHub App
      Permissions** e autorize a Vercel a acessá-lo (ele é privado).
+   - O repositório pertence à **organização** `TecnoDreamer` (não à conta
+     pessoal): a Vercel precisa ser instalada nessa organização, e quem
+     autoriza precisa ser dono dela. **Atenção:** o plano gratuito
+     (Hobby) da Vercel costuma não permitir importar repositórios
+     privados de organizações — confira as condições do plano atual na
+     Vercel antes de começar. Alternativas: plano Pro, tornar o
+     repositório público ou mantê-lo na conta pessoal.
 3. Em **Configure Project**, os valores padrão já funcionam:
    - Framework Preset: `Next.js` (detectado automaticamente)
    - Build Command / Output Directory / Install Command: deixe em branco
@@ -34,6 +41,25 @@ Next.js, zero configuração adicional necessária).
    em **Settings → Environment Variables** (Production) e refaça o deploy
    — isso garante que `sitemap.xml`, `robots.txt` e as tags Open Graph
    usem o domínio definitivo em vez do subdomínio da Vercel.
+
+## Antes de divulgar o site
+
+O primeiro deploy funciona sem nenhuma configuração, mas há pendências
+que impedem divulgar o site como definitivo (lista completa e
+preenchível em [`PENDENCIAS.md`](PENDENCIAS.md)):
+
+- **Formulário de contato sem destino:** `/api/contato` valida e registra
+  em log, mas não envia e-mail nem grava em lugar nenhum — mensagens
+  enviadas por visitantes **não chegam a ninguém**. Defina o destino
+  antes de divulgar.
+- **Rate limiting em memória:** em ambiente serverless (Vercel) cada
+  instância mantém seu próprio contador, então o limite é aproximado.
+  Suficiente como proteção básica; para rigor, migrar para um armazém
+  compartilhado.
+- **Páginas de Privacidade e Termos** contêm pontos marcados
+  `TODO: REVISÃO JURÍDICA`.
+- **Missão, visão, equipe e algumas respostas do FAQ** ainda são
+  `TODO: DEFINIR COM PRODUCT OWNER` e aparecem assim no site.
 
 ## Variáveis de ambiente
 

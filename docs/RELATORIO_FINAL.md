@@ -123,7 +123,7 @@ necessária no futuro, o roadmap já prevê a camada
 - Commits seguem Conventional Commits (`feat:`, `fix:`, `docs:`, `test:`,
   `security:`, `perf:`, `style:`, `chore:`, `ci:`).
 - Repositório remoto criado e sincronizado:
-  [`github.com/AleksGustavo/tecnodreamer-web`](https://github.com/AleksGustavo/tecnodreamer-web)
+  [`github.com/TecnoDreamer/tecnodreamer-web`](https://github.com/TecnoDreamer/tecnodreamer-web)
   (privado).
 
 ## 10. Decisões arquiteturais (ADRs)
