@@ -35,7 +35,7 @@ Formato inspirado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/)
 - Pipeline de CI no GitHub Actions (lint, type-check, testes, build, E2E).
 - README, LICENSE, SECURITY.md, CONTRIBUTING.md profissionais.
 - Repositório remoto criado no GitHub
-  (`github.com/AleksGustavo/tecnodreamer-web`, privado).
+  (`github.com/TecnoDreamer/tecnodreamer-web`, privado).
 - **Redesign UX/UI (completo, Etapas 1-15):** auditoria comparativa
   (`docs/design/AUDITORIA_UX_UI.md`); Design System V2 com tokens de
   glow/superfícies elevadas/motion e catálogo de animações
@@ -65,6 +65,22 @@ Formato inspirado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/)
   definido, mantendo o fallback em anel-gradiente para produtos sem
   logotipo. Logotipos processados a partir dos originais enviados
   (fundo removido, redimensionados) em `public/logos/`.
+- Produto **Lucratix** com dados reais (BI, Marketing Analytics, Growth e
+  CRO para consultorias), extraídos da documentação do próprio projeto:
+  problema, solução, funcionalidades, diferenciais, público-alvo, "como
+  funciona" e FAQ. Status `em-desenvolvimento`.
+- Tingimento pontual por marca de produto: campo opcional
+  `Product.accentColor` (paleta extraída do logotipo oficial) aplicado
+  em card, aba ativa da vitrine, mockup e página do produto via
+  variáveis CSS `--product-accent*` (`src/lib/productAccent.ts`).
+  Produtos sem `accentColor` mantêm a paleta da TecnoDreamer.
+- Barra de progresso do roadmap técnico (`RoadmapProgress`), exibida
+  apenas para produtos com `Product.roadmapProgress` documentado — hoje
+  o Lucratix, com 16 de 18 fases concluídas e as pendentes listadas
+  (integrações externas e hardening).
+- `docs/PENDENCIAS.md`: checklist consolidado das informações que só o
+  responsável pelo produto pode fornecer (missão/visão, equipe, destino
+  dos contatos, revisão jurídica, FAQ).
 
 ### Alterado
 
@@ -77,6 +93,9 @@ Formato inspirado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/)
   usuário já em desenvolvimento avançado (BI/Marketing
   Analytics/Growth/CRO para consultorias com múltiplos clientes),
   incluindo logotipo oficial real com transparência verificada.
+- Repositório movido para a organização GitHub
+  `TecnoDreamer/tecnodreamer-web` (o GitHub redireciona o endereço
+  antigo); referências na documentação atualizadas.
 
 ### Corrigido
 

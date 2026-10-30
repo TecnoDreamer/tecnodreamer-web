@@ -13,7 +13,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "A TecnoDreamer já tem produtos disponíveis para uso?",
     answer:
-      "Ainda não. Todos os produtos do portfólio estão em fase de planejamento. Acompanhe o status real de cada um na página de Produtos.",
+      "Ainda não. Nenhum produto do portfólio foi lançado: o Pet & Pet e o PetConnect estão em planejamento e o Lucratix está em desenvolvimento. Acompanhe o status real de cada um na página de Produtos.",
   },
   {
     question: "Como posso saber mais sobre um produto específico?",
