@@ -116,11 +116,13 @@ export default function CompanyPage() {
 
       <Section tone="surface">
         <div className="grid gap-12 lg:grid-cols-5">
-          <Reveal className="lg:col-span-2">
-            <h2 className="text-2xl font-semibold text-foreground">Cultura</h2>
-            <p className="mt-3 text-foreground-muted">{COMPANY.culture}</p>
-          </Reveal>
-          <Reveal delay={100} className="lg:col-span-3">
+          {COMPANY.culture && (
+            <Reveal className="lg:col-span-2">
+              <h2 className="text-2xl font-semibold text-foreground">Cultura</h2>
+              <p className="mt-3 text-foreground-muted">{COMPANY.culture}</p>
+            </Reveal>
+          )}
+          <Reveal delay={100} className={COMPANY.culture ? "lg:col-span-3" : "lg:col-span-5"}>
             <h2 className="text-2xl font-semibold text-foreground">Objetivos futuros</h2>
             <ul className="mt-4 flex flex-col gap-3">
               {COMPANY.futureGoals.map((goal) => (

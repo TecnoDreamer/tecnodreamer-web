@@ -12,7 +12,7 @@ export default function PrivacyPage() {
     <Section tone="background" className="pt-16">
       <Reveal as="div" className="mx-auto max-w-3xl">
         <h1 className="text-4xl font-semibold text-foreground">Política de Privacidade</h1>
-        <p className="mt-3 text-sm text-foreground-muted">Última atualização: 2026-08-23</p>
+        <p className="mt-3 text-sm text-foreground-muted">Última atualização: 2026-11-02</p>
 
         <div className="mt-10 flex flex-col gap-8 text-foreground-muted">
           <section>
@@ -35,6 +35,11 @@ export default function PrivacyPage() {
               responder à sua mensagem e, quando aplicável, dar continuidade a uma conversa
               comercial sobre os produtos da TecnoDreamer. Não vendemos nem compartilhamos seus
               dados com terceiros para fins de marketing.
+            </p>
+            <p className="mt-2">
+              A mensagem é entregue à equipe por e-mail, por meio de um serviço de envio de
+              e-mails (Resend), e fica armazenada na caixa de e-mail da TecnoDreamer. TODO:
+              REVISÃO JURÍDICA — enquadramento desse serviço como operador de dados.
             </p>
           </section>
 

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import { Mail, MessageCircle } from "lucide-react";
+import { Mail, MessageCircle, Package, Phone } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { ContactFormSkeleton } from "./ContactFormSkeleton";
+import { COMPANY } from "@/constants/company";
 import { PRODUCTS } from "@/constants/products";
 
 // Code-split o formulário (React Hook Form + Zod) em um chunk separado do
@@ -50,15 +51,40 @@ export default function ContactPage() {
             <div className="flex items-start gap-3 rounded-lg border border-white/10 bg-ink-elevated p-4 backdrop-blur-md">
               <MessageCircle size={20} className="mt-0.5 shrink-0 text-brand-primary" aria-hidden="true" />
               <div>
-                <p className="text-sm font-medium text-white">Canal oficial</p>
+                <p className="text-sm font-medium text-white">Fale direto com a gente</p>
                 <p className="mt-1 text-sm text-white/60">
-                  Nesta fase, o formulário ao lado é o canal oficial de contato com a
-                  TecnoDreamer — respondemos por e-mail.
+                  O formulário ao lado é o canal principal — respondemos por e-mail. Se preferir,
+                  use um dos contatos abaixo.
                 </p>
+                <ul className="mt-3 flex flex-col gap-2 text-sm">
+                  <li className="flex items-center gap-2">
+                    <Mail size={16} className="shrink-0 text-brand-primary" aria-hidden="true" />
+                    <a href={`mailto:${COMPANY.contact.email}`} className="text-white hover:underline">
+                      {COMPANY.contact.email}
+                    </a>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Phone size={16} className="shrink-0 text-brand-primary" aria-hidden="true" />
+                    <a href={COMPANY.contact.phoneHref} className="text-white hover:underline">
+                      {COMPANY.contact.phoneDisplay}
+                    </a>
+                    <span aria-hidden="true" className="text-white/30">
+                      ·
+                    </span>
+                    <a
+                      href={COMPANY.contact.whatsappHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand-primary hover:underline"
+                    >
+                      WhatsApp
+                    </a>
+                  </li>
+                </ul>
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-white/10 bg-ink-elevated p-4 backdrop-blur-md">
-              <Mail size={20} className="mt-0.5 shrink-0 text-brand-primary" aria-hidden="true" />
+              <Package size={20} className="mt-0.5 shrink-0 text-brand-primary" aria-hidden="true" />
               <div>
                 <p className="text-sm font-medium text-white">Sobre qual produto?</p>
                 <div className="mt-2 flex flex-wrap gap-2">

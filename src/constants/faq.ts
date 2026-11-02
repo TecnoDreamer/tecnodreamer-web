@@ -13,17 +13,17 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "A TecnoDreamer já tem produtos disponíveis para uso?",
     answer:
-      "Ainda não. Nenhum produto do portfólio foi lançado: o Pet & Pet e o PetConnect estão em planejamento e o Lucratix está em desenvolvimento. Acompanhe o status real de cada um na página de Produtos.",
+      "Ainda não. Nenhum produto do portfólio foi lançado comercialmente: o Pet & Pet, o PetConnect e o Lucratix estão em desenvolvimento. Acompanhe o status real de cada um na página de Produtos.",
   },
   {
     question: "Como posso saber mais sobre um produto específico?",
     answer:
-      "Cada produto tem uma página própria com o problema que resolve, a solução proposta, funcionalidades planejadas e perguntas frequentes específicas.",
+      "Cada produto tem uma página própria com o problema que resolve, a solução proposta, as funcionalidades e perguntas frequentes específicas.",
   },
   {
     question: "Como entro em contato com a TecnoDreamer?",
     answer:
-      "O formulário em /contato é o canal oficial nesta fase — respondemos por e-mail.",
+      "Pelo formulário em /contato, ou pelo e-mail e telefone divulgados nessa página e no rodapé do site. Respondemos por e-mail.",
   },
   {
     question: "Meus dados enviados pelo formulário de contato estão seguros?",
@@ -33,14 +33,11 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "A TecnoDreamer está contratando?",
     answer:
-      "No momento não há vagas abertas. TODO: DEFINIR COM PRODUCT OWNER — canal para divulgar futuras oportunidades.",
+      "No momento não há vagas abertas e não há previsão de contratações. Se isso mudar, avisaremos aqui no site.",
   },
   {
     question: "Onde posso acompanhar novidades da TecnoDreamer?",
-    answer: "TODO: DEFINIR COM PRODUCT OWNER — canais oficiais ainda não foram definidos.",
-  },
-  {
-    question: "A TecnoDreamer tem parceiros ou investidores?",
-    answer: "TODO: DEFINIR COM PRODUCT OWNER.",
+    answer:
+      "A TecnoDreamer está criando seus canais oficiais (LinkedIn e Instagram). Enquanto isso, as novidades são publicadas aqui no site.",
   },
 ];
