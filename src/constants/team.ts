@@ -1,20 +1,25 @@
 import type { TeamMember } from "@/types/team";
 
 /**
- * Nenhuma informação de equipe foi fornecida ainda. Conforme instrução do
- * prompt mestre (seção 12), não inventamos pessoas, cargos ou links — este
- * placeholder único marca o espaço até que dados reais sejam fornecidos.
+ * Pessoas que aparecem publicamente, com dados informados por elas mesmas.
+ * Nenhuma pessoa, cargo ou link é inventado: só entra aqui quem concordou
+ * em aparecer e forneceu as informações.
  */
 export const TEAM_MEMBERS: TeamMember[] = [
   {
-    name: "TODO: DEFINIR COM PRODUCT OWNER",
-    role: "TODO: DEFINIR COM PRODUCT OWNER",
+    name: "Aleksander Gustavo",
+    role: "Fundador e Product Owner",
     description:
-      "As informações da equipe da TecnoDreamer serão publicadas aqui em breve.",
-    specialties: [],
-    photoUrl: null,
-    linkedinUrl: null,
-    githubUrl: null,
-    isPlaceholder: true,
+      "Fundador da TecnoDreamer. Criativo e inovador, conduz a criação do site e dos produtos do portfólio, do conceito ao desenvolvimento, com apoio de inteligência artificial.",
+    specialties: [
+      "Produtos digitais com IA",
+      "Contato com o cliente",
+      "Desenvolvimento orientado a testes",
+      "Product Owner",
+    ],
+    photoUrl: "/team/aleksander-gustavo.jpg",
+    linkedinUrl: "https://www.linkedin.com/in/aleksandergustavo",
+    githubUrl: "https://github.com/AleksGustavo",
+    isPlaceholder: false,
   },
 ];

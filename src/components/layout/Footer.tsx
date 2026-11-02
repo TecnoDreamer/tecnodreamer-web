@@ -20,6 +20,18 @@ export function Footer() {
             <span className="text-lg font-semibold text-white">{COMPANY.name}</span>
           </Link>
           <p className="mt-3 max-w-sm text-sm text-white/60">{COMPANY.shortPitch}</p>
+          <ul className="mt-4 flex flex-col gap-1.5 text-sm text-white/60">
+            <li>
+              <a href={`mailto:${COMPANY.contact.email}`} className="hover:text-white">
+                {COMPANY.contact.email}
+              </a>
+            </li>
+            <li>
+              <a href={COMPANY.contact.phoneHref} className="hover:text-white">
+                {COMPANY.contact.phoneDisplay}
+              </a>
+            </li>
+          </ul>
           <Link
             href="/contato"
             className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-brand-primary hover:underline"
