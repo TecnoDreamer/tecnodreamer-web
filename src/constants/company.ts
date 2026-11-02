@@ -1,5 +1,14 @@
 export const COMPANY = {
   name: "TecnoDreamer",
+  // Canais públicos informados pelo responsável. Endereço físico e redes
+  // sociais ficam de fora de propósito: a empresa ainda não tem perfis
+  // criados e prefere não divulgar endereço.
+  contact: {
+    email: "aleksandergustavo9@gmail.com",
+    phoneDisplay: "(19) 97150-8170",
+    phoneHref: "tel:+5519971508170",
+    whatsappHref: "https://wa.me/5519971508170",
+  },
   shortPitch:
     "Software especializado para quem cuida de pets e para quem precisa entender seu marketing.",
   about:
