@@ -7,11 +7,11 @@ test.describe("Acessibilidade", () => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
 
-    // Título da seção "Diferenciais", bem abaixo do viewport inicial —
+    // Título da seção de diferenciais, bem abaixo do viewport inicial —
     // sob reduced motion deve ficar com opacidade 1 assim que o React
     // hidrata, mesmo sem ter cruzado o viewport ainda (toHaveCSS re-
     // tenta automaticamente até a hidratação assentar).
-    const heading = page.getByRole("heading", { name: "Diferenciais" });
+    const heading = page.getByRole("heading", { name: "O que nos diferencia." });
     await expect(heading.locator("..")).toHaveCSS("opacity", "1");
   });
 

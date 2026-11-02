@@ -58,7 +58,7 @@ test.describe("QA responsivo", () => {
   test("CTA principal tem altura confortável em mobile (390px)", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
-    const box = await page.getByRole("link", { name: "Conhecer os produtos" }).boundingBox();
+    const box = await page.getByRole("link", { name: "Explorar produtos" }).boundingBox();
     expect(box?.height).toBeGreaterThanOrEqual(44);
   });
 });
