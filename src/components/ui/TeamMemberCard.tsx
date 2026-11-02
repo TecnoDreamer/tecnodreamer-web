@@ -2,66 +2,87 @@ import Image from "next/image";
 import { ExternalLink, User } from "lucide-react";
 import type { TeamMember } from "@/types/team";
 
+/** Card da equipe (V3): foto à esquerda no desktop, dados à direita. */
 export function TeamMemberCard({ member }: { member: TeamMember }) {
   return (
-    <article className="group flex flex-col items-center gap-3 rounded-lg border border-border bg-background p-6 text-center shadow-sm transition-all duration-300 ease-standard hover:-translate-y-1 hover:border-brand-primary/40 hover:shadow-[0_12px_40px_-12px_var(--color-brand-glow)]">
-      <div className="relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-full bg-surface text-foreground-muted ring-2 ring-transparent transition-all duration-300 ease-standard group-hover:scale-105 group-hover:ring-brand-primary/30">
+    <article className="corner-ticks grid overflow-hidden rounded-lg border border-border bg-surface md:grid-cols-[minmax(0,22rem)_1fr]">
+      <div className="relative aspect-square w-full md:aspect-auto md:min-h-[22rem] border-b border-border bg-surface-2 md:border-b-0 md:border-r">
         {member.photoUrl ? (
           <Image
             src={member.photoUrl}
             alt={`Foto de ${member.name}`}
             fill
-            sizes="112px"
+            sizes="(min-width: 768px) 352px, 100vw"
             className="object-cover"
+            priority
           />
         ) : (
-          <User size={32} aria-hidden="true" />
+          <div className="flex h-full items-center justify-center text-foreground-muted">
+            <User size={48} aria-hidden="true" />
+          </div>
         )}
       </div>
-      <h3 className="text-lg font-medium text-foreground">{member.name}</h3>
-      <p className="text-sm text-brand-primary-strong">{member.role}</p>
-      <p className="text-sm text-foreground-muted">{member.description}</p>
-      {member.specialties.length > 0 && (
-        <ul className="flex flex-wrap justify-center gap-2">
-          {member.specialties.map((specialty) => (
-            <li
-              key={specialty}
-              className="rounded-full bg-surface px-3 py-1 text-xs text-foreground-muted"
-            >
-              {specialty}
-            </li>
-          ))}
-        </ul>
-      )}
-      {(member.linkedinUrl || member.githubUrl) && (
-        <div className="flex gap-4 pt-1 text-sm">
-          {member.linkedinUrl && (
-            <a
-              href={member.linkedinUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-foreground-muted hover:text-brand-primary-strong"
-            >
-              LinkedIn
-              <ExternalLink size={14} aria-hidden="true" />
-            </a>
-          )}
-          {member.githubUrl && (
-            <a
-              href={member.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-foreground-muted hover:text-brand-primary-strong"
-            >
-              GitHub
-              <ExternalLink size={14} aria-hidden="true" />
-            </a>
-          )}
+
+      <div className="flex flex-col gap-6 p-6 sm:p-10">
+        <div>
+          <p className="font-mono text-micro font-medium uppercase text-brand-cyan">{member.role}</p>
+          <h2 className="mt-3 text-h2 font-semibold uppercase text-foreground">{member.name}</h2>
         </div>
-      )}
-      {member.isPlaceholder && (
-        <p className="text-xs text-warning">TODO: DEFINIR COM PRODUCT OWNER</p>
-      )}
+        <p className="max-w-xl text-lead text-foreground-muted">{member.description}</p>
+
+        {member.specialties.length > 0 && (
+          <div>
+            <h3 className="font-mono text-micro font-medium uppercase text-foreground-muted">Especialidades</h3>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {member.specialties.map((specialty) => (
+                <li
+                  key={specialty}
+                  className="rounded-full border border-border-strong px-3 py-1.5 text-sm text-foreground"
+                >
+                  {specialty}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {(member.linkedinUrl || member.githubUrl) && (
+          <ul className="mt-auto flex flex-wrap gap-3 border-t border-border pt-6 text-sm">
+            {member.linkedinUrl && (
+              <li>
+                <a
+                  href={member.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full border border-border px-4 text-foreground transition-colors hover:border-brand-cyan hover:text-brand-cyan"
+                >
+                  LinkedIn
+                  <ExternalLink size={14} aria-hidden="true" />
+                  <span className="sr-only">(abre em nova aba)</span>
+                </a>
+              </li>
+            )}
+            {member.githubUrl && (
+              <li>
+                <a
+                  href={member.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full border border-border px-4 text-foreground transition-colors hover:border-brand-cyan hover:text-brand-cyan"
+                >
+                  GitHub
+                  <ExternalLink size={14} aria-hidden="true" />
+                  <span className="sr-only">(abre em nova aba)</span>
+                </a>
+              </li>
+            )}
+          </ul>
+        )}
+
+        {member.isPlaceholder && (
+          <p className="text-xs text-warning">TODO: DEFINIR COM PRODUCT OWNER</p>
+        )}
+      </div>
     </article>
   );
 }
