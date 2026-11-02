@@ -264,3 +264,22 @@ Base: `docs/PENDENCIAS.md` preenchido pelo responsável.
 - [ ] Domínio `tecnodreamer.com.br`: em 2026-11-02 a consulta RDAP do
       Registro.br retornou 404 e o DNS não resolveu (indício de que está
       livre — confirmar no Registro.br antes de contar com ele).
+
+## Redesign institucional V3 — futurista dark (2026-11-02)
+
+Branch `feat/institutional-futuristic-redesign`. Auditoria em
+`docs/design/AUDITORIA_REDESIGN_TECNODREAMER.md`; tokens e regras em
+`docs/design/DESIGN_SYSTEM_V3.md`; guia em
+`docs/design/GUIA_VISUAL_TECNODREAMER.md`.
+
+- [x] Paleta amostrada do logotipo oficial (ciano `#28E1F7` → roxo
+      `#A935F0` sobre navy `#0B2941`) e tokens V3 em `globals.css`.
+- [x] Header fixo transparente → sólido, menu mobile em tela cheia, link
+      "Pular para o conteúdo", footer novo.
+- [x] Home: herói com arte SVG original, faixa institucional, grade do
+      ecossistema, cards 01/02/03, diferenciais editoriais, timeline com
+      linha progressiva, Sobre + Equipe, CTA final.
+- [x] Todas as páginas internas no novo design; texto jurídico intacto.
+- [x] Reveal sem esconder conteúdo quando não há JavaScript.
+- [x] Testes E2E atualizados e `e2e/redesign.spec.ts` novo.
+- [ ] Revisão visual do responsável e merge (aguardando PR).

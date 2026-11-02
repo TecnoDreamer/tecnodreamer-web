@@ -7,6 +7,24 @@ Formato inspirado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/)
 
 ### Adicionado
 
+- **Redesign institucional V3 (futurista dark)**, ver
+  `docs/design/DESIGN_SYSTEM_V3.md`: tema escuro em todo o site com a
+  paleta amostrada do logotipo; herói da home com arte SVG original
+  (anéis e circuitos ao redor do logo), faixa institucional, grade técnica
+  do ecossistema, cards 01/02/03 dos produtos, diferenciais em composição
+  editorial, timeline com linha progressiva, bloco Sobre + Equipe e CTA
+  final reutilizável. Novos componentes `Eyebrow`, `SectionHeading`,
+  `PageHero` e `FinalCta`.
+- Link "Pular para o conteúdo", `alternates.canonical` em todas as
+  páginas e Open Graph por produto.
+- Placa clara para logotipos com partes escuras e fundo transparente
+  (`Product.logoPlate`, usada no Pet & Pet).
+- `e2e/redesign.spec.ts`: estrutura da home, CTAs dos três produtos,
+  logos íntegros, sem scroll horizontal em 10 larguras (320–1920px),
+  viewport baixa, reduced motion e conteúdo visível sem JavaScript.
+- Documentação: `AUDITORIA_REDESIGN_TECNODREAMER.md`,
+  `DESIGN_SYSTEM_V3.md` e `GUIA_VISUAL_TECNODREAMER.md`.
+
 - Auditoria inicial do projeto (`docs/auditoria/AUDITORIA_INICIAL.md`).
 - Documentação de produto: visão, backlog, roadmap, requisitos
   funcionais/não funcionais e diagramas (contexto, casos de uso,
@@ -92,6 +110,16 @@ Formato inspirado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/)
 
 ### Alterado
 
+- Header fixo, transparente no topo de todas as páginas e com superfície
+  escura após rolar (estado em `data-state`); menu mobile em tela cheia.
+- `Reveal` não esconde mais conteúdo sem JavaScript: o estado oculto
+  vive no CSS e só vale com `<html class="js">`. A entrada do H1 dos
+  heróis é só CSS e não anima opacidade (não atrasa o LCP).
+- Todas as páginas internas (Empresa, Produtos, produto, Equipe, Contato,
+  FAQ, Privacidade, Termos, 404) no novo design. O texto das páginas
+  legais não mudou, só a apresentação.
+- Variante de botão `secondary` substituída por `outline`.
+
 - "Sistema de Gestão Pet" renomeado para **Pet & Pet**
   (slug `gestao-pet` → `pet-e-pet`).
 - Produto de analytics de marketing renomeado para **MarketIQ** e, em
@@ -121,6 +149,9 @@ Formato inspirado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/)
 
 ### Removido
 
+- Seção de abas "Explore cada produto" (`ProductShowcase`) e o mockup
+  abstrato (`ProductMockup`), substituídos pelos cards 01/02/03; o
+  conteúdo continua nas páginas de produto.
 - Card e página "Próximo produto TecnoDreamer" (`/produtos/em-desenvolvimento`),
   a pedido do responsável: ainda não há quarto produto definido.
 
