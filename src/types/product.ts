@@ -66,6 +66,12 @@ export interface Product {
    * Quando ausente, ProductLogoMark usa o `icon` acima como fallback.
    */
   logoSrc?: string;
+  /**
+   * "light" quando o logotipo tem fundo transparente e partes escuras que
+   * somem sobre o tema escuro (ex.: texto preto do Pet & Pet): o
+   * ProductLogoMark põe uma placa clara atrás, sem alterar o arquivo.
+   */
+  logoPlate?: "light";
   /** Identidade visual própria do produto, quando existir. */
   accentColor?: ProductAccentColor;
   /** Progresso do roadmap técnico, quando documentado com esse detalhe. */
