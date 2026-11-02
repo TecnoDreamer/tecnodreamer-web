@@ -71,6 +71,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <Footer />
+        {/* Antes da hidratação, revela o que já está na primeira dobra:
+            assim o LCP não espera o JavaScript do Reveal. O resto continua
+            entrando ao rolar. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "document.querySelectorAll('[data-reveal]').forEach(function(e){var r=e.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)e.setAttribute('data-visible','')})",
+          }}
+        />
       </body>
     </html>
   );

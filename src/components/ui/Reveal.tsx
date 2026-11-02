@@ -65,6 +65,9 @@ export function Reveal({
       {...rest}
       data-reveal={direction}
       data-visible={isVisible ? "" : undefined}
+      // O script no fim do <body> (layout) já marca data-visible no que
+      // está na primeira dobra antes da hidratação.
+      suppressHydrationWarning
       className={className}
       style={delay ? ({ ...style, "--reveal-delay": `${delay}ms` } as CSSProperties) : style}
     >
