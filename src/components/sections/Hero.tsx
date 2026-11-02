@@ -1,133 +1,104 @@
-import Link from "next/link";
-import { ChevronDown } from "lucide-react";
+import type { CSSProperties } from "react";
+import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
-import { StatusBadge } from "@/components/ui/Badge";
-import { ProductLogoMark } from "@/components/ui/ProductLogoMark";
-import { Reveal } from "@/components/ui/Reveal";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { HeroSpotlight } from "@/components/sections/HeroSpotlight";
+import { HeroVisual } from "@/components/sections/HeroVisual";
 import { COMPANY } from "@/constants/company";
-import { PRODUCTS } from "@/constants/products";
+import { cn } from "@/lib/utils";
 
-const HEADLINE_KEYWORDS = /(pets|marketing)/i;
-
-function HighlightedHeadline({ text }: { text: string }) {
-  const parts = text.split(HEADLINE_KEYWORDS);
-  return (
-    <>
-      {parts.map((part, index) =>
-        HEADLINE_KEYWORDS.test(part) && part.length > 0 ? (
-          <span key={index} className="text-brand-primary">
-            {part}
-          </span>
-        ) : (
-          <span key={index}>{part}</span>
-        )
-      )}
-    </>
-  );
-}
-
-const TRUST_INDICATORS = [
-  "3 produtos em desenvolvimento",
-  "Web + Mobile",
-  "Arquitetura escalável",
-  "Segurança by design",
+/**
+ * Módulos flutuantes ao redor da arte. Só categorias verificáveis no
+ * portfólio (nada de métricas): Pet & Pet e PetConnect (pet tech),
+ * Lucratix (BI), sistemas web e app mobile, 3 produtos em desenvolvimento.
+ */
+const HERO_PANELS = [
+  { label: "Pet tech", detail: "Gestão e identificação de pets", position: "lg:left-0 lg:top-[12%]" },
+  { label: "BI & Analytics", detail: "Marketing orientado a dados", position: "lg:right-0 lg:top-[22%]" },
+  { label: "Web + Mobile", detail: "Sistemas web e app mobile", position: "lg:left-[2%] lg:bottom-[14%]" },
+  { label: "Em desenvolvimento", detail: "3 produtos no portfólio", position: "lg:right-[4%] lg:bottom-[6%]", live: true },
 ];
+
+const delay = (ms: number) => ({ "--rise-delay": `${ms}ms` }) as CSSProperties;
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-ink text-white">
+    <section
+      aria-labelledby="hero-title"
+      className="relative overflow-x-clip border-b border-border bg-background"
+    >
       <div aria-hidden="true" className="tech-grid-bg absolute inset-0" />
       <HeroSpotlight />
       <div
         aria-hidden="true"
-        className="absolute -top-24 right-[-10%] h-72 w-72 rounded-full bg-brand-secondary/25 blur-3xl sm:h-96 sm:w-96"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute bottom-[-15%] left-[10%] h-64 w-64 rounded-full bg-brand-primary/15 blur-3xl"
+        className="pointer-events-none absolute -left-40 top-1/3 h-[30rem] w-[30rem] rounded-full blur-3xl"
+        style={{ background: "radial-gradient(circle, color-mix(in srgb, var(--brand-purple) 16%, transparent), transparent 70%)" }}
       />
 
-      <Container className="relative pt-24 pb-20 sm:pt-32 sm:pb-28">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          <div>
-            <Reveal>
-              <p className="text-sm font-medium uppercase tracking-wide text-brand-primary">
-                {COMPANY.name}
-              </p>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <h1 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl">
-                <HighlightedHeadline text={COMPANY.shortPitch} />
-              </h1>
-            </Reveal>
-
-            <Reveal delay={160}>
-              <p className="mt-6 max-w-xl text-lg text-white/80">{COMPANY.about}</p>
-            </Reveal>
-
-            <Reveal delay={240}>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <ButtonLink href="/produtos">Conhecer os produtos</ButtonLink>
-                <ButtonLink
-                  href="/contato"
-                  variant="secondary"
-                  className="border-white/40 text-white hover:bg-white/10"
-                >
-                  Falar com a TecnoDreamer
-                </ButtonLink>
-              </div>
-            </Reveal>
-
-            <Reveal delay={320}>
-              <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/60">
-                {TRUST_INDICATORS.map((indicator) => (
-                  <li key={indicator} className="flex items-center gap-2">
-                    <span className="h-1 w-1 rounded-full bg-brand-primary" aria-hidden="true" />
-                    {indicator}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
+      <Container className="relative grid items-center gap-14 pb-20 pt-[calc(var(--header-height)+3.5rem)] sm:pb-28 lg:grid-cols-12 lg:gap-8 lg:pt-[calc(var(--header-height)+5rem)]">
+        <div className="lg:col-span-7">
+          <div className="hero-fade" style={delay(0)}>
+            <Eyebrow>TecnoDreamer · Empresa de tecnologia em formação</Eyebrow>
           </div>
 
-          <Reveal direction="left" delay={200} className="hidden lg:block justify-self-end">
-            <div className="w-full max-w-sm animate-float rounded-lg border border-white/10 bg-ink-elevated p-6 backdrop-blur-md">
-              <div className="flex items-center gap-2 text-sm text-white/70">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-primary opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-primary" />
-                </span>
-                Portfólio TecnoDreamer
-              </div>
-              <ul className="mt-5 flex flex-col gap-1">
-                {PRODUCTS.map((product) => (
-                  <li key={product.slug}>
-                    <Link
-                      href={`/produtos/${product.slug}`}
-                      className="flex items-center justify-between gap-3 rounded-md px-2 py-2 text-sm text-white/80 transition-colors hover:bg-white/5 hover:text-white"
-                    >
-                      <span className="flex items-center gap-2.5">
-                        <ProductLogoMark product={product} size="sm" />
-                        {product.name}
-                      </span>
-                      <StatusBadge status={product.status} />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
+          <h1
+            id="hero-title"
+            className="hero-rise mt-7 text-display font-semibold uppercase text-foreground"
+            style={delay(60)}
+          >
+            Tecnologia para problemas <span className="text-gradient-brand">reais.</span>
+          </h1>
+
+          <div className="hero-fade mt-8 max-w-xl" style={delay(200)}>
+            <p className="text-h3 font-medium text-foreground">Do mercado pet à inteligência de dados.</p>
+            <p className="mt-4 text-lead text-foreground-muted">{COMPANY.shortPitch}</p>
+          </div>
+
+          <div className="hero-fade mt-10 flex flex-wrap gap-3" style={delay(320)}>
+            <ButtonLink href="/produtos" className="group">
+              Explorar produtos
+              <ArrowRight
+                size={16}
+                aria-hidden="true"
+                className="transition-transform duration-200 group-hover:translate-x-0.5"
+              />
+            </ButtonLink>
+            <ButtonLink href="/empresa" variant="outline">
+              Conhecer a TecnoDreamer
+            </ButtonLink>
+          </div>
         </div>
 
-        <div className="mt-16 hidden justify-center sm:flex">
-          <ChevronDown
-            size={20}
-            className="animate-bounce text-white/30"
-            aria-hidden="true"
-          />
+        <div className="hero-fade relative lg:col-span-5" style={delay(180)}>
+          <div className="mx-auto max-w-[22rem] sm:max-w-[26rem] lg:max-w-none">
+            <HeroVisual />
+          </div>
+
+          <ul className="mt-10 grid grid-cols-2 gap-3 lg:mt-0 lg:block">
+            {HERO_PANELS.map((panel) => (
+              <li
+                key={panel.label}
+                className={cn(
+                  "glass rounded-md px-3.5 py-3 lg:absolute lg:max-w-[13.5rem]",
+                  panel.position
+                )}
+              >
+                <p className="flex items-center gap-2 font-mono text-micro font-medium uppercase text-brand-cyan">
+                  {panel.live ? (
+                    <span aria-hidden="true" className="relative flex h-2 w-2">
+                      <span className="animate-pulse-dot absolute inline-flex h-full w-full rounded-full bg-brand-purple-light" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-purple-light" />
+                    </span>
+                  ) : (
+                    <span aria-hidden="true" className="h-px w-3 bg-brand-cyan" />
+                  )}
+                  {panel.label}
+                </p>
+                <p className="mt-1.5 text-xs text-foreground-muted">{panel.detail}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </Container>
     </section>

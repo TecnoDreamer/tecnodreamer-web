@@ -42,7 +42,7 @@ export function HeroSpotlight() {
       className="pointer-events-none absolute inset-0"
       style={{
         background:
-          "radial-gradient(600px circle at var(--spotlight-x, 50%) var(--spotlight-y, 20%), rgba(34,211,238,0.10), transparent 70%)",
+          "radial-gradient(600px circle at var(--spotlight-x, 50%) var(--spotlight-y, 20%), rgba(40,225,247,0.08), transparent 70%)",
       }}
     />
   );
