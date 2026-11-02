@@ -72,7 +72,7 @@ alterar a estrutura da página.
 ---
 
 ### RF006 — Página do produto "Gestão Pet"
-**Descrição:** `/produtos/gestao-pet` com hero, problema, solução, público,
+**Descrição:** `/produtos/pet-e-pet` com hero, problema, solução, público,
 funcionalidades planejadas, status e FAQ.
 **Ator:** Visitante
 **Prioridade:** P0
@@ -99,9 +99,11 @@ identificação de pets via QR Code.
 
 ---
 
-### RF009 — Página "Produto em desenvolvimento"
-**Descrição:** `/produtos/em-desenvolvimento` reserva espaço para o 4º
-produto do portfólio, sinalizando que está em fase de concepção.
+### RF009 — Página "Produto em desenvolvimento" (removido)
+**Descrição:** `/produtos/em-desenvolvimento` reservava espaço para um 4º
+produto do portfólio. Removido em 2026-11-02 a pedido do responsável
+(não há quarto produto definido); o requisito fica reaberto até existir
+um produto real a apresentar.
 **Ator:** Visitante
 **Prioridade:** P2
 **Dependências:** RF005

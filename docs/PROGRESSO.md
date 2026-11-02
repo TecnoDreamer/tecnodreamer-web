@@ -233,3 +233,34 @@ agora que o repositório remoto existe
       (`AleksGustavo/tecnodreamer-web`); o GitHub redireciona, mas vale
       atualizar com `git remote set-url origin
       https://github.com/TecnoDreamer/tecnodreamer-web.git`.
+
+## Aplicação das pendências preenchidas (2026-11-02)
+
+Base: `docs/PENDENCIAS.md` preenchido pelo responsável.
+
+- [x] Formulário de contato envia e-mail via Resend (código, testes e
+      guia prontos). **Falta** criar a conta no Resend e cadastrar
+      `RESEND_API_KEY` e `CONTACT_TO_EMAIL` na Vercel.
+- [x] Propósito, missão e visão publicados; cultura segue indefinida
+      (bloco oculto).
+- [x] Equipe: fundador com foto, LinkedIn e GitHub. O endereço do
+      LinkedIn informado (`linkedin.com.br/in/...`) foi normalizado para
+      `https://www.linkedin.com/in/aleksandergustavo` e **não foi
+      verificado** (o LinkedIn bloqueia consultas automáticas).
+- [x] FAQ: vagas, canais oficiais e contato atualizados; pergunta sobre
+      parceiros removida.
+- [x] Contatos públicos (e-mail e telefone/WhatsApp) no rodapé e na
+      página de contato. Sem endereço e sem redes sociais.
+- [x] Quarto produto removido.
+- [x] Pet & Pet, PetConnect e Lucratix atualizados a partir dos
+      repositórios (ver CHANGELOG).
+- [ ] Revisão jurídica (Privacidade e Termos): sem advogado ainda; os
+      `TODO: REVISÃO JURÍDICA` continuam visíveis nas páginas legais.
+- [ ] Perfis de LinkedIn e Instagram da empresa: ainda não criados.
+- [ ] Renomear Pet & Pet para "Petable": o responsável mencionou a
+      mudança, mas não há data; o site mantém "Pet & Pet" (e o logotipo
+      atual) até a confirmação.
+- [ ] Deploy: recomendação na seção 7 de `docs/DEPLOY.md` (Vercel Pro).
+- [ ] Domínio `tecnodreamer.com.br`: em 2026-11-02 a consulta RDAP do
+      Registro.br retornou 404 e o DNS não resolveu (indício de que está
+      livre — confirmar no Registro.br antes de contar com ele).

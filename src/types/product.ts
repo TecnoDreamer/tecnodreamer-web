@@ -38,16 +38,20 @@ export interface ProductAccentColor {
 }
 
 /**
- * Progresso real e verificável do roadmap técnico do produto (fases
- * concluídas vs. total), quando o produto tem esse nível de detalhe
- * documentado. Nunca deve ser estimado — apenas refletir o que já foi
- * de fato implementado e testado.
+ * Progresso real e verificável do produto (itens concluídos vs. total),
+ * quando ele tem esse nível de detalhe documentado — fases de roadmap,
+ * requisitos funcionais etc. Nunca deve ser estimado: apenas refletir o
+ * que já foi de fato implementado.
  */
 export interface ProductRoadmapProgress {
-  completedPhases: number;
-  totalPhases: number;
-  /** Nomes curtos das fases ainda pendentes, para explicar o que falta. */
-  pendingPhaseLabels: string[];
+  /** O que está sendo contado. Padrão: "Progresso do roadmap técnico". */
+  title?: string;
+  /** Unidade exibida após "N/M". Padrão: "fases concluídas". */
+  unit?: string;
+  completed: number;
+  total: number;
+  /** O que ainda falta, em frases curtas, para explicar o que não está pronto. */
+  pendingLabels: string[];
 }
 
 export interface Product {

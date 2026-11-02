@@ -47,11 +47,10 @@ análise completa de stack.
 | `/` | Home institucional |
 | `/empresa` | História, propósito/missão/visão, valores, princípios, tecnologia, cultura, objetivos futuros |
 | `/produtos` | Listagem de todos os produtos do portfólio |
-| `/produtos/gestao-pet` | Sistema de Gestão Pet |
+| `/produtos/pet-e-pet` | Pet & Pet |
 | `/produtos/petconnect` | PetConnect |
 | `/produtos/lucratix` | Lucratix |
-| `/produtos/em-desenvolvimento` | Espaço reservado para o próximo produto |
-| `/equipe` | Estrutura de equipe (placeholder até dados reais) |
+| `/equipe` | Equipe (fundador, com foto e links) |
 | `/contato` | Formulário de contato validado client+server |
 | `/privacidade` | Política de privacidade (LGPD) |
 | `/termos` | Termos de uso |

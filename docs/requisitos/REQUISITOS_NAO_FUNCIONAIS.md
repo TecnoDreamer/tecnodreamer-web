@@ -52,7 +52,7 @@ menu mobile, formulário).
 
 ### RNF009 — SEO técnico
 Metadata própria por rota, Open Graph, `sitemap.xml`, `robots.txt`,
-favicon e URLs semânticas (`/produtos/gestao-pet`, não IDs opacos).
+favicon e URLs semânticas (`/produtos/pet-e-pet`, não IDs opacos).
 **Prioridade:** P1
 
 ### RNF010 — Manutenibilidade

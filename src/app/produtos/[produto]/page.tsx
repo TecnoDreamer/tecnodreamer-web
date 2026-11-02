@@ -106,11 +106,13 @@ export default async function ProductDetailPage({
         <Section tone="surface" style={productAccentVars(product, "onLight")}>
           <Reveal>
             <h2 className="text-2xl font-semibold text-foreground">
-              Funcionalidades planejadas
+              {product.status === "planejamento" ? "Funcionalidades planejadas" : "Funcionalidades"}
             </h2>
             <p className="mt-2 text-sm text-foreground-muted">
-              Escopo previsto para o produto — ainda não representa recursos entregues (status
-              atual: <StatusBadge status={product.status} />).
+              {product.status === "planejamento"
+                ? "Escopo previsto para o produto — ainda não representa recursos entregues"
+                : "Escopo do produto em evolução — nem todas as funcionalidades estão concluídas"}{" "}
+              (status atual: <StatusBadge status={product.status} />).
             </p>
             <RoadmapProgress product={product} />
           </Reveal>

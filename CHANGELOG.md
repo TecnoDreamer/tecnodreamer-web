@@ -78,6 +78,14 @@ Formato inspirado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/)
   apenas para produtos com `Product.roadmapProgress` documentado — hoje
   o Lucratix, com 16 de 18 fases concluídas e as pendentes listadas
   (integrações externas e hardening).
+- Envio real do formulário de contato por e-mail via Resend
+  (`src/lib/contact-mail.ts`): `reply_to` do visitante, falha explícita
+  (HTTP 503) em produção sem configuração em vez de perder mensagens,
+  17 testes novos. Configuração em `docs/DEPLOY.md` e `.env.example`.
+- Contatos públicos (e-mail e telefone/WhatsApp) no rodapé e na página de
+  contato; foto do fundador no cartão da Equipe (`next/image`).
+- Barra de progresso do PetConnect (29 de 44 requisitos funcionais),
+  com título e unidade configuráveis (`ProductRoadmapProgress`).
 - `docs/PENDENCIAS.md`: checklist consolidado das informações que só o
   responsável pelo produto pode fornecer (missão/visão, equipe, destino
   dos contatos, revisão jurídica, FAQ).
@@ -96,6 +104,25 @@ Formato inspirado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/)
 - Repositório movido para a organização GitHub
   `TecnoDreamer/tecnodreamer-web` (o GitHub redireciona o endereço
   antigo); referências na documentação atualizadas.
+
+- Conteúdo institucional real: propósito, missão e visão (palavras do
+  responsável, só com ajustes de gramática); equipe com o fundador;
+  FAQ com respostas reais (vagas, canais oficiais, contato); lista de
+  tecnologias conferida nos repositórios. O bloco "Cultura" fica oculto
+  até ser definido.
+- Pet & Pet e PetConnect deixam de ser "planejamento": descrições,
+  funcionalidades e FAQ reescritos a partir dos repositórios reais de
+  cada um (README e requisitos), com status "em desenvolvimento". O
+  nome do cliente e dos colegas do projeto acadêmico do Pet & Pet não
+  são divulgados. Lucratix ganha importação/exportação de planilhas e
+  interface multilíngue.
+- Página de produto: "Funcionalidades planejadas" vira "Funcionalidades"
+  para produtos já em desenvolvimento.
+
+### Removido
+
+- Card e página "Próximo produto TecnoDreamer" (`/produtos/em-desenvolvimento`),
+  a pedido do responsável: ainda não há quarto produto definido.
 
 ### Corrigido
 
