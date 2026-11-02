@@ -10,6 +10,7 @@ import {
   type ContactFormValues,
 } from "@/schemas/contact";
 import { Button } from "@/components/ui/Button";
+import { COMPANY } from "@/constants/company";
 import { cn } from "@/lib/utils";
 
 const inputClasses =
@@ -45,6 +46,14 @@ export function ContactForm() {
         setSubmitState({
           status: "error",
           message: "Muitas tentativas em pouco tempo. Aguarde alguns instantes e tente novamente.",
+        });
+        return;
+      }
+
+      if (response.status === 502 || response.status === 503) {
+        setSubmitState({
+          status: "error",
+          message: `Não conseguimos enviar sua mensagem agora. Escreva diretamente para ${COMPANY.contact.email}.`,
         });
         return;
       }

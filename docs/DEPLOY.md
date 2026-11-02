@@ -48,10 +48,11 @@ O primeiro deploy funciona sem nenhuma configuração, mas há pendências
 que impedem divulgar o site como definitivo (lista completa e
 preenchível em [`PENDENCIAS.md`](PENDENCIAS.md)):
 
-- **Formulário de contato sem destino:** `/api/contato` valida e registra
-  em log, mas não envia e-mail nem grava em lugar nenhum — mensagens
-  enviadas por visitantes **não chegam a ninguém**. Defina o destino
-  antes de divulgar.
+- **Formulário de contato:** o envio por e-mail já está implementado, mas
+  só funciona depois de configurar as variáveis abaixo. Em produção, sem
+  elas, o formulário responde "indisponível" (HTTP 503) em vez de
+  aceitar a mensagem e perdê-la. Siga a seção "Enviar as mensagens do
+  formulário por e-mail" antes de divulgar o site.
 - **Rate limiting em memória:** em ambiente serverless (Vercel) cada
   instância mantém seu próprio contador, então o limite é aproximado.
   Suficiente como proteção básica; para rigor, migrar para um armazém
@@ -61,11 +62,55 @@ preenchível em [`PENDENCIAS.md`](PENDENCIAS.md)):
 - **Missão, visão, equipe e algumas respostas do FAQ** ainda são
   `TODO: DEFINIR COM PRODUCT OWNER` e aparecem assim no site.
 
+## Enviar as mensagens do formulário por e-mail (Resend)
+
+O formulário de contato envia cada mensagem por e-mail usando o
+[Resend](https://resend.com) (plano gratuito; confira os limites atuais
+no site deles). O visitante recebe confirmação na tela e você recebe o
+e-mail, com o endereço dele em "Responder para" — basta clicar em
+responder.
+
+1. Crie uma conta em [resend.com](https://resend.com) **usando o mesmo
+   e-mail que vai receber as mensagens** (`aleksandergustavo9@gmail.com`).
+   Enquanto não houver domínio verificado, o Resend só permite enviar
+   para o e-mail da própria conta — por isso a conta e o destino precisam
+   ser o mesmo.
+2. No painel do Resend, abra **API Keys → Create API Key** (permissão
+   "Sending access") e copie a chave (começa com `re_`). Ela só aparece
+   uma vez. **Não envie a chave por chat nem a salve no repositório.**
+3. Na Vercel, abra o projeto → **Settings → Environment Variables** e
+   crie, para os ambientes **Production** e **Preview**:
+
+   | Nome | Valor |
+   |---|---|
+   | `RESEND_API_KEY` | a chave `re_...` copiada no passo 2 |
+   | `CONTACT_TO_EMAIL` | `aleksandergustavo9@gmail.com` |
+
+   (`CONTACT_FROM_EMAIL` pode ficar em branco: o remetente padrão é
+   `TecnoDreamer <onboarding@resend.dev>`.)
+4. Faça um novo deploy (Deployments → ⋯ → Redeploy) para as variáveis
+   valerem.
+5. Teste: envie uma mensagem pelo formulário do site publicado e
+   confirme que o e-mail chegou (veja também a caixa de spam na primeira
+   vez). Se der erro, os registros em **Logs** da Vercel mostram a causa
+   (`[contato] falha ao enviar por e-mail`), sem expor o conteúdo da
+   mensagem.
+
+### Quando o domínio próprio existir
+
+No Resend, abra **Domains → Add Domain**, informe o domínio (ex.:
+`tecnodreamer.com.br`) e crie no provedor de DNS os registros que o
+Resend mostrar. Depois de "Verified", defina na Vercel
+`CONTACT_FROM_EMAIL` como `TecnoDreamer <contato@tecnodreamer.com.br>`.
+A partir daí o destino (`CONTACT_TO_EMAIL`) pode ser qualquer endereço.
+
 ## Variáveis de ambiente
 
-Ver `.env.example`. Nenhuma variável é obrigatória para o primeiro
-deploy — o formulário de contato (`/api/contato`) não depende de
-serviço externo nesta fase (apenas valida e loga, sem persistência).
+Ver `.env.example`. Para o primeiro deploy do site em si nenhuma é
+obrigatória, mas **sem `RESEND_API_KEY` e `CONTACT_TO_EMAIL` o formulário
+de contato fica indisponível em produção** (de propósito — ver acima).
+Localmente (`npm run dev`) o formulário funciona em "modo log": valida e
+registra metadados, sem enviar e-mail.
 
 ## Verificação pós-deploy
 
