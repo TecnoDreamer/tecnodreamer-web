@@ -13,11 +13,20 @@ Next.js, zero configuração adicional necessária).
      Permissions** e autorize a Vercel a acessá-lo (ele é privado).
    - O repositório pertence à **organização** `TecnoDreamer` (não à conta
      pessoal): a Vercel precisa ser instalada nessa organização, e quem
-     autoriza precisa ser dono dela. **Atenção:** o plano gratuito
-     (Hobby) da Vercel costuma não permitir importar repositórios
-     privados de organizações — confira as condições do plano atual na
-     Vercel antes de começar. Alternativas: plano Pro, tornar o
-     repositório público ou mantê-lo na conta pessoal.
+     autoriza precisa ser dono dela.
+   - **Plano da Vercel — recomendação: Pro (US$ 20 por usuário/mês).**
+     Motivos: (1) a documentação da Vercel diz que o plano gratuito
+     (Hobby) é restrito a uso pessoal e **não comercial**
+     ([Hobby plan](https://vercel.com/docs/plans/hobby)); um site de
+     empresa é uso comercial; (2) segundo o suporte da Vercel em
+     [vários relatos da comunidade](https://community.vercel.com/t/why-cant-hobby-accounts-deploy-from-organizations/10015),
+     o Hobby não importa repositório **privado** de uma organização do
+     GitHub. Valores e regras mudam: confirme em
+     [vercel.com/pricing](https://vercel.com/pricing) antes de assinar.
+   - Alternativas, se não quiser pagar agora: tornar o repositório
+     público (só depois de revisar que nada sigiloso está nele) ou
+     mantê-lo na conta pessoal — ambas continuam sendo Hobby, ou seja,
+     sujeitas à restrição de uso não comercial.
 3. Em **Configure Project**, os valores padrão já funcionam:
    - Framework Preset: `Next.js` (detectado automaticamente)
    - Build Command / Output Directory / Install Command: deixe em branco
@@ -31,36 +40,28 @@ Next.js, zero configuração adicional necessária).
 6. A partir daí, **todo push para `main` gera um novo deploy de produção
    automaticamente**, e cada Pull Request ganha uma preview URL própria.
 
-### Domínio próprio (quando houver um)
+### Domínio próprio (`tecnodreamer.com.br`)
 
-1. No projeto na Vercel, vá em **Settings → Domains**.
-2. Adicione o domínio (ex.: `tecnodreamer.com`) e siga as instruções de
-   DNS mostradas (geralmente um registro `A`/`CNAME` no seu provedor de
-   domínio).
-3. Depois de propagado, defina `NEXT_PUBLIC_SITE_URL=https://tecnodreamer.com`
-   em **Settings → Environment Variables** (Production) e refaça o deploy
-   — isso garante que `sitemap.xml`, `robots.txt` e as tags Open Graph
-   usem o domínio definitivo em vez do subdomínio da Vercel.
+Em 2026-11-02 a consulta pública do Registro.br (RDAP) respondeu "não
+encontrado" e o DNS não resolvia o nome — indício de que o domínio está
+livre. Confirme na hora do registro; isso não é garantia.
 
-## Antes de divulgar o site
-
-O primeiro deploy funciona sem nenhuma configuração, mas há pendências
-que impedem divulgar o site como definitivo (lista completa e
-preenchível em [`PENDENCIAS.md`](PENDENCIAS.md)):
-
-- **Formulário de contato:** o envio por e-mail já está implementado, mas
-  só funciona depois de configurar as variáveis abaixo. Em produção, sem
-  elas, o formulário responde "indisponível" (HTTP 503) em vez de
-  aceitar a mensagem e perdê-la. Siga a seção "Enviar as mensagens do
-  formulário por e-mail" antes de divulgar o site.
-- **Rate limiting em memória:** em ambiente serverless (Vercel) cada
-  instância mantém seu próprio contador, então o limite é aproximado.
-  Suficiente como proteção básica; para rigor, migrar para um armazém
-  compartilhado.
-- **Páginas de Privacidade e Termos** contêm pontos marcados
-  `TODO: REVISÃO JURÍDICA`.
-- **Missão, visão, equipe e algumas respostas do FAQ** ainda são
-  `TODO: DEFINIR COM PRODUCT OWNER` e aparecem assim no site.
+1. Registre em [registro.br](https://registro.br) (pessoa física com CPF
+   ou pessoa jurídica com CNPJ). Anote o login e ative a verificação em
+   duas etapas.
+2. Na Vercel, no projeto: **Settings → Domains → Add** `tecnodreamer.com.br`
+   (e `www.tecnodreamer.com.br`, redirecionando para o principal). A
+   Vercel mostra os registros de DNS exatos a criar.
+3. No Registro.br, em **DNS → Editar zona** (ou apontando para os
+   servidores de nomes da Vercel), crie os registros indicados. A
+   propagação leva de minutos a algumas horas.
+4. Defina `NEXT_PUBLIC_SITE_URL=https://tecnodreamer.com.br` em
+   **Settings → Environment Variables** (Production) e refaça o deploy:
+   isso faz `sitemap.xml`, `robots.txt` e as tags Open Graph usarem o
+   domínio definitivo.
+5. Opcional, mas recomendado: verifique o domínio no Resend (próxima
+   seção) para enviar os e-mails do formulário a partir de
+   `contato@tecnodreamer.com.br`.
 
 ## Enviar as mensagens do formulário por e-mail (Resend)
 

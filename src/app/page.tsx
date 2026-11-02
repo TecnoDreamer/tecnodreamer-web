@@ -68,7 +68,7 @@ export default function HomePage() {
             pet ou de marketing orientado a dados.
           </p>
         </Reveal>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {PRODUCTS.map((product, index) => (
             <Reveal key={product.slug} delay={index * 80}>
               <ProductCard product={product} />
