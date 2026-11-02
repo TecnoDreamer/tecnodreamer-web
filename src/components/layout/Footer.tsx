@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
@@ -6,87 +7,98 @@ import { COMPANY } from "@/constants/company";
 import { FOOTER_LEGAL_LINKS, NAV_ITEMS } from "@/constants/nav";
 import { PRODUCTS } from "@/constants/products";
 
+const linkClasses =
+  "inline-flex min-h-8 items-center text-sm text-foreground-muted transition-colors hover:text-foreground";
+
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden bg-ink text-white">
-      <div aria-hidden="true" className="tech-grid-bg absolute inset-0 opacity-60" />
-
-      <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-6 py-14 sm:px-8 md:grid-cols-4">
-        <div className="md:col-span-2">
-          <Link href="/" className="flex items-center gap-2">
+    <footer className="relative overflow-hidden border-t border-border bg-ink text-foreground">
+      <div className="relative mx-auto grid w-full max-w-7xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-12 lg:px-8">
+        <div className="md:col-span-5">
+          <Link href="/" className="inline-flex items-center gap-2.5">
             <Image src={logo} alt="TecnoDreamer" width={32} height={32} />
-            <span className="text-lg font-semibold text-white">{COMPANY.name}</span>
+            <span className="text-base font-semibold">{COMPANY.name}</span>
           </Link>
-          <p className="mt-3 max-w-sm text-sm text-white/60">{COMPANY.shortPitch}</p>
-          <ul className="mt-4 flex flex-col gap-1.5 text-sm text-white/60">
+          <p className="mt-4 max-w-sm text-sm text-foreground-muted">{COMPANY.shortPitch}</p>
+          <ul className="mt-6 flex flex-col gap-1">
             <li>
-              <a href={`mailto:${COMPANY.contact.email}`} className="hover:text-white">
+              <a href={`mailto:${COMPANY.contact.email}`} className={linkClasses}>
                 {COMPANY.contact.email}
               </a>
             </li>
             <li>
-              <a href={COMPANY.contact.phoneHref} className="hover:text-white">
+              <a href={COMPANY.contact.phoneHref} className={linkClasses}>
                 {COMPANY.contact.phoneDisplay}
               </a>
             </li>
           </ul>
           <Link
             href="/contato"
-            className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-brand-primary hover:underline"
+            className="mt-6 inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-brand-cyan hover:underline"
           >
             Falar com a gente
-            <ArrowUpRight size={14} aria-hidden="true" />
+            <ArrowUpRight size={16} aria-hidden="true" />
           </Link>
         </div>
 
-        <div>
-          <p className="text-sm font-semibold text-white">Navegação</p>
-          <ul className="mt-3 flex flex-col gap-2">
-            {NAV_ITEMS.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className="text-sm text-white/60 hover:text-white">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <FooterColumn title="Navegação" className="md:col-span-2 md:col-start-7">
+          {NAV_ITEMS.map((item) => (
+            <li key={item.href}>
+              <Link href={item.href} className={linkClasses}>
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </FooterColumn>
 
-        <div>
-          <p className="text-sm font-semibold text-white">Produtos</p>
-          <ul className="mt-3 flex flex-col gap-2">
-            {PRODUCTS.map((product) => (
-              <li key={product.slug}>
-                <Link
-                  href={`/produtos/${product.slug}`}
-                  className="text-sm text-white/60 hover:text-white"
-                >
-                  {product.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <FooterColumn title="Produtos" className="md:col-span-2">
+          {PRODUCTS.map((product) => (
+            <li key={product.slug}>
+              <Link href={`/produtos/${product.slug}`} className={linkClasses}>
+                {product.name}
+              </Link>
+            </li>
+          ))}
+        </FooterColumn>
+
+        <FooterColumn title="Ajuda" className="md:col-span-2">
+          {FOOTER_LEGAL_LINKS.map((item) => (
+            <li key={item.href}>
+              <Link href={item.href} className={linkClasses}>
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </FooterColumn>
       </div>
 
-      <div className="relative border-t border-white/10">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-6 py-6 text-sm text-white/50 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+      <div className="relative border-t border-border">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-2 px-4 py-6 font-mono text-micro uppercase text-foreground-muted sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
           <p>
             © {year} {COMPANY.name}. Todos os direitos reservados.
           </p>
-          <ul className="flex gap-4">
-            {FOOTER_LEGAL_LINKS.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className="hover:text-white">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <p>Empresa de tecnologia em formação</p>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterColumn({
+  title,
+  className,
+  children,
+}: {
+  title: string;
+  className?: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className={className}>
+      <p className="font-mono text-micro font-medium uppercase text-foreground-subtle">{title}</p>
+      <ul className="mt-4 flex flex-col gap-1">{children}</ul>
+    </div>
   );
 }
