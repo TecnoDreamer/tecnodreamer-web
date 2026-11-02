@@ -108,6 +108,30 @@ O JS varia entre perfis porque o Next pré-carrega rotas dos links visíveis.
 
 Lighthouse não está instalado no projeto e não foi adicionado.
 
+### 6.1 Antes × depois (mediana de 3, mesmo método)
+
+A tabela acima foi uma medição única. Para comparar, `main` (`2589f1a`) e a
+branch do redesign (`aebd5e3`) foram medidas com o mesmo script, na mesma
+máquina: build de produção, 3 visitas em contexto limpo por página e
+perfil, mediana. Variação entre execuções de até ±300 ms (há uma execução
+isolada de 2,7 s na home desktop depois, descartada pela mediana).
+
+| Página | LCP desktop antes → depois | LCP mobile antes → depois | CLS depois | JS gzip antes → depois |
+|---|---|---|---|---|
+| `/` | 1104 → 1048 ms | 1712 → 1560 ms | 0 | 234 → 229 KB (mobile 234 → 148) |
+| `/produtos` | 404 → 596 ms | 1232 → 1024 ms | 0,017 (desktop) | 234/152 → 229/148 KB |
+| `/produtos/lucratix` | 500 → 736 ms | 1384 → 1448 ms | 0 | 234 → 229 KB |
+| `/empresa` | 456 → 500 ms | 1452 → 1120 ms | 0 | 234/152 → 229/148 KB |
+| `/equipe` | 460 → 576 ms | 1220 → 1152 ms | 0 | 234/152 → 229/148 KB |
+| `/contato` | 508 → 652 ms | 1104 → 1112 ms | 0 | 234/233 → 229 KB |
+| `/faq` | 312 → 660 ms | 1048 → 1316 ms | 0,026 (desktop) | 234/152 → 229/148 KB |
+
+Leitura: tudo dentro das metas de referência (LCP ≤ 2,5 s no perfil
+mobile lento, CLS ≤ 0,1). O JavaScript caiu um pouco (as abas client-side
+saíram). No desktop, algumas páginas internas ficaram 100–350 ms mais
+lentas, principalmente FAQ e Lucratix. A causa não foi isolada (hipóteses:
+herói mais alto e H1 bem maior). Mesmo assim, ficam abaixo de 750 ms. Medição de laboratório local, não dado de campo (CrUX).
+
 ## 7. Riscos
 
 1. **Tema escuro inteiro** muda todas as páginas: tokens semânticos
