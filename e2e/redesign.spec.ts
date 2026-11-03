@@ -160,7 +160,9 @@ test.describe("Movimento e acesso sem JavaScript", () => {
   test("sem JavaScript, o conteúdo continua visível", async ({ browser }) => {
     const context = await browser.newContext({ javaScriptEnabled: false });
     const page = await context.newPage();
-    await page.goto("/");
+    // Sem JS o Chromium ignora loading="lazy" e baixa todas as imagens antes
+    // do "load"; o teste só precisa do HTML e do CSS do SSR.
+    await page.goto("/", { waitUntil: "domcontentloaded" });
     await expect(page.getByRole("heading", { level: 2, name: "Como trabalhamos" })).toHaveCSS(
       "opacity",
       "1"
