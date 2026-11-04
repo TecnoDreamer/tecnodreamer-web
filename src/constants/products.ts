@@ -15,6 +15,9 @@ export const PRODUCTS: Product[] = [
     category: "Gestão",
     icon: PawPrint,
     logoSrc: "/logos/pet-e-pet.png",
+    // PNG transparente com o texto "PET & PET" em preto: precisa de placa
+    // clara para continuar legível no tema escuro do site.
+    logoPlate: "light",
     status: "em-desenvolvimento",
     audience: ["Pet shops", "Clínicas veterinárias", "Agropecuárias"],
     problem:

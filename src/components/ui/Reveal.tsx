@@ -1,56 +1,8 @@
 "use client";
 
-import {
-  useEffect,
-  useRef,
-  useState,
-  useSyncExternalStore,
-  type ElementType,
-  type ReactNode,
-} from "react";
-import { cn } from "@/lib/utils";
-
-const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
-
-function subscribeToReducedMotion(callback: () => void) {
-  const mediaQueryList = window.matchMedia(REDUCED_MOTION_QUERY);
-  mediaQueryList.addEventListener("change", callback);
-  return () => mediaQueryList.removeEventListener("change", callback);
-}
-
-function getReducedMotionSnapshot() {
-  return window.matchMedia(REDUCED_MOTION_QUERY).matches;
-}
-
-function getReducedMotionServerSnapshot() {
-  return false;
-}
-
-/**
- * Lê `prefers-reduced-motion` sem causar mismatch de hidratação: o
- * `useSyncExternalStore` garante que o primeiro render no client bata com
- * o HTML do servidor (que não tem como conhecer a preferência do SO) e só
- * então corrige o valor de forma segura. Um `useState` com
- * `window.matchMedia` no inicializador quebraria isso — o React detecta o
- * atributo divergente na hidratação e explicitamente NÃO o corrige.
- */
-function usePrefersReducedMotion() {
-  return useSyncExternalStore(
-    subscribeToReducedMotion,
-    getReducedMotionSnapshot,
-    getReducedMotionServerSnapshot
-  );
-}
+import { useEffect, useRef, useState, type CSSProperties, type ElementType, type ReactNode } from "react";
 
 type RevealDirection = "up" | "down" | "left" | "right" | "none";
-
-const HIDDEN_TRANSFORM: Record<RevealDirection, string> = {
-  up: "translate-y-6",
-  down: "-translate-y-6",
-  left: "translate-x-6",
-  right: "-translate-x-6",
-  none: "",
-};
 
 interface RevealProps {
   children: ReactNode;
@@ -59,6 +11,7 @@ interface RevealProps {
   /** Atraso em ms, usado para stagger em listas/grades. */
   delay?: number;
   className?: string;
+  style?: CSSProperties;
   /** Demais props (role, aria-*, etc.) são repassadas ao elemento renderizado. */
   [key: `aria-${string}`]: unknown;
   role?: string;
@@ -66,9 +19,13 @@ interface RevealProps {
 }
 
 /**
- * Anima a entrada de um elemento quando ele cruza o viewport.
- * Respeita prefers-reduced-motion (renderiza direto, sem animação) e
- * dispara apenas uma vez por elemento.
+ * Anima a entrada de um elemento quando ele cruza o viewport, uma vez só.
+ *
+ * O estado escondido vive no CSS (`globals.css`, seletor `.js [data-reveal]`)
+ * e só vale quando o script inline do layout marcou `<html class="js">`:
+ * sem JavaScript o conteúdo aparece normalmente, e sob
+ * `prefers-reduced-motion` também (a media query anula o estado escondido).
+ * Assim o SSR não depende de hidratação para mostrar texto.
  */
 export function Reveal({
   children,
@@ -76,15 +33,13 @@ export function Reveal({
   direction = "up",
   delay = 0,
   className,
+  style,
   ...rest
 }: RevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const skipAnimation = usePrefersReducedMotion();
+  const ref = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (skipAnimation) return;
-
     const node = ref.current;
     if (!node) return;
 
@@ -95,12 +50,12 @@ export function Reveal({
           observer.disconnect();
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
     );
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [skipAnimation]);
+  }, []);
 
   const Component = Tag as ElementType;
 
@@ -108,13 +63,13 @@ export function Reveal({
     <Component
       ref={ref}
       {...rest}
-      className={cn(
-        !skipAnimation && "transition-all duration-[600ms] ease-standard",
-        !skipAnimation && !isVisible && cn("opacity-0", HIDDEN_TRANSFORM[direction]),
-        !skipAnimation && isVisible && "opacity-100 translate-x-0 translate-y-0",
-        className
-      )}
-      style={!skipAnimation ? { transitionDelay: `${delay}ms` } : undefined}
+      data-reveal={direction}
+      data-visible={isVisible ? "" : undefined}
+      // O script no fim do <body> (layout) já marca data-visible no que
+      // está na primeira dobra antes da hidratação.
+      suppressHydrationWarning
+      className={className}
+      style={delay ? ({ ...style, "--reveal-delay": `${delay}ms` } as CSSProperties) : style}
     >
       {children}
     </Component>

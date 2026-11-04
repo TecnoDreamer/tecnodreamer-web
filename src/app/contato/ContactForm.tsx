@@ -14,7 +14,7 @@ import { COMPANY } from "@/constants/company";
 import { cn } from "@/lib/utils";
 
 const inputClasses =
-  "w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-foreground-muted/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary";
+  "min-h-11 w-full rounded-md border border-border-strong bg-background px-3.5 py-2.5 text-sm text-foreground transition-colors placeholder:text-foreground-subtle hover:border-foreground-subtle focus-visible:border-brand-cyan focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-brand-cyan aria-[invalid=true]:border-error";
 
 const labelClasses = "text-sm font-medium text-foreground";
 
@@ -80,12 +80,12 @@ export function ContactForm() {
     <form onSubmit={onSubmit} noValidate className="flex flex-col gap-5">
       <div role="status" aria-live="polite">
         {submitState.status === "success" && (
-          <p className="rounded-md bg-success/10 px-4 py-3 text-sm text-success">
+          <p className="rounded-md border border-success/30 bg-success/10 px-4 py-3 text-sm text-success">
             Mensagem enviada com sucesso! Em breve entraremos em contato.
           </p>
         )}
         {submitState.status === "error" && (
-          <p className="rounded-md bg-error/10 px-4 py-3 text-sm text-error">
+          <p className="rounded-md border border-error/30 bg-error/10 px-4 py-3 text-sm text-error">
             {submitState.message}
           </p>
         )}
@@ -224,14 +224,14 @@ export function ContactForm() {
         <label className="flex items-start gap-2 text-sm text-foreground-muted">
           <input
             type="checkbox"
-            className="mt-0.5"
+            className="mt-0.5 h-[1.125rem] w-[1.125rem] shrink-0 accent-brand-cyan"
             aria-invalid={Boolean(errors.privacyConsent)}
             aria-describedby={errors.privacyConsent ? "privacyConsent-error" : undefined}
             {...register("privacyConsent")}
           />
           <span>
             Li e concordo com a{" "}
-            <Link href="/privacidade" className="text-brand-primary-strong hover:underline">
+            <Link href="/privacidade" className="text-brand-cyan underline-offset-4 hover:underline">
               Política de Privacidade
             </Link>
             . *
@@ -244,7 +244,7 @@ export function ContactForm() {
         )}
       </div>
 
-      <Button type="submit" disabled={isSubmitting} className={cn(isSubmitting && "opacity-70")}>
+      <Button type="submit" disabled={isSubmitting} className={cn("sm:w-fit sm:self-start", isSubmitting && "opacity-70")}>
         {isSubmitting ? "Enviando..." : "Enviar mensagem"}
       </Button>
     </form>

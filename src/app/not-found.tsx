@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Section } from "@/components/ui/Section";
+import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export const metadata: Metadata = {
   title: "Página não encontrada",
@@ -8,24 +9,24 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <Section tone="background" className="flex flex-1 items-center justify-center py-32 text-center">
-      <div>
-        <p className="text-sm font-medium uppercase tracking-wide text-brand-primary-strong">
-          Erro 404
+    <section className="relative flex flex-1 items-center overflow-hidden bg-background pb-24 pt-[calc(var(--header-height)+5rem)]">
+      <div aria-hidden="true" className="tech-grid-bg absolute inset-0" />
+      <Container className="relative text-center">
+        <Eyebrow className="justify-center">Erro 404</Eyebrow>
+        <p aria-hidden="true" className="mt-6 font-mono text-display font-semibold text-gradient-brand">
+          404
         </p>
-        <h1 className="mt-3 text-4xl font-semibold text-foreground sm:text-5xl">
-          Página não encontrada
-        </h1>
-        <p className="mt-4 text-foreground-muted">
+        <h1 className="mt-4 text-h2 font-semibold uppercase text-foreground">Página não encontrada</h1>
+        <p className="mt-4 text-lead text-foreground-muted">
           A página que você procura não existe ou foi movida.
         </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-4">
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
           <ButtonLink href="/">Voltar para a Home</ButtonLink>
-          <ButtonLink href="/produtos" variant="secondary">
+          <ButtonLink href="/produtos" variant="outline">
             Ver produtos
           </ButtonLink>
         </div>
-      </div>
-    </Section>
+      </Container>
+    </section>
   );
 }

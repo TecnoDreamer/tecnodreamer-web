@@ -1,48 +1,87 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   Design System V3 — futurista dark (docs/design/DESIGN_SYSTEM_V3.md)
+   Cores de marca amostradas por pixel do logotipo oficial (tecnodreamer.png,
+   ver docs/design/AUDITORIA_REDESIGN_TECNODREAMER.md §3). Gradações
+   derivadas estão marcadas como tal.
+   ========================================================================== */
+
 :root {
-  /* Marca — extraída do logotipo oficial (ver docs/design/DESIGN_SYSTEM.md) */
-  --color-brand-primary: #22d3ee;
-  --color-brand-primary-strong: #0e7490;
-  --color-brand-secondary: #7c3aed;
-  --color-brand-secondary-alt: #4f46e5;
-  --color-ink: #0b1220;
+  color-scheme: dark;
 
-  --background: #ffffff;
-  --surface: #f8fafc;
-  --foreground: #0f172a;
-  --foreground-muted: #475569;
-  --border: #e2e8f0;
+  /* Marca — valores amostrados do logo */
+  --brand-cyan: #28e1f7; /* anel externo, topo */
+  --brand-blue: #1b92c7; /* monograma "D", parte superior */
+  --brand-cobalt: #2655ad; /* monograma "T", parte superior */
+  --brand-indigo: #382dab; /* anel inferior direito */
+  --brand-violet: #861ed0; /* monograma, parte inferior */
+  --brand-purple: #a935f0; /* anel inferior esquerdo */
+  --brand-navy: #0b2941; /* fundo do emblema */
 
-  --color-success: #16a34a;
-  --color-warning: #d97706;
-  --color-error: #dc2626;
+  /* Gradações derivadas (não estão no logo; clareadas para contraste AA) */
+  --brand-purple-light: #c77dff; /* texto roxo sobre fundo escuro: 7,5:1 */
+
+  /* Superfícies (navy do logo escurecido até quase preto) */
+  --background: #05080f;
+  --surface: #0a101c;
+  --surface-2: #101828;
+  --ink: #020409;
+
+  /* Texto */
+  --foreground: #eef4fa; /* 17,9:1 sobre --background */
+  --foreground-muted: #9aa8bc; /* 8,3:1 sobre --background; 7,4:1 sobre --surface-2 */
+  --foreground-subtle: #6b7a90; /* 4,6:1 só sobre --background; uso decorativo */
+
+  /* Linhas */
+  --border: rgba(154, 190, 230, 0.12);
+  --border-strong: rgba(154, 190, 230, 0.24);
+
+  /* Feedback (tons claros, legíveis sobre fundo escuro) */
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+
+  /* Aliases V1/V2 — mantidos para não quebrar componentes; apontam para V3 */
+  --color-brand-primary: var(--brand-cyan);
+  --color-brand-primary-strong: var(--brand-blue);
+  --color-brand-secondary: var(--brand-purple);
+  --color-brand-secondary-alt: var(--brand-indigo);
+  --color-brand-glow: var(--brand-cyan);
+  --color-ink: var(--ink);
 
   --radius-sm: 0.375rem;
   --radius-md: 0.75rem;
   --radius-lg: 1.25rem;
 
-  /* V2 — glow, superfícies elevadas, texto (docs/design/DESIGN_SYSTEM.md §1.1) */
-  --color-brand-glow: #22d3ee;
-  --color-surface-hover: #eef2f7;
-  --color-surface-elevated: rgba(15, 23, 42, 0.03);
-  --color-ink-elevated: rgba(255, 255, 255, 0.06);
-  --color-text-secondary: #334155;
-  --color-border-hover: #cbd5e1;
+  /* Altura do header fixo (usada para padding dos heróis e âncoras) */
+  --header-height: 4.5rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
   --color-foreground: var(--foreground);
   --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-subtle: var(--foreground-subtle);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --color-brand-cyan: var(--brand-cyan);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-cobalt: var(--brand-cobalt);
+  --color-brand-indigo: var(--brand-indigo);
+  --color-brand-violet: var(--brand-violet);
+  --color-brand-purple: var(--brand-purple);
+  --color-brand-purple-light: var(--brand-purple-light);
+  --color-brand-navy: var(--brand-navy);
 
   --color-brand-primary: var(--color-brand-primary);
   --color-brand-primary-strong: var(--color-brand-primary-strong);
   --color-brand-secondary: var(--color-brand-secondary);
   --color-brand-secondary-alt: var(--color-brand-secondary-alt);
-  --color-ink: var(--color-ink);
 
   --color-success: var(--color-success);
   --color-warning: var(--color-warning);
@@ -55,30 +94,32 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  /* V2 */
-  --color-brand-glow: var(--color-brand-glow);
-  --color-surface-hover: var(--color-surface-hover);
-  --color-surface-elevated: var(--color-surface-elevated);
-  --color-ink-elevated: var(--color-ink-elevated);
-  --color-text-secondary: var(--color-text-secondary);
-  --color-border-hover: var(--color-border-hover);
+  /* Escala tipográfica fluida (320px → 1440px) */
+  --text-display: clamp(2.5rem, 1.35rem + 5.6vw, 6.25rem);
+  --text-display--line-height: 0.92;
+  --text-display--letter-spacing: -0.045em;
+  --text-h1: clamp(2.25rem, 1.5rem + 3.6vw, 4.5rem);
+  --text-h1--line-height: 0.98;
+  --text-h1--letter-spacing: -0.04em;
+  --text-h2: clamp(1.875rem, 1.3rem + 2.6vw, 3.5rem);
+  --text-h2--line-height: 1;
+  --text-h2--letter-spacing: -0.035em;
+  --text-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-h3--line-height: 1.2;
+  --text-lead: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+  --text-micro: 0.6875rem;
+  --text-micro--line-height: 1.4;
+  --text-micro--letter-spacing: 0.16em;
 
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-emphasized: cubic-bezier(0.3, 0, 0.1, 1);
 
-  --animate-float: float 6s var(--ease-standard) infinite;
   --animate-menu-in: menuIn 250ms var(--ease-standard) both;
   --animate-fade-in: fadeIn 350ms var(--ease-standard) both;
-
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-8px);
-    }
-  }
+  --animate-orbit: orbit 90s linear infinite;
+  --animate-pulse-dot: pulseDot 2.4s var(--ease-standard) infinite;
+  --animate-draw: draw 1.6s var(--ease-emphasized) both;
 
   @keyframes menuIn {
     from {
@@ -101,6 +142,37 @@
       transform: translateY(0);
     }
   }
+
+  @keyframes orbit {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes pulseDot {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.35;
+      transform: scale(0.8);
+    }
+  }
+
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+html {
+  scroll-padding-top: calc(var(--header-height) + 1.5rem);
 }
 
 body {
@@ -109,51 +181,192 @@ body {
 }
 
 ::selection {
-  background: var(--color-brand-primary);
-  color: var(--color-ink);
+  background: var(--brand-cyan);
+  color: var(--ink);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-brand-primary);
-  outline-offset: 2px;
+  outline: 2px solid var(--brand-cyan);
+  outline-offset: 3px;
 }
 
 /* Tingimento por produto (ver src/lib/productAccent.ts). Produtos com
-   identidade visual própria e documentada (`Product.accentColor`, ex.:
-   Lucratix) sobrescrevem estas variáveis via `style` inline nos
-   componentes que exibem aquele produto. O padrão abaixo reproduz a
-   paleta da própria TecnoDreamer para produtos sem marca definida — o
-   visual não muda para eles. */
+   identidade visual própria (`Product.accentColor`, ex.: Lucratix)
+   sobrescrevem estas variáveis via `style` inline. */
 :root {
-  --product-accent: var(--color-brand-primary);
-  --product-accent-strong: var(--color-brand-primary-strong);
-  --product-accent-secondary: var(--color-brand-secondary);
+  --product-accent: var(--brand-cyan);
+  --product-accent-strong: var(--brand-cyan);
+  --product-accent-secondary: var(--brand-purple);
 }
 
+/* --------------------------------------------------------------------------
+   Utilitários visuais V3
+   -------------------------------------------------------------------------- */
+
+/* Grade técnica de 1px — fundos de heróis e células */
+.tech-grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(154, 190, 230, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(154, 190, 230, 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 30%, transparent 100%);
+}
+
+/* Superfície translúcida de borda fina */
+.glass {
+  background: color-mix(in srgb, var(--surface-2) 62%, transparent);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Marcas de canto (+) — símbolo geométrico das células do grid */
+.corner-ticks {
+  position: relative;
+}
+.corner-ticks::before,
+.corner-ticks::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--border-strong), var(--border-strong)) center / 1px 100% no-repeat,
+    linear-gradient(var(--border-strong), var(--border-strong)) center / 100% 1px no-repeat;
+}
+.corner-ticks::before {
+  top: -5px;
+  left: -5px;
+}
+.corner-ticks::after {
+  bottom: -5px;
+  right: -5px;
+}
+
+/* Texto em gradiente da marca (só em títulos grandes: contraste ≥ 3:1) */
+.text-gradient-brand {
+  background: linear-gradient(100deg, var(--brand-cyan) 0%, var(--brand-blue) 45%, var(--brand-purple-light) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glow reservado a hero, CTA final e interações (não usar em tudo) */
+.glow-cyan {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--brand-cyan) 35%, transparent),
+    0 0 48px -10px color-mix(in srgb, var(--brand-cyan) 55%, transparent);
+}
+
+/* Card com acento do produto: borda e brilho discretos no hover/foco */
 .product-card-hover {
   transition:
-    transform 300ms cubic-bezier(0.2, 0, 0, 1),
-    border-color 300ms cubic-bezier(0.2, 0, 0, 1),
-    box-shadow 300ms cubic-bezier(0.2, 0, 0, 1);
+    transform 300ms var(--ease-standard),
+    border-color 300ms var(--ease-standard),
+    box-shadow 300ms var(--ease-standard);
 }
 .product-card-hover:hover,
 .product-card-hover:focus-within {
   transform: translateY(-0.25rem);
-  border-color: color-mix(in srgb, var(--product-accent) 40%, transparent);
-  box-shadow: 0 12px 40px -12px color-mix(in srgb, var(--product-accent) 60%, transparent);
+  border-color: color-mix(in srgb, var(--product-accent) 45%, transparent);
+  box-shadow: 0 18px 60px -24px color-mix(in srgb, var(--product-accent) 70%, transparent);
 }
 
-/* Grid tecnológico — usado apenas em seções escuras (tone="ink"), ver
-   docs/design/DESIGN_SYSTEM.md §10 */
-.tech-grid-bg {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+/* Linha que acende no hover das linhas editoriais (diferenciais, FAQ) */
+.hairline-glow {
+  position: relative;
+}
+.hairline-glow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--brand-cyan), var(--brand-purple));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms var(--ease-emphasized);
+}
+.hairline-glow:hover::after,
+.hairline-glow:focus-within::after {
+  transform: scaleX(1);
+}
+
+/* Reveal ao scroll (src/components/ui/Reveal.tsx). Fica em @layer
+   components para que utilitários de transição do próprio elemento
+   continuem valendo. Só esconde com JS ativo (classe .js no <html>). */
+@layer components {
+  .js [data-reveal] {
+    transition:
+      opacity 700ms var(--ease-standard) var(--reveal-delay, 0ms),
+      transform 700ms var(--ease-emphasized) var(--reveal-delay, 0ms);
+  }
+  .js [data-reveal]:not([data-visible]) {
+    opacity: 0;
+  }
+  .js [data-reveal="up"]:not([data-visible]) {
+    transform: translateY(1.5rem);
+  }
+  .js [data-reveal="down"]:not([data-visible]) {
+    transform: translateY(-1.5rem);
+  }
+  .js [data-reveal="left"]:not([data-visible]) {
+    transform: translateX(1.5rem);
+  }
+  .js [data-reveal="right"]:not([data-visible]) {
+    transform: translateX(-1.5rem);
+  }
+}
+
+/* Linha progressiva da timeline de processo (ProcessTimeline). */
+.js .process-line[data-reveal] {
+  transform-origin: top;
+  transition: transform 1600ms var(--ease-emphasized) 150ms;
+}
+.js .process-line[data-reveal]:not([data-visible]) {
+  opacity: 1;
+  transform: scaleY(0);
+}
+@media (min-width: 64rem) {
+  .js .process-line[data-reveal] {
+    transform-origin: left;
+  }
+  .js .process-line[data-reveal]:not([data-visible]) {
+    transform: scaleX(0);
+  }
+}
+
+/* Entrada do herói da home: só CSS (não espera hidratação), sem opacidade
+   no H1 para não atrasar o LCP. */
+.hero-rise {
+  animation: heroRise 900ms var(--ease-emphasized) both;
+  animation-delay: var(--rise-delay, 0ms);
+}
+.hero-fade {
+  animation: heroFade 900ms var(--ease-standard) both;
+  animation-delay: var(--rise-delay, 0ms);
+}
+@keyframes heroRise {
+  from {
+    transform: translateY(1.25rem);
+  }
+}
+@keyframes heroFade {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .js [data-reveal]:not([data-visible]),
+  .js .process-line[data-reveal]:not([data-visible]) {
+    opacity: 1;
+    transform: none;
+  }
+
   *,
   *::before,
   *::after {

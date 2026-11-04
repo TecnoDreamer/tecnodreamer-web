@@ -37,13 +37,13 @@ export const metadata: Metadata = {
   },
 };
 
-// O site é claro por padrão, com seções escuras pontuais (tone="ink") —
-// não é um dark mode completo. Declarar isso explicitamente evita que o
-// navegador aplique dark mode automático/forçado (comum em Chrome/Android
-// com tema do sistema escuro), que pode reescrever cores de forma
-// imprevisível sobre texto branco em fundos transparentes/customizados.
+// Design System V3: o site inteiro é escuro (não há tema claro
+// alternativo). Declarar o esquema evita que o navegador aplique dark
+// mode forçado por cima e deixa controles nativos (select, scrollbar,
+// checkbox) no tom escuro.
 export const viewport: Viewport = {
-  colorScheme: "light",
+  colorScheme: "dark",
+  themeColor: "#05080f",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -51,11 +51,35 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="pt-BR"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      // O script abaixo adiciona a classe "js" antes da hidratação.
+      suppressHydrationWarning
     >
+      <head>
+        {/* Marca que há JS, para o Reveal poder esconder conteúdo até ele
+            entrar no viewport. Sem JS, nada fica escondido. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body className="flex min-h-full flex-col">
+        <a
+          href="#conteudo"
+          className="fixed left-4 top-4 z-[60] -translate-y-24 rounded-full bg-brand-cyan px-5 py-3 text-sm font-semibold text-ink transition-transform focus-visible:translate-y-0"
+        >
+          Pular para o conteúdo
+        </a>
         <Header />
-        <main className="flex flex-1 flex-col">{children}</main>
+        <main id="conteudo" tabIndex={-1} className="flex flex-1 flex-col outline-none">
+          {children}
+        </main>
         <Footer />
+        {/* Antes da hidratação, revela o que já está na primeira dobra:
+            assim o LCP não espera o JavaScript do Reveal. O resto continua
+            entrando ao rolar. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "document.querySelectorAll('[data-reveal]').forEach(function(e){var r=e.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)e.setAttribute('data-visible','')})",
+          }}
+        />
       </body>
     </html>
   );

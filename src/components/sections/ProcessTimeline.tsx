@@ -27,29 +27,36 @@ const STEPS = [
   },
 ];
 
+/**
+ * Timeline das seis etapas. Desktop: linha horizontal que se preenche ao
+ * entrar no viewport. Mobile: vertical, com a linha à esquerda. A linha
+ * progressiva é decorativa e fica cheia sob prefers-reduced-motion.
+ */
 export function ProcessTimeline() {
   return (
-    <ol className="relative grid gap-10 md:grid-cols-6 md:gap-6">
-      <div
+    <div className="relative">
+      <div aria-hidden="true" className="absolute left-[1.0625rem] top-0 h-full w-px bg-border lg:left-0 lg:top-[1.0625rem] lg:h-px lg:w-full" />
+      <Reveal
+        direction="none"
         aria-hidden="true"
-        className="absolute left-4 top-4 hidden h-px w-[calc(100%-2rem)] bg-border md:block"
-      />
-      {STEPS.map((step, index) => (
-        <Reveal
-          as="li"
-          key={step.title}
-          delay={index * 70}
-          className="relative flex gap-4 md:flex-col md:gap-4"
-        >
-          <span className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-brand-primary/40 bg-background font-mono text-sm text-brand-primary-strong">
-            {index + 1}
-          </span>
-          <div>
-            <h3 className="font-medium text-foreground">{step.title}</h3>
-            <p className="mt-1 text-sm text-foreground-muted">{step.description}</p>
-          </div>
-        </Reveal>
-      ))}
-    </ol>
+        className="process-line absolute left-[1.0625rem] top-0 h-full w-px bg-gradient-to-b from-brand-cyan via-brand-cobalt to-brand-purple lg:left-0 lg:top-[1.0625rem] lg:h-px lg:w-full lg:bg-gradient-to-r"
+      >
+        {null}
+      </Reveal>
+
+      <ol className="relative grid gap-10 lg:grid-cols-6 lg:gap-6">
+        {STEPS.map((step, index) => (
+          <Reveal as="li" key={step.title} delay={index * 90} className="flex gap-5 lg:flex-col lg:gap-6">
+            <span className="relative z-10 flex h-[2.125rem] w-[2.125rem] shrink-0 items-center justify-center rounded-full border border-brand-cyan/50 bg-background font-mono text-xs text-brand-cyan shadow-[0_0_18px_-4px_var(--brand-cyan)]">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <div className="pb-1">
+              <h3 className="text-lg font-semibold uppercase tracking-tight text-foreground">{step.title}</h3>
+              <p className="mt-2 text-sm text-foreground-muted">{step.description}</p>
+            </div>
+          </Reveal>
+        ))}
+      </ol>
+    </div>
   );
 }

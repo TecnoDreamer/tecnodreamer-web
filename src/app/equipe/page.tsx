@@ -1,30 +1,31 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui/Section";
+import { PageHero } from "@/components/ui/PageHero";
 import { TeamMemberCard } from "@/components/ui/TeamMemberCard";
-import { Reveal } from "@/components/ui/Reveal";
+import { FinalCta } from "@/components/sections/FinalCta";
 import { TEAM_MEMBERS } from "@/constants/team";
 
 export const metadata: Metadata = {
   title: "Equipe",
   description: "Conheça os responsáveis pela TecnoDreamer.",
+  alternates: { canonical: "/equipe" },
 };
 
 export default function TeamPage() {
   return (
-    <Section tone="background" className="pt-16">
-      <Reveal className="mb-10 max-w-2xl">
-        <h1 className="text-4xl font-semibold text-foreground">Equipe</h1>
-        <p className="mt-4 text-foreground-muted">
-          Conheça quem está por trás da TecnoDreamer.
-        </p>
-      </Reveal>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {TEAM_MEMBERS.map((member, index) => (
-          <Reveal key={member.name} delay={index * 80}>
-            <TeamMemberCard member={member} />
-          </Reveal>
-        ))}
-      </div>
-    </Section>
+    <>
+      <PageHero eyebrow="Pessoas" title="Equipe" intro="Conheça quem está por trás da TecnoDreamer." />
+      <Section tone="background">
+        <ul className="flex flex-col gap-8">
+          {/* Primeira dobra: sem Reveal, para não atrasar o LCP (foto). */}
+          {TEAM_MEMBERS.map((member) => (
+            <li key={member.name}>
+              <TeamMemberCard member={member} />
+            </li>
+          ))}
+        </ul>
+      </Section>
+      <FinalCta />
+    </>
   );
 }
