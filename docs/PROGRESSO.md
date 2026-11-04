@@ -267,7 +267,8 @@ Base: `docs/PENDENCIAS.md` preenchido pelo responsável.
 
 ## Redesign institucional V3 — futurista dark (2026-11-02)
 
-Branch `feat/institutional-futuristic-redesign`. Auditoria em
+Entregue no PR #1 (merge em `6bc0a76`, 2026-11-03) e publicado em
+produção na Vercel. Auditoria em
 `docs/design/AUDITORIA_REDESIGN_TECNODREAMER.md`; tokens e regras em
 `docs/design/DESIGN_SYSTEM_V3.md`; guia em
 `docs/design/GUIA_VISUAL_TECNODREAMER.md`.
@@ -282,4 +283,4 @@ Branch `feat/institutional-futuristic-redesign`. Auditoria em
 - [x] Todas as páginas internas no novo design; texto jurídico intacto.
 - [x] Reveal sem esconder conteúdo quando não há JavaScript.
 - [x] Testes E2E atualizados e `e2e/redesign.spec.ts` novo.
-- [ ] Revisão visual do responsável e merge (aguardando PR).
+- [x] Revisão visual do responsável, merge e deploy em produção.
