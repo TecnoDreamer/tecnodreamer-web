@@ -7,6 +7,11 @@ Formato inspirado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/)
 
 ### Adicionado
 
+- **Container Docker** do site: `Dockerfile` (build `standalone`, Node 24
+  Alpine, usuário sem privilégios, healthcheck), `docker-compose.yml` e
+  `.dockerignore`. A saída `standalone` só é ativada pelo build do Docker
+  (`NEXT_OUTPUT=standalone`); Vercel e `npm run build` não mudam. Uso em
+  `docs/DEPLOY.md` → "Docker".
 - **Redesign institucional V3 (futurista dark)**, ver
   `docs/design/DESIGN_SYSTEM_V3.md`: tema escuro em todo o site com a
   paleta amostrada do logotipo; herói da home com arte SVG original

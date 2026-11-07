@@ -1,0 +1,20 @@
+# Fora do contexto de build. Atenção: os logos na raiz (tecnodreamer.png) são
+# importados pelo código, então NÃO os ignore.
+node_modules
+.next
+.git
+.github
+.claude
+.vercel
+test-results
+playwright-report
+blob-report
+coverage
+docs
+.env*
+!.env.example
+*.tsbuildinfo
+npm-debug.log*
+Dockerfile
+docker-compose.yml
+.dockerignore

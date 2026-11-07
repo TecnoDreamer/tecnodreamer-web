@@ -132,3 +132,29 @@ Qualquer host com suporte a Node.js/Next.js funciona
 (`npm run build` seguido de `npm run start`). Não há dependência de
 infraestrutura específica da Vercel — apenas a conveniência de
 detecção automática de domínio descrita acima é exclusiva dela.
+
+## Docker
+
+O repositório tem um `Dockerfile` (Next.js em modo `standalone`, Node 24
+Alpine, usuário sem privilégios, imagem de ~333 MB) e um
+`docker-compose.yml`. A produção oficial continua na Vercel; o container
+serve para testar o build de produção localmente ou para hospedar em outro
+lugar.
+
+```bash
+docker compose up -d --build      # constrói e sobe em http://localhost:3000
+docker compose logs -f web        # acompanha os logs
+docker compose down               # para e remove o container
+docker compose up -d --build --force-recreate   # recria do zero
+```
+
+- **Porta:** `PORT=8080 docker compose up -d` publica em outra porta no host.
+- **`NEXT_PUBLIC_SITE_URL`:** é embutida no build. Para outro domínio,
+  defina a variável e reconstrua (`--build`); trocar só em runtime não surte
+  efeito. O padrão é `http://localhost:3000`.
+- **Formulário de contato:** crie um `.env.local` (fica fora do git) com
+  `RESEND_API_KEY`, `CONTACT_TO_EMAIL` etc. Sem chave, o formulário responde
+  503, como em produção. Para só validar e registrar as mensagens, ponha
+  `CONTACT_DELIVERY_MODE=log` nesse arquivo.
+- O build baixa as fontes do Google (`next/font/google`), então precisa de
+  internet.

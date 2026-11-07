@@ -24,6 +24,9 @@ const SECURITY_HEADERS = [
 ];
 
 const nextConfig: NextConfig = {
+  // Só o build do Docker (ver Dockerfile) gera a pasta standalone; na Vercel
+  // e no `npm run build` local o comportamento continua o padrão.
+  output: process.env.NEXT_OUTPUT === "standalone" ? "standalone" : undefined,
   poweredByHeader: false,
   async headers() {
     return [
