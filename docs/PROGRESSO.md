@@ -284,3 +284,14 @@ produção na Vercel. Auditoria em
 - [x] Reveal sem esconder conteúdo quando não há JavaScript.
 - [x] Testes E2E atualizados e `e2e/redesign.spec.ts` novo.
 - [x] Revisão visual do responsável, merge e deploy em produção.
+
+## Container Docker (2026-11-09)
+
+Entregue no PR #3 (`ec7873f`). `Dockerfile` (Next.js `standalone`, Node 24
+Alpine, usuário sem privilégios, healthcheck), `docker-compose.yml` e
+`.dockerignore`; uso em `docs/DEPLOY.md` → "Docker". A produção segue na
+Vercel; o container serve para testar o build de produção localmente.
+
+- [x] Imagem constrói e o container fica `healthy`; rotas principais, sitemap,
+      robots, imagens otimizadas e cabeçalhos de segurança respondem.
+- [ ] Rodar a suíte E2E contra o container (hoje só a CI, no build normal).
