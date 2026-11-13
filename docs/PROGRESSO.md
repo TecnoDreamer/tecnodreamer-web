@@ -295,3 +295,18 @@ Vercel; o container serve para testar o build de produção localmente.
 - [x] Imagem constrói e o container fica `healthy`; rotas principais, sitemap,
       robots, imagens otimizadas e cabeçalhos de segurança respondem.
 - [ ] Rodar a suíte E2E contra o container (hoje só a CI, no build normal).
+
+## Lucratix fora do portfólio (2026-11-13)
+
+Decisão do responsável: por enquanto o site apresenta só o **PetConnect** e
+o **Pet & Pet** (que pode virar Petable). O Lucratix foi removido do
+`PRODUCTS`, do herói, da faixa institucional, do FAQ e das metas da empresa;
+os dados continuam no histórico do git. Para reativá-lo, restaure a entrada
+de `src/constants/products.ts` e o logo `public/logos/lucratix.png` do commit
+anterior à remoção.
+
+- [x] Home, grade do ecossistema e cards em 2 produtos; `/produtos/lucratix`
+      devolve 404; testes E2E atualizados (com teste de 404).
+- [ ] Textos de posicionamento da empresa ainda citam "marketing orientado a
+      dados" (título, `COMPANY.shortPitch`, Sobre): decidir se mantêm.
+

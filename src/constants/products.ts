@@ -1,10 +1,11 @@
-import { PawPrint, QrCode, LineChart } from "lucide-react";
+import { PawPrint, QrCode } from "lucide-react";
 import type { Product } from "@/types/product";
 
 /**
  * Dados dos produtos conferidos nos repositórios/documentação de cada um
- * (Pet & Pet: README do projeto; PetConnect: README e docs/requisitos; Lucratix:
- * docs/product). Nada aqui é estimado ou inventado — se um recurso ainda não
+ * (Pet & Pet: README do projeto; PetConnect: README e docs/requisitos).
+ * O Lucratix está fora do portfólio exibido; os dados dele ficam no
+ * histórico do git (commit anterior à remoção). Nada aqui é estimado ou inventado — se um recurso ainda não
  * existe no produto, ele aparece como "em construção" ou fica de fora.
  */
 export const PRODUCTS: Product[] = [
@@ -120,86 +121,6 @@ export const PRODUCTS: Product[] = [
         question: "Quem vê as informações do QR Code?",
         answer:
           "A página pública do QR Code ainda está em construção. A regra do projeto é exibir apenas o necessário para devolver o pet, sem histórico médico.",
-      },
-    ],
-  },
-  {
-    slug: "lucratix",
-    name: "Lucratix",
-    tagline: "BI, Marketing Analytics, Growth e CRO para consultorias com múltiplos clientes.",
-    category: "BI & Analytics",
-    icon: LineChart,
-    logoSrc: "/logos/lucratix.png",
-    // Paleta extraída por amostragem de pixel do logotipo oficial do
-    // Lucratix (ver docs/branding/LUCRATIX_BRAND.md no repositório do
-    // produto) — não escolhida livremente.
-    accentColor: {
-      onLight: { primary: "#0052e0", secondary: "#001640" },
-      onDark: { primary: "#3b82f6", secondary: "#0a1436" },
-    },
-    // Fases do roadmap técnico do Lucratix (docs/product/roadmap.md no
-    // repositório do produto, conferido em 2026-11-02): 16 das 18 fases
-    // concluídas e testadas; faltam integrações externas e o hardening final.
-    roadmapProgress: {
-      completed: 16,
-      total: 18,
-      pendingLabels: [
-        "Integrações externas (GA4, Google Ads, Meta Ads)",
-        "Hardening (segurança, performance, acessibilidade, observabilidade, backup)",
-      ],
-    },
-    status: "em-desenvolvimento",
-    audience: [
-      "Consultorias de marketing",
-      "Consultores de growth e CRO",
-      "Profissionais de marketing que atendem múltiplos clientes ao mesmo tempo",
-    ],
-    problem:
-      "Consultorias de marketing conseguem mostrar métricas de campanha (impressões, cliques, CTR), mas têm dificuldade real em provar, de forma confiável e auditável, se o trabalho realizado gerou mais faturamento, lucro e clientes lucrativos para cada cliente atendido — e em comparar isso com a situação anterior ao início do serviço. Planilhas soltas por cliente não têm baseline preservado, controle de acesso nem trilha de auditoria, e métricas como CAC, LTV e ROAS costumam ser calculadas de formas diferentes por pessoas diferentes.",
-    solution:
-      "Uma plataforma que centraliza os dados de cada empresa/cliente atendido de forma isolada e segura, com baseline histórico nunca sobrescrito silenciosamente, e um motor central de métricas com fórmulas documentadas e tratamento correto de dado ausente (nunca vira zero). Conecta investimento em marketing a resultado financeiro real — faturamento, lucro, margem, CAC, LTV, ROAS, conversão — com comparação antes × depois.",
-    features: [
-      "Organizações multi-tenant isoladas por cliente",
-      "Baseline histórico versionado",
-      "Financeiro por período",
-      "Canais e campanhas",
-      "Funil (impressão → recompra)",
-      "Motor de métricas (CAC, LTV, ROAS, ROI, conversão)",
-      "Comparação baseline × atual",
-      "Dashboard e visão executiva por empresa",
-      "Experimentos A/B e CRO",
-      "Relatório executivo em PDF",
-      "Importação e exportação de planilhas",
-      "Interface em português, inglês e espanhol",
-      "Auditoria e RBAC por organização",
-      "API com chave por organização",
-    ],
-    differentiators: [
-      "Conecta investimento em marketing a resultado financeiro real do cliente, não apenas métricas de mídia isoladas.",
-      "Isolamento de dados por empresa com trilha de auditoria desde o primeiro dia — não uma planilha compartilhada.",
-      "Baseline histórico nunca sobrescrito, com tratamento explícito de dado ausente em vez de zerar indicadores silenciosamente.",
-      "Deliberadamente conservador sobre o que os dados podem afirmar: não declara vencedor de experimento por diferença percentual simples, nem promete atribuição automática de causalidade.",
-    ],
-    howItWorks: [
-      "A consultoria cadastra cada empresa/cliente com baseline (situação antes do serviço) preservado historicamente.",
-      "O time registra financeiro, canais/campanhas e etapas do funil por período, com controle de acesso e trilha de auditoria.",
-      "O motor de métricas calcula CAC, LTV, ROAS, ROI e conversão, comparando baseline × atual em um dashboard executivo e relatórios exportáveis.",
-    ],
-    faq: [
-      {
-        question: "O Lucratix já está disponível?",
-        answer:
-          "Ainda não publicamente. Está em desenvolvimento avançado: autenticação, multi-tenancy, baseline, financeiro, marketing, funil, motor de métricas, dashboard, experimentos e relatórios já estão implementados e testados. Integrações com fontes externas (GA4, Google Ads, Meta Ads) e o hardening final de segurança/performance ainda estão pendentes.",
-      },
-      {
-        question: "Para quem é o Lucratix?",
-        answer:
-          "Para consultorias e profissionais de marketing que atendem múltiplas empresas/clientes ao mesmo tempo e precisam provar e melhorar o impacto do seu trabalho com dados isolados por cliente e auditáveis.",
-      },
-      {
-        question: "O Lucratix substitui o gerenciador de anúncios (Google Ads, Meta Ads)?",
-        answer:
-          "Não. O Lucratix não gerencia campanhas — ele conecta o investimento feito nessas plataformas ao resultado financeiro real do cliente. Também não é, nesta fase, uma ferramenta de automação de marketing nem de contabilidade fiscal.",
       },
     ],
   },

@@ -9,7 +9,6 @@ import { test, expect } from "@playwright/test";
 const PRODUCTS = [
   { name: "Pet & Pet", slug: "pet-e-pet" },
   { name: "PetConnect", slug: "petconnect" },
-  { name: "Lucratix", slug: "lucratix" },
 ];
 
 const PAGES = [
@@ -18,7 +17,6 @@ const PAGES = [
   "/produtos",
   "/produtos/pet-e-pet",
   "/produtos/petconnect",
-  "/produtos/lucratix",
   "/equipe",
   "/contato",
   "/faq",
@@ -39,7 +37,7 @@ test.describe("Home V3", () => {
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("Tecnologia para problemas reais.");
 
     for (const name of [
-      "Um portfólio. Três problemas reais.",
+      "Um portfólio. Dois problemas reais.",
       "Nossos produtos",
       "O que nos diferencia.",
       "Como trabalhamos",
@@ -80,13 +78,24 @@ test.describe("Home V3", () => {
   }) => {
     await page.goto("/");
     const cards = page.locator("#produtos-title").locator("xpath=ancestor::section").getByRole("article");
-    await expect(cards).toHaveCount(3);
-    for (let index = 0; index < 3; index++) {
+    await expect(cards).toHaveCount(PRODUCTS.length);
+    for (let index = 0; index < PRODUCTS.length; index++) {
       const card = cards.nth(index);
       await card.scrollIntoViewIfNeeded();
       await expect(card.getByText("Em desenvolvimento")).toBeVisible();
       await expect(card.getByText("Para", { exact: true })).toBeVisible();
       await expect(card.getByText("Diferencial", { exact: true })).toBeVisible();
+    }
+  });
+});
+
+test.describe("Portfólio", () => {
+  test("Lucratix está fora do site e a rota antiga devolve 404", async ({ page }) => {
+    const response = await page.goto("/produtos/lucratix");
+    expect(response?.status()).toBe(404);
+    for (const path of ["/", "/produtos"]) {
+      await page.goto(path);
+      await expect(page.getByText("Lucratix")).toHaveCount(0);
     }
   });
 });

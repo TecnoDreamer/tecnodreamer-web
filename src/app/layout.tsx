@@ -22,14 +22,14 @@ export const metadata: Metadata = {
     template: "%s | TecnoDreamer",
   },
   description:
-    "A TecnoDreamer desenvolve produtos de software para o mercado pet e para marketing orientado a dados: gestão para pet shops e clínicas, identificação de pets por QR Code e analytics de marketing.",
+    "A TecnoDreamer desenvolve produtos de software para o mercado pet e para marketing orientado a dados: gestão para pet shops e clínicas e identificação de pets por QR Code.",
   openGraph: {
     type: "website",
     locale: "pt_BR",
     siteName: "TecnoDreamer",
     title: "TecnoDreamer — Software para o mercado pet e para marketing orientado a dados",
     description:
-      "Conheça o portfólio de produtos da TecnoDreamer: gestão pet, identificação de pets por QR Code e analytics de marketing.",
+      "Conheça o portfólio de produtos da TecnoDreamer: gestão pet e identificação de pets por QR Code.",
   },
   robots: {
     index: true,

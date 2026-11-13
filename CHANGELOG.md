@@ -154,6 +154,14 @@ Formato inspirado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/)
 
 ### Removido
 
+- **Lucratix** saiu do portfólio exibido (decisão do responsável: foco no
+  PetConnect e no Pet & Pet por enquanto). Removidos os dados do produto, o
+  logotipo `public/logos/lucratix.png`, o painel "BI & Analytics" do herói e
+  o item "Marketing orientado a dados" da faixa institucional; a rota
+  `/produtos/lucratix` agora devolve 404. Grade do ecossistema e cards da
+  home passaram para 2 produtos. Os dados ficam no histórico do git (antes
+  deste commit). Python e PostgreSQL saíram da lista de tecnologias (só o
+  Lucratix os usava).
 - Seção de abas "Explore cada produto" (`ProductShowcase`) e o mockup
   abstrato (`ProductMockup`), substituídos pelos cards 01/02/03; o
   conteúdo continua nas páginas de produto.

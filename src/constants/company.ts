@@ -30,7 +30,7 @@ export const COMPANY = {
   // enquanto for null (nada de texto inventado).
   culture: null as string | null,
   futureGoals: [
-    "Levar o Pet & Pet e o PetConnect ao primeiro lançamento e o Lucratix à etapa de integrações e hardening.",
+    "Levar o Pet & Pet e o PetConnect ao primeiro lançamento.",
     "Criar os canais oficiais da TecnoDreamer nas redes sociais (LinkedIn e Instagram).",
   ],
   values: [
@@ -40,14 +40,12 @@ export const COMPANY = {
     "Evolução contínua dos produtos, com base em uso real.",
   ],
   // Tecnologias realmente usadas nos produtos e neste site (conferidas nos
-  // repositórios de cada um): Lucratix (Next.js, React, TypeScript, Python,
-  // PostgreSQL), PetConnect (Flutter, Firebase), Pet & Pet (PHP, MySQL).
+  // repositórios de cada um): este site (Next.js, React, TypeScript),
+  // PetConnect (Flutter, Firebase), Pet & Pet (PHP, MySQL).
   technologies: [
     "Next.js",
     "React",
     "TypeScript",
-    "Python",
-    "PostgreSQL",
     "Flutter",
     "Firebase",
     "PHP",

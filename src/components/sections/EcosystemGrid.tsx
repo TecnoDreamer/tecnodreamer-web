@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Code2, LineChart, PawPrint } from "lucide-react";
+import { ArrowUpRight, Code2, PawPrint } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { Product } from "@/types/product";
 import { Section } from "@/components/ui/Section";
@@ -12,10 +12,10 @@ import { productAccentVars } from "@/lib/productAccent";
 import { cn } from "@/lib/utils";
 
 /**
- * Grade técnica do ecossistema: 3 células de produto (links para as páginas
- * reais) e 3 células de apoio com públicos e tecnologias tirados dos dados
- * do repositório. Desktop: 4 colunas × 2 linhas. Mobile: produtos primeiro,
- * células de apoio depois.
+ * Grade técnica do ecossistema: 2 células de produto (links para as páginas
+ * reais) e 2 células de apoio com públicos e tecnologias tirados dos dados
+ * do repositório. Desktop: 4 colunas × 2 linhas (cada célula ocupa 2
+ * colunas). Mobile: produtos primeiro, células de apoio depois.
  */
 
 function requireProduct(slug: string): Product {
@@ -26,7 +26,6 @@ function requireProduct(slug: string): Product {
 
 const petEPet = requireProduct("pet-e-pet");
 const petConnect = requireProduct("petconnect");
-const lucratix = requireProduct("lucratix");
 
 const petAudience = Array.from(new Set([...petEPet.audience, ...petConnect.audience.slice(0, 1)]));
 
@@ -36,32 +35,22 @@ type Cell =
 
 const CELLS: Cell[] = [
   { kind: "product", product: petEPet, index: "01", className: "lg:col-span-2" },
+  { kind: "product", product: petConnect, index: "02", className: "lg:col-span-2" },
   {
     kind: "support",
     icon: PawPrint,
     label: "Segmento",
     title: "Mercado pet",
     items: petAudience,
-    className: "order-last lg:order-none",
+    className: "order-last lg:order-none lg:col-span-2",
   },
-  { kind: "product", product: petConnect, index: "02", className: "" },
   {
     kind: "support",
     icon: Code2,
     label: "Tecnologia",
     title: "Web + Mobile",
     items: COMPANY.technologies,
-    className: "order-last lg:order-none",
-  },
-  { kind: "product", product: lucratix, index: "03", className: "sm:col-span-2" },
-  {
-    kind: "support",
-    icon: LineChart,
-    label: "Segmento",
-    title: "Marketing orientado a dados",
-    items: lucratix.audience.slice(0, 2),
-    // No tablet (2 colunas) é a 5ª célula de apoio sozinha na linha.
-    className: "order-last sm:col-span-2 lg:order-none lg:col-span-1",
+    className: "order-last lg:order-none lg:col-span-2",
   },
 ];
 
@@ -74,7 +63,7 @@ export function EcosystemGrid() {
         id="ecossistema-title"
         title={
           <>
-            Um portfólio. <span className="text-foreground-muted">Três problemas reais.</span>
+            Um portfólio. <span className="text-foreground-muted">Dois problemas reais.</span>
           </>
         }
         description={COMPANY.principles[2]}

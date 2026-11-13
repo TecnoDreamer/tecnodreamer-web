@@ -149,6 +149,8 @@ docker compose up -d --build --force-recreate   # recria do zero
 ```
 
 - **Porta:** `PORT=8080 docker compose up -d` publica em outra porta no host.
+  Evite a 3100, usada pelos testes E2E (`playwright.config.ts` reaproveita
+  qualquer servidor que já esteja nela e testaria o container, não o código).
 - **`NEXT_PUBLIC_SITE_URL`:** é embutida no build. Para outro domínio,
   defina a variável e reconstrua (`--build`); trocar só em runtime não surte
   efeito. O padrão é `http://localhost:3000`.

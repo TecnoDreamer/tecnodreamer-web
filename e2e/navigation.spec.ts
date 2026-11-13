@@ -22,13 +22,6 @@ test.describe("Navegação principal", () => {
     await expect(page.getByRole("heading", { name: "Pet & Pet", level: 1 })).toBeVisible();
   });
 
-  test("Home → Lucratix", async ({ page }) => {
-    await page.goto("/");
-    await page.getByRole("link", { name: "Conhecer Lucratix" }).click();
-    await expect(page).toHaveURL("/produtos/lucratix");
-    await expect(page.getByRole("heading", { name: "Lucratix", level: 1 })).toBeVisible();
-  });
-
   test("Home → Empresa → Equipe", async ({ page }) => {
     await page.goto("/");
     await page.getByRole("link", { name: "Empresa", exact: true }).first().click();
