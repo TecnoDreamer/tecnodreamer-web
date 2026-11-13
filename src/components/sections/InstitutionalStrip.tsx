@@ -10,7 +10,6 @@ const ITEMS = [
   `${inDevelopment} produtos em desenvolvimento`,
   "Web + Mobile",
   "Mercado pet",
-  "Marketing orientado a dados",
   "Segurança por padrão",
 ];
 

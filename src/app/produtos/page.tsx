@@ -9,7 +9,7 @@ import { PRODUCTS } from "@/constants/products";
 export const metadata: Metadata = {
   title: "Produtos",
   description:
-    "Conheça o portfólio de produtos da TecnoDreamer: gestão para pet shops e clínicas, identificação de pets por QR Code e analytics de marketing.",
+    "Conheça o portfólio de produtos da TecnoDreamer: gestão para pet shops e clínicas e identificação de pets por QR Code.",
   alternates: { canonical: "/produtos" },
 };
 
@@ -19,10 +19,10 @@ export default function ProductsPage() {
       <PageHero
         eyebrow="Portfólio"
         title="Produtos"
-        intro="O portfólio da TecnoDreamer está em construção. Cada produto abaixo resolve um problema específico do mercado pet ou de marketing orientado a dados — a estrutura do site já está preparada para receber novos produtos conforme forem definidos."
+        intro="O portfólio da TecnoDreamer está em construção. Cada produto abaixo resolve um problema específico do mercado pet — a estrutura do site já está preparada para receber novos produtos conforme forem definidos."
       />
       <Section tone="background">
-        <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-5 md:grid-cols-2">
           {PRODUCTS.map((product, index) => (
             <Reveal as="li" key={product.slug} delay={index * 90} className="h-full">
               <ProductCard product={product} index={index} headingLevel="h2" />

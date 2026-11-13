@@ -6,18 +6,18 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { HeroSpotlight } from "@/components/sections/HeroSpotlight";
 import { HeroVisual } from "@/components/sections/HeroVisual";
 import { COMPANY } from "@/constants/company";
+import { PRODUCTS } from "@/constants/products";
 import { cn } from "@/lib/utils";
 
 /**
  * Módulos flutuantes ao redor da arte. Só categorias verificáveis no
  * portfólio (nada de métricas): Pet & Pet e PetConnect (pet tech),
- * Lucratix (BI), sistemas web e app mobile, 3 produtos em desenvolvimento.
+ * sistemas web e app mobile e os produtos em desenvolvimento.
  */
 const HERO_PANELS = [
   { label: "Pet tech", detail: "Gestão e identificação de pets", position: "lg:left-0 lg:top-[12%]" },
-  { label: "BI & Analytics", detail: "Marketing orientado a dados", position: "lg:right-0 lg:top-[22%]" },
   { label: "Web + Mobile", detail: "Sistemas web e app mobile", position: "lg:left-[2%] lg:bottom-[14%]" },
-  { label: "Em desenvolvimento", detail: "3 produtos no portfólio", position: "lg:right-[4%] lg:bottom-[6%]", live: true },
+  { label: "Em desenvolvimento", detail: `${PRODUCTS.length} produtos no portfólio`, position: "lg:right-[4%] lg:bottom-[6%]", live: true },
 ];
 
 const delay = (ms: number) => ({ "--rise-delay": `${ms}ms` }) as CSSProperties;
