@@ -1,6 +1,6 @@
 # Pendências do site TecnoDreamer
 
-Atualizado em 2026-11-02, depois de aplicar o checklist preenchido pelo
+Atualizado em 2026-11-09 (a partir de 2026-11-02), depois de aplicar o checklist preenchido pelo
 responsável. O que já foi aplicado está no `CHANGELOG.md` e em
 `docs/PROGRESSO.md`; aqui ficam **só as pendências que continuam abertas**.
 
@@ -40,10 +40,11 @@ para as páginas legais — vale perguntar a ele.
 
 ## 3. 🟡 Publicação
 
+- [x] Vercel instalada na organização `TecnoDreamer` com o repositório
+      importado: cada push na `main` publica em `tecnodreamer-web.vercel.app`
+      e cada PR gera uma prévia (que pede login na Vercel).
 - [ ] Escolher o plano (recomendação: Vercel Pro — ver `DEPLOY.md`, seção
       "Vercel", com o motivo e as alternativas).
-- [ ] Instalar a Vercel na organização GitHub `TecnoDreamer` (você é dono) e
-      importar o repositório.
 - [ ] Registrar `tecnodreamer.com.br` no Registro.br (parecia livre em
       2026-11-02) e apontar o DNS para a Vercel.
 - [ ] Definir `NEXT_PUBLIC_SITE_URL=https://tecnodreamer.com.br`.
